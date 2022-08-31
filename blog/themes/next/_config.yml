@@ -122,11 +122,15 @@ scheme: Gemini
 # Value before `||` delimeter is the target permalink.
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
 social:
-  GitHub: https://github.com/rht-fsang
+  github: https://github.com/rht-fsang
+  # gitee: https://gitee.com/hibiscus-rosa-sinensis/dashboard/projects
+  微信公众号: https://mp.weixin.qq.com/s?__biz=Mzg5NjE1NTUyNQ==&mid=2247483700&idx=1&sn=0a1368f937b8277959e2584130500019&chksm=c0042bdef773a2c81ba04469d9fbc7840f2a44143e2057425436f647e6b60d432f2d6c9c07fe#rd
 
 social_icons:
   enable: true
-  GitHub: github
+  github: github
+  # gitee: gitee
+  微信公众号: weixin
 
 # Blog rolls
 links_icon: link
@@ -225,11 +229,12 @@ post_wordcount:
 # qcode: /uploads/avatar.jpg
 # description: 欢迎您扫一扫上面的微信公众号，订阅我的博客
 
-# Reward
-reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
-wechatpay: /images/weixin.jpg
-# alipay: /images/alipay.jpg
-#bitcoin: /images/bitcoin.png
+# # Reward
+# reward:
+#   enable: true
+#   #打赏功能
+# reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
+# wechatpay: /images/weixin.jpg
 
 # Declare license on posts
 post_copyright:

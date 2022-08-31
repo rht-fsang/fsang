@@ -11,3 +11,11 @@ top: 1
 ```
 <html></html>
 ```
+<!--more-->
+```
+<html></html>
+```
+
+```
+<html></html>
+```
