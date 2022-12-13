@@ -6,9 +6,9 @@ typora-copy-images-to: upload
 top: 99
 ---
 
-#### 计分小程序介绍：计分小程序是一个打牌计分神器，麻将扑克均适用，主要分为单人计分模式和多人计分模式
+### 计分小程序介绍：计分小程序是一个打牌计分神器，麻将扑克均适用，主要分为单人计分模式和多人计分模式
 
-#### 技术栈：[TS](https://www.tslang.cn/docs/handbook/basic-types.html)、[微信小程序](https://developers.weixin.qq.com/miniprogram/dev/framework/)、[Vant Wapp](https://youzan.github.io/vant-weapp/#/goods-action)、[websocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket)
+### 技术栈：[TS](https://www.tslang.cn/docs/handbook/basic-types.html)、[微信小程序](https://developers.weixin.qq.com/miniprogram/dev/framework/)、[Vant Wapp](https://youzan.github.io/vant-weapp/#/goods-action)、[websocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket)
 
 <!--more-->
 
