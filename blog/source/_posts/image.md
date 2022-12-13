@@ -11,7 +11,7 @@ typora-copy-images-to: upload
 ### GitHub
 
 首先在`GitHub`上创建一个仓库用来存放图片，需要注意仓库必须是公开的，不然别人无法访问到你的图片
-
+<!--more-->
 #### 在`GitHub`上生成一个`token`用来给`picGO`上传图片
 
 点击在左上角的头像上悬浮鼠标找到下拉框中的`settings`菜单
