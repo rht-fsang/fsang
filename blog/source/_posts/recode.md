@@ -2,11 +2,11 @@
 title: 计分小程序介绍
 date: 2022-12-12 10:36:15
 tags: summary
-tags:前端
 typora-copy-images-to: upload
+top: 99
 ---
 
-## 计分小程序介绍：计分小程序是一个打牌计分神器，麻将扑克均适用，主要分为单人计分模式和多人计分模式
+#### 计分小程序介绍：计分小程序是一个打牌计分神器，麻将扑克均适用，主要分为单人计分模式和多人计分模式
 
 #### 技术栈：[TS](https://www.tslang.cn/docs/handbook/basic-types.html)、[微信小程序](https://developers.weixin.qq.com/miniprogram/dev/framework/)、[Vant Wapp](https://youzan.github.io/vant-weapp/#/goods-action)、[websocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket)
 
@@ -16,7 +16,7 @@ typora-copy-images-to: upload
 
 ***
 
-**问题：房间计分情况实时更新到每一位成员 *
+**问题：房间计分情况实时更新到每一位成员**
 
 解决思路：选择长连接，长连接有websocket，Long Pulling， 轮询。鉴于计分操作比较频繁且需要后台主动发送信息，所以我使用的是websocket来实现长连接。小程序官方有封装好的websocket，
 
@@ -132,7 +132,7 @@ initWebSocket() {
     },
 ```
 
-#### 接口封装
+### 接口封装
 
 ***
 
@@ -235,7 +235,7 @@ initWebSocket() {
 
 ```
 
-#### 思考
+### 思考
 
 ***
 
@@ -260,7 +260,7 @@ console.log(i);
 });
 ```
 
-#### 微信小程序登录流程
+### 微信小程序登录流程
 
 ***
 
@@ -302,7 +302,7 @@ console.log(i);
 
 ```
 
-#### 记录列表翻页
+### 记录列表翻页
 
 ***
 
@@ -318,11 +318,15 @@ console.log(i);
     },
 ```
 
-#### js中的同步异步问题
+### js中的同步异步问题
+
+***
 
 js是一个单线程的语言，很多地方都需要去异步去操作。不然会产生堵塞，导致有些地方拿不到最新的信息。所以作为一个合格的js开发人员，一定要有一个很好的异步思维。我在项目中好几个应该使用异步的地方没有异步去执行。导致没有拿到最新的信息，产生了一些bug。比如我在结束房间的时候会去调用一个结算房间的接口，然后我会跳转到房间结算的页面，由于没有异步，导致我在结算页面查询房间信息的时候房间还是处于未结算的状态。具体的一些异步方法有`promise`,`async` `await`，`setTimeout`,`setInterval`
 
-#### 时间格式转换
+### 时间格式转换
+
+***
 
 由于微信小程序不支持moment去做时间格式的转换，不然的话的会在打包的时候报错，所以我手写了一个方法去实现时间格式化，具体是利用Date自带的一些api很容易去实现。
 
