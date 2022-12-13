@@ -49,7 +49,7 @@ typora-copy-images-to: upload
 
 ![image-20221213144346349](https://raw.githubusercontent.com/rht-fsang/md-image/master/img/image-20221213144346349.png)
 
-勾上途中花圈的两个选项，然后点击验证图片上传选项那个按钮验证能否成功上传，Typora会上传一个图片，当返回成功的消息就好了。
+勾上途中画圈的两个选项，然后点击验证图片上传选项那个按钮验证能否成功上传，Typora会上传一个图片，当返回成功的消息就好了。
 
 ![image-20221213145041883](https://raw.githubusercontent.com/rht-fsang/md-image/master/img/image-20221213145041883.png)
 
