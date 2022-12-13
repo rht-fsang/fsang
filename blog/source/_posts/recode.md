@@ -10,6 +10,8 @@ typora-copy-images-to: upload
 
 #### 技术栈：[TS](https://www.tslang.cn/docs/handbook/basic-types.html)、[微信小程序](https://developers.weixin.qq.com/miniprogram/dev/framework/)、[Vant Wapp](https://youzan.github.io/vant-weapp/#/goods-action)、[websocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket)
 
+<!--more-->
+
 ### 遇到的问题
 
 ***
