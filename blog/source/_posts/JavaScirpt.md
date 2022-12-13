@@ -4,7 +4,7 @@ date: 2022-12-12 10:36:15
 tags: 学习
 categories: 前端
 typora-copy-images-to: upload
-top: 98
+top: 999
 ---
 
 ### 区分基本类型和对象类型
