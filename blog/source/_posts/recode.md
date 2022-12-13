@@ -6,7 +6,7 @@ tags:前端
 typora-copy-images-to: upload
 ---
 
-## 计分小程序介绍：计分小程序是一个打牌计分神器，麻将扑克均适用，主要分为单人计分模式和多人计分模式。
+## 计分小程序介绍：计分小程序是一个打牌计分神器，麻将扑克均适用，主要分为单人计分模式和多人计分模式
 
 #### 技术栈：[TS](https://www.tslang.cn/docs/handbook/basic-types.html)、[微信小程序](https://developers.weixin.qq.com/miniprogram/dev/framework/)、[Vant Wapp](https://youzan.github.io/vant-weapp/#/goods-action)、[websocket](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket)
 
@@ -16,7 +16,7 @@ typora-copy-images-to: upload
 
 ***
 
-**问题：房间计分情况实时更新到每一位成员 **
+**问题：房间计分情况实时更新到每一位成员 *
 
 解决思路：选择长连接，长连接有websocket，Long Pulling， 轮询。鉴于计分操作比较频繁且需要后台主动发送信息，所以我使用的是websocket来实现长连接。小程序官方有封装好的websocket，
 
@@ -95,13 +95,9 @@ initWebSocket() {
 
 ***
 
-
-
 算法解决的问题：在计分小程序单人模式给分中最后以为玩家根据合分为零的规则自动填充好分数
 
 ![image-20221213110516315](https://raw.githubusercontent.com/rht-fsang/md-image/master/img/image-20221213110516315.png)
-
-
 
 如图1.1是记录玩家分数的数据结构，我通过遍历player数据去，通过判断score是否为空来记录目前有多少个玩家还没有填分数同时计算出来目前已填分数玩家的总分。然后在遍历结束后针对只有一个玩家未填分数进行处理，把已填玩家的总分的相反数给最后一位玩家。
 
@@ -139,8 +135,6 @@ initWebSocket() {
 #### 接口封装
 
 ***
-
-
 
 ```typescript
   //使用query-string三方包
@@ -243,34 +237,32 @@ initWebSocket() {
 
 #### 思考
 
-****
-
- **for, forEach，for in，for of, map区别**
+***
 
 ```typescript
 const a = [1,2,3,4]
 const b = {a: 1,b: 2};
 //forEach使用起来更加简洁
 a.forEach(i => {
-	console.log(i);
+console.log(i);
 });
 //for in一般用来遍历对象
 for (const i in b) {
-	console.log(i);
+console.log(i);
 }
 //for of可以遍历类数组结构
 for (const i of a) {
-	console.log(i);
+console.log(i);
 }
 //map遍历数组,会返回一个新的数组
 a.map(i => {
-	console.log(i);
+console.log(i);
 });
 ```
 
 #### 微信小程序登录流程
 
-****
+***
 
 ```typescript
    export async function doAuthJsCode(): Promise<IWechatLogin> {
@@ -312,7 +304,7 @@ a.map(i => {
 
 #### 记录列表翻页
 
-****
+***
 
 ```typescript
    //先定义一个变量去记录当前页有多少条数据，每次滚轮触底的时候会触发小程序的生命周期函数onReachBottom，在里面给size加10，然后再去调用一次接口
@@ -346,4 +338,3 @@ const formatServerTime = (str: string) => {
     return [year, month, day].map(formatNumber).join('-') + ' ' + [hour, minute, second].map(formatNumber).join(':');
 };
 ```
-
