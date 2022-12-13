@@ -9,6 +9,7 @@ top: 100
 ## 标题语法
 
 要创建标题，需要在单词或短语前面添加井号（#）。# 的数量代表了标题的级别。例如添加三个#表示创建一个三级标题（h3）
+
 <!--more-->
 可选语法
 
@@ -209,15 +210,15 @@ this **word** is bold `<em>`word`</em>` is italic
 例如，在Markdown文件加上一段HTML表格：
 
     ```
-
+    
     This is a regular paragraph.
-
+    
     <table>
         <tr>
             <td>Foo</td>
         </tr>
     </table>
-
+    
     This is another regular paragraph.
     ```
 
@@ -258,15 +259,15 @@ This is another regular paragraph.
 
     ```
     Here's a simple footnote,[^1] and here's a longer one.[^bignote]
-
+    
     [^1]: This is the first footnote.
-
+    
     [^bignote]: Here's one with multiple paragraphs and code.
-
+    
         Indent paragraphs to include them in the footnote.
-
+    
         `{ my code }`
-
+    
         Add as many paragraphs as you like.
     ```
 
@@ -277,9 +278,9 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 [^bignote]: Here's one with multiple paragraphs and code.
 
     Indent paragraphs to include them in the footnote.
-
+    
     `{ my code }`
-
+    
     Add as many paragraphs as you like.
 
 ## 标题编号
@@ -298,7 +299,7 @@ Here's a simple footnote,[^1] and here's a longer one.[^bignote]
 
     First Term
     : This is the definition of the first term.
-
+    
     Second Term
     : This is one definition of the second term.
     : This is another definition of the second term.
@@ -341,7 +342,7 @@ Tip：如果使用静态网站生成器，请确保将HTML页面编码插入表�
 一些Markdown应用程序允许通过键入表情符号代码来插入表情符号。这些以冒号开头和结尾，并包含表情符号的名称
 
     去露营了！ :tent: 很快回来。
-
+    
     真好笑！ :joy:
 去露营了！⛺很快回来。
 
