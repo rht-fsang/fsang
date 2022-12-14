@@ -13,6 +13,8 @@ typora-copy-images-to: upload
 
 HTTP报文结构：起始行+头部+空行+实体
 
+<!--more-->
+
 #### 请求报文
 
 起始行：方法 + 路径 + http版本，GET /home HTTP/1.1
