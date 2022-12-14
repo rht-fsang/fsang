@@ -85,7 +85,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="学习," />
 
 
 
@@ -96,13 +96,21 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="扶桑">
-<meta property="og:url" content="https://github.com/rht-fsang/fsang.git/index.html">
+<meta name="description" content="HTTP报文结构 HTTP报文结构：起始行+头部+空行+实体 请求报文起始行：方法 + 路径 + http版本，GET &#x2F;home HTTP&#x2F;1.1 头部 空行：区分头部和实体 实体：请求体（一般POST方法才有） 相应报文起始行：http版本+状态码+原因，HTTP&#x2F;1.1 200 ok 头部 空行：区分头部和实体 实体：响应体（服务端返回的数据） HTTP的请求方法 方法 GET：通常用来回去">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP知识系列">
+<meta property="og:url" content="https://github.com/rht-fsang/fsang.git/2022/12/04/http/index.html">
 <meta property="og:site_name" content="扶桑">
+<meta property="og:description" content="HTTP报文结构 HTTP报文结构：起始行+头部+空行+实体 请求报文起始行：方法 + 路径 + http版本，GET &#x2F;home HTTP&#x2F;1.1 头部 空行：区分头部和实体 实体：请求体（一般POST方法才有） 相应报文起始行：http版本+状态码+原因，HTTP&#x2F;1.1 200 ok 头部 空行：区分头部和实体 实体：响应体（服务端返回的数据） HTTP的请求方法 方法 GET：通常用来回去">
 <meta property="og:locale">
+<meta property="og:image" content="https://raw.githubusercontent.com/rht-fsang/md-image/master/img/image-20221214143815969.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/rht-fsang/md-image/master/img/image-20221214143852729.png">
+<meta property="article:published_time" content="2022-12-04T02:36:15.000Z">
+<meta property="article:modified_time" content="2022-12-14T06:40:17.700Z">
 <meta property="article:author" content="扶桑">
+<meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/rht-fsang/md-image/master/img/image-20221214143815969.png">
 
 
 
@@ -132,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/rht-fsang/fsang.git/"/>
+  <link rel="canonical" href="https://github.com/rht-fsang/fsang.git/2022/12/04/http/"/>
 
 
 
 
 
-  <title>扶桑</title>
+  <title>HTTP知识系列 | 扶桑</title>
   
 
 
@@ -171,8 +179,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband">
     <a href="https://github.com/rht-fsang/fsang" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
     </div>
@@ -259,187 +266,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/rht-fsang/fsang.git/fsang/2022/12/12/JavaScirpt/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/fsang/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="扶桑">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/fsang/2022/12/12/JavaScirpt/" itemprop="url">JavaScript语言基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-12T10:36:15+08:00">
-                2022-12-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/fsang/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  10.5k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  43
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="区分基本类型和对象类型"><a href="#区分基本类型和对象类型" class="headerlink" title="区分基本类型和对象类型"></a>区分基本类型和对象类型</h3><h4 id="基本类型不可变性"><a href="#基本类型不可变性" class="headerlink" title="基本类型不可变性"></a>基本类型不可变性</h4><p>在ECMAScript标准中，它们被定义为primitive value，即原始值，代表值本身是不可被改变的。</p>
-<p>在JavaScript中，每一个变量在内存中都需要一个空间来存储</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/fsang/2022/12/12/JavaScirpt/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -469,9 +298,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/fsang/2022/12/04/http/" itemprop="url">HTTP知识系列</a></h1>
+          <h1 class="post-title" itemprop="name headline">HTTP知识系列</h1>
         
 
         <div class="post-meta">
@@ -574,9 +401,7 @@
       
 
       
-        
-          
-            <h3 id="HTTP报文结构"><a href="#HTTP报文结构" class="headerlink" title="HTTP报文结构"></a>HTTP报文结构</h3><hr>
+        <h3 id="HTTP报文结构"><a href="#HTTP报文结构" class="headerlink" title="HTTP报文结构"></a>HTTP报文结构</h3><hr>
 <p>HTTP报文结构：起始行+头部+空行+实体</p>
 <h4 id="请求报文"><a href="#请求报文" class="headerlink" title="请求报文"></a>请求报文</h4><p>起始行：方法 + 路径 + http版本，GET /home HTTP/1.1</p>
 <p>头部</p>
@@ -862,8 +687,6 @@
 <li>可设置优先级，可以设置数据帧的优先级，让服务器优先处理重要资源，优化用户体验</li>
 </ul>
 
-          
-        
       
     </div>
     
@@ -878,368 +701,40 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/rht-fsang/fsang.git/fsang/2022/12/01/image/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/fsang/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="扶桑">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/fsang/2022/12/01/image/" itemprop="url">Typora+picGo+Github实现图片自动上云</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-01T10:36:15+08:00">
-                2022-12-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/fsang/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/fsang/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"># 学习</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  319
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <h3 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h3><p>首先在<code>GitHub</code>上创建一个仓库用来存放图片，需要注意仓库必须是公开的，不然别人无法访问到你的图片</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/fsang/2022/12/01/image/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/fsang/2022/12/01/image/" rel="next" title="Typora+picGo+Github实现图片自动上云">
+                <i class="fa fa-chevron-left"></i> Typora+picGo+Github实现图片自动上云
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/rht-fsang/fsang.git/fsang/2022/09/01/markdown/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/fsang/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="扶桑">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/fsang/2022/09/01/markdown/" itemprop="url">markdown语法笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-09-01T09:33:32+08:00">
-                2022-09-01
-              </time>
+              <a href="/fsang/2022/12/12/sass/" rel="prev" title="sass学习">
+                sass学习 <i class="fa fa-chevron-right"></i>
+              </a>
             
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/fsang/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3.9k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  14
-                </span>
-              
-            </div>
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h2 id="标题语法"><a href="#标题语法" class="headerlink" title="标题语法"></a>标题语法</h2><p>要创建标题，需要在单词或短语前面添加井号（#）。# 的数量代表了标题的级别。例如添加三个#表示创建一个三级标题（h3）</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/fsang/2022/09/01/markdown/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1249,555 +744,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/rht-fsang/fsang.git/fsang/2022/12/13/heartLight/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/fsang/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="扶桑">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/fsang/2022/12/13/heartLight/" itemprop="url">寺庙点灯小程序</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-13T09:33:32+08:00">
-                2022-12-13
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/fsang/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.1k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="先来说说我做完这个小程序的一些收获吧"><a href="#先来说说我做完这个小程序的一些收获吧" class="headerlink" title="先来说说我做完这个小程序的一些收获吧"></a>先来说说我做完这个小程序的一些收获吧</h4><ul>
-<li>在设计稿出来之前先不要写样式，按照产品搞写一下大概的dom和交互逻辑就好了</li>
-<li>做一个项目之前一定要先把这个项目的思路理清然后再开始搭建项目，返工效率真的很低效还很难受</li>
-<li>换个角度去思考问题很重要，很多时候你觉得这两个冲突了，做不了。但是你换个角度去解决这个冲突，这个问题可能就很容易解决了</li>
-<li>去网上找一个现成的组件往往能节省很多的时间和精力，但是也不要低估了自己的实现能力</li>
-<li>接口的数据结构没出来之前，搭建页面的时候先不用写数据接口</li>
-<li>接口出来之后可以先把接口全部写进api.ts里面，然后接口接收和返回的数据类型就放在server-dto文件里面</li>
-<li>个人认为小程序好像真的不需要写组件，因为如果项目中如果有相同的组件需要实现的花，只需要把样式写在全局样式就好
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/fsang/2022/12/13/heartLight/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/rht-fsang/fsang.git/fsang/2022/12/12/recode/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/fsang/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="扶桑">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/fsang/2022/12/12/recode/" itemprop="url">计分小程序介绍</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-12T10:36:15+08:00">
-                2022-12-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/fsang/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.6k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  11
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="计分小程序介绍：计分小程序是一个打牌计分神器，麻将扑克均适用，主要分为单人计分模式和多人计分模式"><a href="#计分小程序介绍：计分小程序是一个打牌计分神器，麻将扑克均适用，主要分为单人计分模式和多人计分模式" class="headerlink" title="计分小程序介绍：计分小程序是一个打牌计分神器，麻将扑克均适用，主要分为单人计分模式和多人计分模式"></a>计分小程序介绍：计分小程序是一个打牌计分神器，麻将扑克均适用，主要分为单人计分模式和多人计分模式</h3><h3 id="技术栈：TS、微信小程序、Vant-Wapp、websocket"><a href="#技术栈：TS、微信小程序、Vant-Wapp、websocket" class="headerlink" title="技术栈：TS、微信小程序、Vant Wapp、websocket"></a>技术栈：<a target="_blank" rel="noopener" href="https://www.tslang.cn/docs/handbook/basic-types.html">TS</a>、<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/">微信小程序</a>、<a target="_blank" rel="noopener" href="https://youzan.github.io/vant-weapp/#/goods-action">Vant Wapp</a>、<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket">websocket</a></h3>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/fsang/2022/12/12/recode/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/rht-fsang/fsang.git/fsang/2022/12/12/sass/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/fsang/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="扶桑">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/fsang/2022/12/12/sass/" itemprop="url">sass学习</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-12T10:36:15+08:00">
-                2022-12-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/fsang/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3.3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  13
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="特色功能"><a href="#特色功能" class="headerlink" title="特色功能"></a>特色功能</h3><hr>
-<ul>
-<li>完全兼容css3</li>
-<li>在css基础上增加变量、嵌套、混合等功能</li>
-<li>通过函数进行颜色值与属性值的运算</li>
-<li>提供控制指令等高级功能</li>
-<li>自定义输出格式</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/fsang/2022/12/12/sass/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -1805,6 +756,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -1825,8 +780,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1918,6 +882,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">HTTP报文结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87"><span class="nav-number">1.1.</span> <span class="nav-text">请求报文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%BA%94%E6%8A%A5%E6%96%87"><span class="nav-number">1.2.</span> <span class="nav-text">相应报文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E7%9A%84%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">HTTP的请求方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL"><span class="nav-number">3.</span> <span class="nav-text">URL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#URL%E7%BB%93%E6%9E%84"><span class="nav-number">3.1.</span> <span class="nav-text">URL结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">HTTP状态码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1XX"><span class="nav-number">4.1.</span> <span class="nav-text">1XX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2XX"><span class="nav-number">4.2.</span> <span class="nav-text">2XX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3XX"><span class="nav-number">4.3.</span> <span class="nav-text">3XX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4XX"><span class="nav-number">4.4.</span> <span class="nav-text">4XX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5XX"><span class="nav-number">4.5.</span> <span class="nav-text">5XX</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E7%89%B9%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9"><span class="nav-number">5.</span> <span class="nav-text">HTTP特点和缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP%E7%89%B9%E7%82%B9"><span class="nav-number">5.1.</span> <span class="nav-text">HTTP特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP%E7%BC%BA%E7%82%B9"><span class="nav-number">5.2.</span> <span class="nav-text">HTTP缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Accept"><span class="nav-number">6.</span> <span class="nav-text">Accept</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F"><span class="nav-number">6.1.</span> <span class="nav-text">数据格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9%E6%96%B9%E5%BC%8F"><span class="nav-number">6.2.</span> <span class="nav-text">压缩方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E8%AF%AD%E8%A8%80"><span class="nav-number">6.3.</span> <span class="nav-text">支持语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="nav-number">6.4.</span> <span class="nav-text">字符集</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E4%BC%A0%E8%BE%93%E5%AE%9A%E9%95%BF%E5%92%8C%E4%B8%8D%E5%AE%9A%E9%95%BF%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">7.</span> <span class="nav-text">HTTP传输定长和不定长的数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E9%95%BF%E5%8C%85%E4%BD%93"><span class="nav-number">7.1.</span> <span class="nav-text">定长包体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E5%AE%9A%E9%95%BF%E5%8C%85%E4%BD%93"><span class="nav-number">7.2.</span> <span class="nav-text">不定长包体</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E5%A4%84%E7%90%86%E5%A4%A7%E6%96%87%E4%BB%B6"><span class="nav-number">8.</span> <span class="nav-text">HTTP处理大文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%94%AF%E6%8C%81"><span class="nav-number">8.1.</span> <span class="nav-text">如何支持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Range%E5%AD%97%E6%AE%B5%E6%8B%86%E8%A7%A3"><span class="nav-number">8.2.</span> <span class="nav-text">Range字段拆解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E5%8D%95%E6%AE%B5%E6%95%B0%E6%8D%AE%E5%92%8C%E5%A4%9A%E7%AB%AF%E6%95%B0%E6%8D%AE%EF%BC%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E6%98%AF%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84"><span class="nav-number">8.3.</span> <span class="nav-text">对于单段数据和多端数据，服务器的响应数据是不一样的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E5%A4%84%E7%90%86%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE"><span class="nav-number">9.</span> <span class="nav-text">HTTP处理表单数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#application-x-www-form-urlencoded"><span class="nav-number">9.1.</span> <span class="nav-text">application&#x2F;x-www-form-urlencoded</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#multipart-form-data"><span class="nav-number">9.2.</span> <span class="nav-text">multipart&#x2F;form-data</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E5%A4%84%E7%90%86%E9%98%9F%E5%A4%B4%E9%98%BB%E5%A1%9E"><span class="nav-number">10.</span> <span class="nav-text">HTTP处理队头阻塞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E8%BF%9E%E6%8E%A5"><span class="nav-number">10.1.</span> <span class="nav-text">并发连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E5%88%86%E7%89%87"><span class="nav-number">10.2.</span> <span class="nav-text">域名分片</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie"><span class="nav-number">11.</span> <span class="nav-text">Cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E5%AD%98%E5%91%A8%E6%9C%9F"><span class="nav-number">11.1.</span> <span class="nav-text">生存周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">11.2.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3"><span class="nav-number">11.3.</span> <span class="nav-text">安全相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">11.4.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E4%BB%A3%E7%90%86"><span class="nav-number">12.</span> <span class="nav-text">HTTP代理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD"><span class="nav-number">12.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%A4%B4%E9%83%A8%E5%AD%97%E6%AE%B5"><span class="nav-number">12.2.</span> <span class="nav-text">相关头部字段</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E7%BC%93%E5%AD%98"><span class="nav-number">13.</span> <span class="nav-text">HTTP缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="nav-number">13.1.</span> <span class="nav-text">缓存的好处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%BA%E7%BC%93%E5%AD%98%EF%BC%88%E4%B8%8D%E9%9C%80%E8%A6%81%E5%8F%91%E9%80%81http%E8%AF%B7%E6%B1%82%E3%80%82%E6%B3%A8%E6%84%8F%EF%BC%9A%E5%BD%93Expires%E5%92%8CCache-Control%E5%90%8C%E6%97%B6%E5%AD%98%E5%9C%A8%E6%97%B6%EF%BC%8CCache-Control%E4%BC%9A%E8%A2%AB%E4%BC%98%E5%85%88%E8%80%83%E8%99%91%EF%BC%89"><span class="nav-number">13.2.</span> <span class="nav-text">强缓存（不需要发送http请求。注意：当Expires和Cache-Control同时存在时，Cache-Control会被优先考虑）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%EF%BC%88%E5%BC%BA%E7%BC%93%E5%AD%98%E5%A4%B1%E6%95%88%E5%90%8E%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%A8%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%B8%8A%E6%90%BA%E5%B8%A6%E7%9B%B8%E5%BA%94%E7%9A%84%E7%BC%93%E5%AD%98tag%E9%A6%99%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82%EF%BC%8C%E7%94%B1%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A0%B9%E6%8D%AEtag%E5%86%B3%E5%AE%9A%E6%98%AF%E5%90%A6%E4%BD%BF%E7%94%A8%E7%BC%93%E5%AD%98%EF%BC%89"><span class="nav-number">13.3.</span> <span class="nav-text">协商缓存（强缓存失效后，浏览器在请求头上携带相应的缓存tag香服务器发送请求，由服务器根据tag决定是否使用缓存）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E4%BD%8D%E7%BD%AE"><span class="nav-number">13.4.</span> <span class="nav-text">缓存位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%B7%E6%96%B0%E5%AF%B9%E4%BA%8E%E5%BC%BA%E7%BC%93%E5%AD%98%E5%92%8C%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">13.5.</span> <span class="nav-text">刷新对于强缓存和协商缓存的影响</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E4%BB%A3%E7%90%86"><span class="nav-number">14.</span> <span class="nav-text">缓存代理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E6%8E%A7%E5%88%B6"><span class="nav-number">14.1.</span> <span class="nav-text">源服务器的缓存控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%BC%93%E5%AD%98%E6%8E%A7%E5%88%B6"><span class="nav-number">14.2.</span> <span class="nav-text">客户端的缓存控制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%A8%E5%9F%9F"><span class="nav-number">15.</span> <span class="nav-text">跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F"><span class="nav-number">15.1.</span> <span class="nav-text">什么是跨域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CORS"><span class="nav-number">15.2.</span> <span class="nav-text">CORS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSONP"><span class="nav-number">15.3.</span> <span class="nav-text">JSONP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx"><span class="nav-number">15.4.</span> <span class="nav-text">Nginx</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TLs1-2%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B"><span class="nav-number">16.</span> <span class="nav-text">TLs1.2握手过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TLs1-2%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B-1"><span class="nav-number">16.1.</span> <span class="nav-text">TLs1.2握手过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RAS%E5%92%8CECDHE%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">16.2.</span> <span class="nav-text">RAS和ECDHE握手过程的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TLS1-3%E6%94%B9%E8%BF%9B"><span class="nav-number">17.</span> <span class="nav-text">TLS1.3改进</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%BA%E5%8C%96%E5%AE%89%E5%85%A8"><span class="nav-number">17.1.</span> <span class="nav-text">强化安全</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD"><span class="nav-number">17.2.</span> <span class="nav-text">提高性能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-2%E6%94%B9%E8%BF%9B"><span class="nav-number">18.</span> <span class="nav-text">HTTP&#x2F;2改进</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%B4%E9%83%A8%E5%8E%8B%E7%BC%A9"><span class="nav-number">18.1.</span> <span class="nav-text">头部压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="nav-number">18.2.</span> <span class="nav-text">多路复用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8E%A8%E9%80%81"><span class="nav-number">18.3.</span> <span class="nav-text">服务器推送</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-2%E4%B8%AD%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6"><span class="nav-number">19.</span> <span class="nav-text">HTTP&#x2F;2中的二进制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E7%9A%84%E7%8A%B6%E6%80%81%E5%8F%98%E5%8C%96"><span class="nav-number">19.1.</span> <span class="nav-text">流的状态变化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E7%9A%84%E7%89%B9%E6%80%A7"><span class="nav-number">19.2.</span> <span class="nav-text">流的特性</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -2077,6 +1057,10 @@
 
 
   
+  <script type="text/javascript" src="/fsang/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/fsang/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
