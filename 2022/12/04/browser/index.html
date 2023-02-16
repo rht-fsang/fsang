@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+  
+  
+    
+    
+  <script src="/fsang/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/fsang/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/fsang/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/fsang/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/fsang/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/fsang/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/fsang/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/fsang/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/fsang/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="学习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="浏览器的本地储存浏览器的本地储存主要分为Cookie、localStorage、sessionStorage和IndexedDB">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器">
+<meta property="og:url" content="https://github.com/rht-fsang/fsang.git/2022/12/04/browser/index.html">
+<meta property="og:site_name" content="扶桑">
+<meta property="og:description" content="浏览器的本地储存浏览器的本地储存主要分为Cookie、localStorage、sessionStorage和IndexedDB">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-12-04T02:36:15.000Z">
+<meta property="article:modified_time" content="2022-12-30T03:14:06.275Z">
+<meta property="article:author" content="扶桑">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/rht-fsang/fsang.git/2022/12/04/browser/"/>
+
+
+
+
+
+  <title>浏览器 | 扶桑</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b0ff91134792300bee23d30b0476fd24";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband">
+    <a href="https://github.com/rht-fsang/fsang" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    </div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/fsang/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">扶桑</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">热爱学习，乐于记录</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/fsang/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/fsang/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/fsang/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/fsang/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/rht-fsang/fsang.git/fsang/2022/12/04/browser/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/fsang/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="扶桑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浏览器</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-04T10:36:15+08:00">
+                2022-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/fsang/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="浏览器的本地储存"><a href="#浏览器的本地储存" class="headerlink" title="浏览器的本地储存"></a>浏览器的本地储存</h3><p>浏览器的本地储存主要分为Cookie、localStorage、sessionStorage和IndexedDB</p>
+<span id="more"></span>
+
+<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>Cookie最开始标识用来做本地存储的，是为了弥补HTTP在状态管理上的不足。Cookie本质是浏览器上存储的一个小文件，在内部以键值对的方式来储存，在同一个域名下发送请求，都会携带相同的Cookie。服务器拿到Cookie进行解析便能字段客户端的状态</p>
+<p><strong>Cookie的缺陷：</strong></p>
+<ul>
+<li>容量缺陷，Cookie只能储存4kb的文件，信息量非常的少</li>
+<li>性能缺陷，Cookie紧跟着域名，不管域名下的某一个地址需不需要Cookie，请求都会带上这个Cookie。这样就造成了很大的性能浪费</li>
+<li>安全缺陷，由于Cookie和服务端都是以文本的形式进行交互，很容易被非法用户截获并加以修改</li>
+</ul>
+<h4 id="localStorage"><a href="#localStorage" class="headerlink" title="localStorage"></a>localStorage</h4><p>localStorage和Cookie有点相似，都是针对同一个域名，会储存相同的一段信息</p>
+<p><strong>localStorage相比Cookie的区别：</strong></p>
+<ul>
+<li>容量，localStorage的容量上限为5M</li>
+<li>localStorage的信息只存储在客户端，默认不参与和服务端的通信</li>
+<li>接口封装，通过localStorage暴露在全局，通过它的setItem和getItem等方法进行操作，非常的方便</li>
+</ul>
+<p><strong>使用方法</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> obj = &#123; <span class="attr">name</span>: <span class="string">&quot;sanyuan&quot;</span>, <span class="attr">age</span>: <span class="number">18</span> &#125;;</span><br><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;sanyuan&quot;</span>); </span><br><span class="line"><span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&quot;info&quot;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj));</span><br><span class="line"><span class="comment">//取值</span></span><br><span class="line"><span class="keyword">let</span> name = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&quot;name&quot;</span>);</span><br><span class="line"><span class="keyword">let</span> info = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(<span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&quot;info&quot;</span>));</span><br><span class="line"><span class="comment">//localStorage存储的都是字符串，如果想要存储对象的话需要使用JSON的stringify方法处理，然后再利用JSON的parse方法解析成对象。</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>应用场景</strong></p>
+<p>利用localStorage的较大容量和持久特性，可以利用localStorage存储一些内容稳定的资源<strong>。</strong></p>
+<p>localStorage和Cookie有点相似，都是针对同一个域名，会储存相同的一段信息</p>
+<h4 id="sessionStorage"><a href="#sessionStorage" class="headerlink" title="sessionStorage"></a>sessionStorage</h4><p>sessionStorage基本和localStorage基本一致，只有一个最本质的区别，sessionStorage知识会话级的储存，并不是持久化存储。会话结束，也就是页面关闭sessionStorage的信息就会消失</p>
+<p><strong>应用场景</strong></p>
+<ul>
+<li>可以用来对表单信息进行维护，将表单的信息存储在里面，可以让页面刷新之后也不会让之前的表单信息消失</li>
+<li>可以用来存储本次浏览记录</li>
+</ul>
+<p>sessionStorage基本和localStorage基本一致，只有一个最本质的区别，sessionStorage知识会话级的储存，并不是持久化存储。会话结束，也就是页面关闭sessionStorage的信息就会消失</p>
+<h4 id="IndexedDB"><a href="#IndexedDB" class="headerlink" title="IndexedDB"></a>IndexedDB</h4><p>IndexedDB是运行在浏览器中的非关系数据库，本质上数据库，存储容量没有上限。IndexedDB除了拥有数据库本身的一些特性，如支持事务和存储二进制还有一些其他的特性</p>
+<p><strong>额外特性：</strong></p>
+<ul>
+<li>键值对存储，内部采用对象仓库存放数据</li>
+<li>异步操作，数据库的读写数据I/O操作，浏览器中对异步I/O提供了支持</li>
+<li>受同源策略限制，无法访问跨域的数据库</li>
+</ul>
+<h3 id="浏览器的请求过程"><a href="#浏览器的请求过程" class="headerlink" title="浏览器的请求过程"></a>浏览器的请求过程</h3><p>当你在浏览器地址栏输入了<code>https://www.baidu.com/</code></p>
+<h4 id="构建请求行"><a href="#构建请求行" class="headerlink" title="构建请求行"></a>构建请求行</h4><p>浏览器会自动构建好请求行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">GET</span> / <span class="variable constant_">HTTP</span>/<span class="number">1.1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="查找强缓存"><a href="#查找强缓存" class="headerlink" title="查找强缓存"></a>查找强缓存</h4><p>先查看浏览器有没有强缓存，有的话就直接使用浏览器缓存中的资源。没有则继续进行请求</p>
+<h4 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h4><p>因为一开始输入的是域名，所以我们要得到域名对应的IP地址。这个过程就是DNS解析。浏览器提供了DNS数据缓存功能</p>
+<p>如果一个域名解析过了，第二次就会直接调用缓存。如果没有指定的端口，默认采用80端口</p>
+<h4 id="建立TCP连接"><a href="#建立TCP连接" class="headerlink" title="建立TCP连接"></a>建立TCP连接</h4><p>TCP是一种面向连接的、可靠的、基于字节流的传输层通信协议</p>
+<p>注意Chrome在同一个域名下要求最多只能有6个TCP连接，超过6个的话就需要等待</p>
+<p><strong>建立TCP经历了下面三个阶段：</strong></p>
+<p><strong>三次握手建立连接</strong></p>
+<p>刚开始客户端处于Closed的状态，服务端处于Listen状态</p>
+<p>第一次握手：客户端给服务端发一个SYN报文，并指明客户端的初始化序列号ISN。此时客户端处于SYN_SEND状态</p>
+<p>第二次握手：服务器收到客户端的SYN报文之后，会以自己的SYN报文作文应答，并且也是指定了自己的初始化序列号ISN(s)。同时会把客户端的ISN+1作为ACK的值，表示自己已经收到了客户端的SYN，此时服务器处于SYN_REVD的状态</p>
+<p>第三次握手：客户端收到SYN报文之后，会发送一个ACK报文，也是把ISN+1作为ACK的值，表示已经收到了服务端的SYN报文，此时客户端处于EASTABLISHED的状态。服务器收到ACK报文后，也处于EASTABLISHED状态。此时，双方已建立起了连接</p>
+<p><strong>数据传输</strong></p>
+<p>发送方发一个数据包，接受方接受到数据包之后必须要向发送发确认，如果发送方没有收到这个确认消息，就判定为数据包丢失，并重新发该数据包。把大的数据包拆成小的数据包传输可以提高效率</p>
+<h4 id="四次挥手断开连接"><a href="#四次挥手断开连接" class="headerlink" title="四次挥手断开连接"></a>四次挥手断开连接</h4><p>刚开始客户端和服务端都处于EASTABLISHED状态客户端和服务端均可主动发起挥手动作</p>
+<p>第一次挥手：客户端发送一个FIN报文，报文中会指定一个序列号。此时客户端处于FIN_WAIT1状态</p>
+<p>第二次挥手：服务端收到FIN之后，会发送ACK报文，且把客户端的序列号值+1作为ACk报文的序列值，表明已经收到客户端的报文了，此时服务端处于CLOSE_WAIT状态</p>
+<p>第三次挥手：如果服务端也想断开连接了，和客户端的第一次握手一样，发给FIN报文，并且指定一个序列号。此时服务端处于LAST_ACK的状态</p>
+<p>第四次挥手：客户端收到FIN之后，一样发送一个ACK报文作为应答，且把服务端的序列号值+1作为自己ACK报文的序列值，此时客户端处于TIME_WAIT状态。需要过一段时间确保服务器收到自己的ACK报文后才会进入CLOSED状态。服务端收到ACK报文后处于CLOSED状态</p>
+<h4 id="发送HTTP请求（如果请求头或者响应头中包含Connection-Keep-Alive表示建立了持久连接，tcp连接会一直保持）"><a href="#发送HTTP请求（如果请求头或者响应头中包含Connection-Keep-Alive表示建立了持久连接，tcp连接会一直保持）" class="headerlink" title="发送HTTP请求（如果请求头或者响应头中包含Connection: Keep-Alive表示建立了持久连接，tcp连接会一直保持）"></a>发送HTTP请求（如果请求头或者响应头中包含Connection: Keep-Alive表示建立了持久连接，tcp连接会一直保持）</h4><p>TCP连接建立好，浏览器就可以和服务器开始通信，浏览器HTTP请求需要携带三个东西：请求行（第一步的时候浏览器创建好了）、请求头和请求体（只有再POST方法下存在）</p>
+<p><strong>网络响应</strong></p>
+<p>HTTP请求到达服务器，服务器进行对应的处理。最后要把数据传给浏览器，也就是返回网络响应。网络响应包括三个部分：响应行、响应头和响应体</p>
+<p>响应行，HTTP/1.1 200 OK由HTTP协议、状态码和状态描述组成</p>
+<p>响应头，响应头包含了服务器及其返回数据的一些信息、服务器生成数据的时间、返回的数据类型以及对即将写入的Cookie信息</p>
+<p>响应体，服务端传给客户端的数据</p>
+<h3 id="构建渲染树过程"><a href="#构建渲染树过程" class="headerlink" title="构建渲染树过程"></a>构建渲染树过程</h3><h4 id="构建DOM树"><a href="#构建DOM树" class="headerlink" title="构建DOM树"></a>构建DOM树</h4><p>由于浏览器无法直接理解HTML字符串，因此将这一系列字节流转换成一种有意义并且方便操作的数据结构，这种结构就是DOM树，也可以理解为一个以document为根节点的多叉树</p>
+<p>常规的编程语言都是上下文无关的，而HTML却相反。所以HTML不能使用常规编程语言的解析器来完成</p>
+<p><strong>标记化算法</strong></p>
+<p>标记化算法输入为HTML文本，输出为HTML标记，成为标记生成器。这个是通过有限自动状态机来完成的，既在当前状态下，接受一个或多个字符，就会更新到下一个状态。下面是一个简单的标记化过程的示例</p>
+<p>遇到&lt;，状态为标记打开状态</p>
+<p>遇到[a-z]的字符，会进入标记名称状态</p>
+<p>遇到&gt;，表示标记名称记录完成，这时候变为数据状态</p>
+<p>在遇到&lt;，表示数据记录完成，状态又变成标记打开状态</p>
+<p>紧接着遇到下一个/后，会创建一个end tag的token，进入到标记名称状态</p>
+<p>遇到&gt;，回到数据状态</p>
+<p><strong>建树算法</strong></p>
+<p>标记生成器会把每个标记的信息发送给建树器。建树器接受到相应的标记时，会创建相应的DOM对象。然后将DOM对象加入DOM树中然后将对应标记压入存放元素的栈中。下面是建树的实例</p>
+<p>首先是初始状态</p>
+<p>接受到标记生成器传来的html标签，这个时候状态变成before html状态。同时创建一个HTMLHtmlElement的DOM元素，将其加到document根对象上，并进行压栈操作</p>
+<p>接着状态自动变为before head，此时从标记生成器那边传来body，表示并没有head，这时候建树器会自动创建一个HTMLHeadElement并将其加入到Dom树中</p>
+<p>接着进入大in head状态，然后直接跳到after head状态</p>
+<p>接着标记生成器传来了body标记，创建HTMLBodyElement，插入到DOM树中，同时压入开放标记栈。状态变为in body</p>
+<p>然后接受后面的一系列字符：hello world，接受第一个时会先创建一个text节点并把Text节点插入搭配DOM树中body元素的下面</p>
+<p>现在标记生成器传来body的接受标记，进入after body状态</p>
+<p>标记生成器在传一个html的接受标记，进入搭配after after body状态，解析过程到此结束</p>
+<h4 id="样式计算"><a href="#样式计算" class="headerlink" title="样式计算"></a>样式计算</h4><p><strong>样式来源</strong></p>
+<p>主要有以下三种，link标签引用、style标签中的样式和元素的内嵌style属性</p>
+<p><strong>格式化样式表</strong></p>
+<p>首先浏览器是无法识别css样式文件的，渲染引擎接收到css文本之后第一件事就是将其转化为一个结构化的对象，即styleSheets。浏览器控制台能通过document.styleSheets来查看这个最终的结构</p>
+<p><strong>标准化样式属性</strong></p>
+<p>有一些css样式的数值不能被浏览器所理解，因为要在计算样式之前将他们都标准化，如em -&gt;px等</p>
+<p><strong>计算每个节点的具体样式</strong></p>
+<p>继承：每个子节点都会默认继承父节点的样式属性，如果父节点中没有找到，就会采用浏览器默认样式，也叫UserAgent样式</p>
+<p>层叠：css最大的特点在于它的层叠性，也就是最终的样式取决于各个属性共同作用的效果。在计算样式之后，所有的样式都会被挂在window.getComputedStyle当中，可以通过js来获取计算后的样式</p>
+<h4 id="生成布局树"><a href="#生成布局树" class="headerlink" title="生成布局树"></a>生成布局树</h4><p>拿到生成好了的DOM树和DOM样式后，首先会对DOM树进行遍历，并添加到布局树中。然后浏览器的布局系统会根据DOM样式来确定元素的位置，最后生成一颗布局树</p>
+<h3 id="浏览器渲染过程"><a href="#浏览器渲染过程" class="headerlink" title="浏览器渲染过程"></a>浏览器渲染过程</h3><p>浏览器渲染过程有以下几个步骤</p>
+<h4 id="建立图层树"><a href="#建立图层树" class="headerlink" title="建立图层树"></a>建立图层树</h4><p><strong>显示合成</strong></p>
+<p>使用层叠上下文的节点，层叠上下文是有一些特定的CSS属性创建的，一般有以下情况：</p>
+<p>HTML元素本身就具有层叠上下文</p>
+<p>普通元素设置<strong>position不为static</strong>并且<strong>设置了z-index属性</strong>，会产生层叠上下文</p>
+<p>元素的 <strong>opacity</strong> 值不是 1</p>
+<p>元素的 <strong>transform</strong> 值不是 none</p>
+<p>元素的 <strong>filter</strong> 值不是 none</p>
+<p>元素的 <strong>isolation</strong> 值是isolate</p>
+<p>will-change指定的属性值为上面任意一个。(will-change的作用后面会详细介绍)</p>
+<p>还有需要裁剪的地方，比如一个div，里面的内容超出了出现滚动条，那么滚动条会被单独提升为一个图层</p>
+<p><strong>隐式合成</strong></p>
+<p>隐式合成就是层叠等级低的节点被提升为单独的图层之后，那么所有层叠登记比它高的节点都会成为一个单独的图层。隐式合成存在巨大的风险，当一个大型应用中，z-index比较低的元素被提升为单独的图层之后，层叠在它上面的元素都会被提升为单独的图层，可能会增加上千个图层，大大增加内存的压力，甚至让页面崩溃</p>
+<h4 id="生成绘制列表"><a href="#生成绘制列表" class="headerlink" title="生成绘制列表"></a>生成绘制列表</h4><p>渲染引擎会将图层的绘制拆分成一个个绘制指令，比如先画背景再描绘边框，然后将这些指令俺顺序组合成一个待绘制列表，相当于给后面的绘制操作做了一波计划</p>
+<h4 id="生成图块并栅格化"><a href="#生成图块并栅格化" class="headerlink" title="生成图块并栅格化"></a>生成图块并栅格化</h4><p>开始绘制的过程实际上是有专门的线程来完成的，这个线程叫做合成线程。考虑到页面非常大的时候，要滑很长时间才能滑到底，如果要一口气全部绘制出来是相当浪费性能的。因此合成线程要做的第一件事就是将图层分块。每一个图层块通常是256<em>256或则512</em>512大小的</p>
+<p>因为图块数据是要进入GPU内存的，为了提高性能，Chrome在首次合成图块时会采用一个分辨率低的图片，这样展示的时候只是展示出低分辨率的图片，这个时候继续进行合成操作，当正常的土块内容绘制完毕后，会将当前低分辨率的图块内容替换</p>
+<h4 id="显示器显示内容"><a href="#显示器显示内容" class="headerlink" title="显示器显示内容"></a>显示器显示内容</h4><p>当栅格化完成后，合成线程会生成一个绘制命令‘DrawQuad’并发送给浏览器</p>
+<p>浏览器进程中的viz组件接受到这个命令，然后把页面内容发送到内存。然后发送到显卡</p>
+<p><strong>显示器显示原理</strong></p>
+<p>显示器都有一个固定的刷新频率，一般是60HZ，也就是一秒更新60张照片，每次更新的图片都是来自显卡的前缓冲区。显卡在接受到浏览器传来的页面后，会合成响应的图像，然后放入后缓冲区，然后系统自动将前缓冲区和后缓冲区对换位置，一直循环更新</p>
+<h3 id="重绘和回流（避免频繁使用style，采用class的方式可以减少回流）"><a href="#重绘和回流（避免频繁使用style，采用class的方式可以减少回流）" class="headerlink" title="重绘和回流（避免频繁使用style，采用class的方式可以减少回流）"></a>重绘和回流（<strong>避免频繁使用style，采用class的方式可以减少回流</strong>）</h3><h4 id="回流"><a href="#回流" class="headerlink" title="回流"></a>回流</h4><p>回流又叫重排会重新生成DOM树</p>
+<p><strong>触发条件</strong></p>
+<p>简单来说，当我们对DOM结构的修改引发DOM几何尺寸变化的时候，会发生回流的过程</p>
+<p>一个DOM元素的几何属性变化，常见的几何属性有width、height、padding、margin、left、top、border</p>
+<p>使DOM节点发生增减或则移动</p>
+<p>读写offset、sroll和client属性的时候，浏览器为了获取这些值，需要进行回流操作</p>
+<p>调用window.getComputedStyle方法</p>
+<h4 id="重绘"><a href="#重绘" class="headerlink" title="重绘"></a>重绘</h4><p>重绘直接刷新页面 ，不会重新生成DOM树</p>
+<p><strong>触发条件</strong></p>
+<p>当DOM的修改导致样式的变化，并且没有影响几何属性的时候，会导致重绘</p>
+<h3 id="合成"><a href="#合成" class="headerlink" title="合成"></a>合成</h3><p>合成也叫GPU加速，CSS3的transform、opacity、filter可以实现合成的效果。在合成的情况下，会直接跳过布局和绘制流程，直接进入非主线程处理的部分，直接交给合成线程处理</p>
+<p><strong>好处</strong></p>
+<p>能偶发挥GPU的优势。合成线程生成位图的过程中会调用线程池，并在其中使用GPU进行加速生成，而GPU是擅长处理位图数据的</p>
+<p>没有占用主线程的资源，即使主线程卡住了没效果依然能够流畅的展示</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/fsang/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"># 学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/fsang/2022/12/04/http/" rel="next" title="HTTP知识系列">
+                <i class="fa fa-chevron-left"></i> HTTP知识系列
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/fsang/2022/12/12/sass/" rel="prev" title="sass学习">
+                sass学习 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/fsang/uploads/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/fsang/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/fsang/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/fsang/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/rht-fsang" target="_blank" title="github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/hibiscus-rosa-sinensis/dashboard/projects" target="_blank" title="gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>gitee</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://mp.weixin.qq.com/s?__biz=Mzg5NjE1NTUyNQ==&mid=2247483700&idx=1&sn=0a1368f937b8277959e2584130500019&chksm=c0042bdef773a2c81ba04469d9fbc7840f2a44143e2057425436f647e6b60d432f2d6c9c07fe#rd" target="_blank" title="微信公众号">
+                      
+                        <i class="fa fa-fw fa-globe"></i>微信公众号</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.cn/user/264342510516382" target="_blank" title="掘金">
+                      
+                        <i class="fa fa-fw fa-globe"></i>掘金</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E6%9C%AC%E5%9C%B0%E5%82%A8%E5%AD%98"><span class="nav-number">1.</span> <span class="nav-text">浏览器的本地储存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie"><span class="nav-number">1.1.</span> <span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#localStorage"><span class="nav-number">1.2.</span> <span class="nav-text">localStorage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sessionStorage"><span class="nav-number">1.3.</span> <span class="nav-text">sessionStorage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IndexedDB"><span class="nav-number">1.4.</span> <span class="nav-text">IndexedDB</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E8%AF%B7%E6%B1%82%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">浏览器的请求过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E8%AF%B7%E6%B1%82%E8%A1%8C"><span class="nav-number">2.1.</span> <span class="nav-text">构建请求行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E5%BC%BA%E7%BC%93%E5%AD%98"><span class="nav-number">2.2.</span> <span class="nav-text">查找强缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DNS%E8%A7%A3%E6%9E%90"><span class="nav-number">2.3.</span> <span class="nav-text">DNS解析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8BTCP%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.4.</span> <span class="nav-text">建立TCP连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E6%96%AD%E5%BC%80%E8%BF%9E%E6%8E%A5"><span class="nav-number">2.5.</span> <span class="nav-text">四次挥手断开连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%91%E9%80%81HTTP%E8%AF%B7%E6%B1%82%EF%BC%88%E5%A6%82%E6%9E%9C%E8%AF%B7%E6%B1%82%E5%A4%B4%E6%88%96%E8%80%85%E5%93%8D%E5%BA%94%E5%A4%B4%E4%B8%AD%E5%8C%85%E5%90%ABConnection-Keep-Alive%E8%A1%A8%E7%A4%BA%E5%BB%BA%E7%AB%8B%E4%BA%86%E6%8C%81%E4%B9%85%E8%BF%9E%E6%8E%A5%EF%BC%8Ctcp%E8%BF%9E%E6%8E%A5%E4%BC%9A%E4%B8%80%E7%9B%B4%E4%BF%9D%E6%8C%81%EF%BC%89"><span class="nav-number">2.6.</span> <span class="nav-text">发送HTTP请求（如果请求头或者响应头中包含Connection: Keep-Alive表示建立了持久连接，tcp连接会一直保持）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E5%BB%BA%E6%B8%B2%E6%9F%93%E6%A0%91%E8%BF%87%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">构建渲染树过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E5%BB%BADOM%E6%A0%91"><span class="nav-number">3.1.</span> <span class="nav-text">构建DOM树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B7%E5%BC%8F%E8%AE%A1%E7%AE%97"><span class="nav-number">3.2.</span> <span class="nav-text">样式计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%B8%83%E5%B1%80%E6%A0%91"><span class="nav-number">3.3.</span> <span class="nav-text">生成布局树</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">浏览器渲染过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B%E5%9B%BE%E5%B1%82%E6%A0%91"><span class="nav-number">4.1.</span> <span class="nav-text">建立图层树</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E7%BB%98%E5%88%B6%E5%88%97%E8%A1%A8"><span class="nav-number">4.2.</span> <span class="nav-text">生成绘制列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%9B%BE%E5%9D%97%E5%B9%B6%E6%A0%85%E6%A0%BC%E5%8C%96"><span class="nav-number">4.3.</span> <span class="nav-text">生成图块并栅格化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E5%99%A8%E6%98%BE%E7%A4%BA%E5%86%85%E5%AE%B9"><span class="nav-number">4.4.</span> <span class="nav-text">显示器显示内容</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E7%BB%98%E5%92%8C%E5%9B%9E%E6%B5%81%EF%BC%88%E9%81%BF%E5%85%8D%E9%A2%91%E7%B9%81%E4%BD%BF%E7%94%A8style%EF%BC%8C%E9%87%87%E7%94%A8class%E7%9A%84%E6%96%B9%E5%BC%8F%E5%8F%AF%E4%BB%A5%E5%87%8F%E5%B0%91%E5%9B%9E%E6%B5%81%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">重绘和回流（避免频繁使用style，采用class的方式可以减少回流）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9E%E6%B5%81"><span class="nav-number">5.1.</span> <span class="nav-text">回流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E7%BB%98"><span class="nav-number">5.2.</span> <span class="nav-text">重绘</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%88%E6%88%90"><span class="nav-number">6.</span> <span class="nav-text">合成</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="powered-by">
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+<div></div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共<span class="post-count">36.5k</span>字</span>
+</div>
+<div class="copyright">&copy; 2022 &mdash; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">扶桑</span>
+
+  
+</div>
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+-->
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/fsang/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/fsang/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/fsang/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/fsang/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/fsang/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/fsang/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/fsang/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/fsang/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/fsang/live2dw/assets/live2d-widget-model-hijiki/assets/hijiki.model.json"},"log":false});</script></body>
+</html>

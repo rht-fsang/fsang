@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+  
+  
+    
+    
+  <script src="/fsang/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/fsang/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/fsang/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/fsang/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/fsang/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/fsang/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/fsang/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/fsang/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/fsang/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="学习," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="HTTP报文结构 HTTP报文结构：起始行+头部+空行+实体">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP知识系列">
+<meta property="og:url" content="https://github.com/rht-fsang/fsang.git/2022/12/04/http/index.html">
+<meta property="og:site_name" content="扶桑">
+<meta property="og:description" content="HTTP报文结构 HTTP报文结构：起始行+头部+空行+实体">
+<meta property="og:locale">
+<meta property="og:image" content="https://raw.githubusercontent.com/rht-fsang/md-image/master/img/image-20221214143815969.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/rht-fsang/md-image/master/img/image-20221214143852729.png">
+<meta property="article:published_time" content="2022-12-04T02:36:15.000Z">
+<meta property="article:modified_time" content="2022-12-30T03:14:06.276Z">
+<meta property="article:author" content="扶桑">
+<meta property="article:tag" content="学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/rht-fsang/md-image/master/img/image-20221214143815969.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/rht-fsang/fsang.git/2022/12/04/http/"/>
+
+
+
+
+
+  <title>HTTP知识系列 | 扶桑</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b0ff91134792300bee23d30b0476fd24";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband">
+    <a href="https://github.com/rht-fsang/fsang" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    </div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/fsang/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">扶桑</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">热爱学习，乐于记录</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/fsang/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/fsang/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/fsang/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/fsang/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/rht-fsang/fsang.git/fsang/2022/12/04/http/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/fsang/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="扶桑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">HTTP知识系列</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-04T10:36:15+08:00">
+                2022-12-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/fsang/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  8.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  32
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="HTTP报文结构"><a href="#HTTP报文结构" class="headerlink" title="HTTP报文结构"></a>HTTP报文结构</h3><hr>
+<p>HTTP报文结构：起始行+头部+空行+实体</p>
+<span id="more"></span>
+
+<h4 id="请求报文"><a href="#请求报文" class="headerlink" title="请求报文"></a>请求报文</h4><p>起始行：方法 + 路径 + http版本，GET /home HTTP/1.1</p>
+<p>头部</p>
+<p>空行：区分头部和实体</p>
+<p>实体：请求体（一般POST方法才有）</p>
+<h4 id="相应报文"><a href="#相应报文" class="headerlink" title="相应报文"></a>相应报文</h4><p>起始行：http版本+状态码+原因，HTTP/1.1 200 ok</p>
+<p>头部</p>
+<p>空行：区分头部和实体</p>
+<p>实体：响应体（服务端返回的数据）</p>
+<h3 id="HTTP的请求方法"><a href="#HTTP的请求方法" class="headerlink" title="HTTP的请求方法"></a>HTTP的请求方法</h3><hr>
+<p><strong>方法</strong></p>
+<p>GET：通常用来回去资源</p>
+<p>HEAD：获取资源的元信息</p>
+<p>POST：上传信息</p>
+<p>PUT：修改数据</p>
+<p>DELETE：删除资源</p>
+<p>CONNECT：建立连接隧道，用于代理服务器</p>
+<p>OPTIONS：列出可对资源实行的请求方法，用来跨域请求</p>
+<p>TRACE：追踪请求-相应的传输路径</p>
+<p><strong>GET和POST的区别</strong></p>
+<ul>
+<li>缓存：GET请求会被浏览器主动缓存下来，留下历史记录，而POST默认不会</li>
+<li>编码：GET只能进行URL编码，只能接受ASCII字符，而POST没有限制</li>
+<li>参数：GET一般放在URL中，不安全，POST放在请求体中，更适合传输敏感信息</li>
+<li>冥等性：GET是冥等的，而POST不是（冥等表示执行相同的操作，结果也是相同的）</li>
+<li>TCP：GET会把请求报文一次性发出去，而POST会分为两个TCP数据包，先发header部分，如果服务器响应再发body部分</li>
+</ul>
+<h3 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h3><h4 id="URL结构"><a href="#URL结构" class="headerlink" title="URL结构"></a>URL结构</h4><p>协议类型+域名类型+端口号+路径+查询参数+锚点</p>
+<p>协议类型：HTTP和HTTPS，HTTPS在HTTP的前提上加上了一个安全保护，在数据给tcp之前对数据先进行加密然后再给到tcp连接传输</p>
+<p>域名和IP：域名是IP的别称，方便人去记忆。浏览器跨域通过DNS去解析域名获得对应的IP</p>
+<p>端口号：一台机器可以提供多种服务，一个服务对应一个端口号port</p>
+<p>路径：具体去哪个页面</p>
+<p>查询参数：同一页面看到不同的内容</p>
+<p>锚点：同一页面同一内容查看某一位置内容</p>
+<p><strong>URL编码</strong></p>
+<p>URL只能使用ASCII，ASCII之外的字符是不支持显示的，而且还有一部分符号是界定符，如果不处理的会导致解析出错。因此URL引入了编码机制，把非ASCII码字符和界定符转为十六进制字节值，然后再签名加个%。如空格转义成%20</p>
+<h3 id="HTTP状态码"><a href="#HTTP状态码" class="headerlink" title="HTTP状态码"></a>HTTP状态码</h3><h4 id="1XX"><a href="#1XX" class="headerlink" title="1XX"></a>1XX</h4><p>表示目前是协议处理的中间状态，还需要后续的操作</p>
+<p>101 Swithing Protocols。再http升级为websocket的时候，如果服务器同意变更，就会发送状态码101</p>
+<h4 id="2XX"><a href="#2XX" class="headerlink" title="2XX"></a>2XX</h4><p>表示成功状态</p>
+<p>200 OK是最常见的成果状态码，通常在响应体中放有数据</p>
+<p>204 NO Content含义与200相同，但响应头后面没有数据</p>
+<p>206 Partial Content顾名思义，表示部分内容，它的使用场景为HTTP分块下载和断点连续传，当然同时也会带上相应的响应头字段Content-Range</p>
+<h4 id="3XX"><a href="#3XX" class="headerlink" title="3XX"></a>3XX</h4><p>表示重定向状态，资源位置发生变动，需要重新请求</p>
+<p>301 Moved Permanently即永久重定向，对应着302 Found，即临时重定向</p>
+<p>304 Not Modified当协商缓存命中时会返回这个状态码</p>
+<h4 id="4XX"><a href="#4XX" class="headerlink" title="4XX"></a>4XX</h4><p>请求报文有误</p>
+<p>400 Bad Request客户端请求的语法错误，服务端无法理解</p>
+<p>401 Unauthorized请求需要用户的身份认证</p>
+<p>403 Forbidden服务器理解客户端的请求，但拒接执行此请求</p>
+<p>404 Not Found资源未找到，表示没有服务器上找到相应的资源</p>
+<p>405 Method Not Allowed请求方法不被服务端允许</p>
+<p>406 Not Acceptable资源无法满足客户端的条件</p>
+<p>408 Request Timeout服务器等待了太长时间</p>
+<p>409 Conflict多个请求发生了冲突</p>
+<p>413 Request Entity Took Large请求体积的数据过大</p>
+<p>414 Request-URL Too Long请求行里的URL太大</p>
+<p>429Too Many Request客户端发送的请求过多</p>
+<p>431 Request HeaderFields Too Large请求头的字段内容太大</p>
+<h4 id="5XX"><a href="#5XX" class="headerlink" title="5XX"></a>5XX</h4><p>服务端发送错误</p>
+<p>500 Internal Server Error服务器出错</p>
+<p>501 Not Gateway服务器自身是正常的，但是访问的时候出错了</p>
+<p>503 Service Unavailable表示服务器当前很忙，暂时无法相应服务</p>
+<h3 id="HTTP特点和缺点"><a href="#HTTP特点和缺点" class="headerlink" title="HTTP特点和缺点"></a>HTTP特点和缺点</h3><h4 id="HTTP特点"><a href="#HTTP特点" class="headerlink" title="HTTP特点"></a>HTTP特点</h4><p>灵活可拓展：一个是语义上自由，只规定了基本格式，还有就是传输形式的多样性</p>
+<p>可靠传输：因为HTTP使用的TCP传输协议，所以继承了TCP的可靠传输</p>
+<p>请求-应答，也就是一发一收、有来有回</p>
+<p>无状态，这里的状态是指的通信过程的上下文信息，而每次http请求都说独立、无关的，默认不需要保留状态信息</p>
+<h4 id="HTTP缺点"><a href="#HTTP缺点" class="headerlink" title="HTTP缺点"></a>HTTP缺点</h4><p>无状态在需要长连接的情况下，需要保存大量的上下文信息，以避免传输重复的信息，这个时候无状态就是缺点；但是如果一些应用仅仅只是为了获取一些数据，不需要保存连接上下文信息，无状态减少了网络开销，此时为优点</p>
+<p>明文传输，协议里的报文不适用二进制数据，直接使用文本形式</p>
+<p>队头阻塞问题，当http开启长连接时，共用同一个TCP连接，同一时刻只能处理一个请求，那么当前请求耗时过长的情况下，其他的请求只能处理阻塞状态</p>
+<h3 id="Accept"><a href="#Accept" class="headerlink" title="Accept"></a>Accept</h3><p>对应Accept系列字段的介绍分为四个部分：数据格式、压缩方式、支持语言和字符集</p>
+<h4 id="数据格式"><a href="#数据格式" class="headerlink" title="数据格式"></a>数据格式</h4><p>对于发送端利用Content-Type字段限制数据类型，接受到利用Accept字段限制接受的数据类型。以下是具体的取值</p>
+<p>text：text/html，text/plain，text/css等</p>
+<p>image：image/gif，image/jpeg，image/png等</p>
+<p>application：application/json, application/javascript, application/pdf, application/octet-stream</p>
+<h4 id="压缩方式"><a href="#压缩方式" class="headerlink" title="压缩方式"></a>压缩方式</h4><p>发送端使用Conten-Encoding表明压缩方式，接受端使用Accept-Encoding限制压缩方式。以下是具体的取值</p>
+<p>gzip：目前比较流行的压缩格式</p>
+<p>deflate：另外一种有名的压缩格式</p>
+<p>br：一种专门为HTTP发明的压缩格式</p>
+<h4 id="支持语言"><a href="#支持语言" class="headerlink" title="支持语言"></a>支持语言</h4><p>发送端使用Content-Language字段表明语言，接收端使用Accept-Language字段表明语言</p>
+<h4 id="字符集"><a href="#字符集" class="headerlink" title="字符集"></a>字符集</h4><p>发送端直接放在Content-Type中以charset指定字符集，接受端使用Accept-Charset指定可以接受的字符集</p>
+<p>// 发送端</p>
+<p>Content-Type: text/html; charset=utf-8</p>
+<p>// 接收端</p>
+<p>Accept-Charset: charset=utf-8</p>
+<h3 id="HTTP传输定长和不定长的数据"><a href="#HTTP传输定长和不定长的数据" class="headerlink" title="HTTP传输定长和不定长的数据"></a>HTTP传输定长和不定长的数据</h3><h4 id="定长包体"><a href="#定长包体" class="headerlink" title="定长包体"></a>定长包体</h4><p>对于定长包体来说，发送端在传输的时候一般会带上Conten-Length字段指明包体的长度</p>
+<h4 id="不定长包体"><a href="#不定长包体" class="headerlink" title="不定长包体"></a>不定长包体</h4><p>对于不定长包体，需要配置Transfer-Encoding：chunked，设置了这个字段后会自动产生两个效果，第一个是会忽略Content-Length，第二个就是基于长连接持续推送动态内容</p>
+<h3 id="HTTP处理大文件"><a href="#HTTP处理大文件" class="headerlink" title="HTTP处理大文件"></a>HTTP处理大文件</h3><p>对于一些大文件来说，想要一下传输完是不现实的，所以HTTP采取了范围请求的解决方案允许客户端仅仅请求一个资源的一部分</p>
+<h4 id="如何支持"><a href="#如何支持" class="headerlink" title="如何支持"></a>如何支持</h4><p>前提是服务器支持范围请求，要支持这个功能，响应头上就需要加上Accept-Ranges:none来告诉客户端这边是支持范围请求</p>
+<h4 id="Range字段拆解"><a href="#Range字段拆解" class="headerlink" title="Range字段拆解"></a>Range字段拆解</h4><p>对于客户端，通过Range字段来指定请求那一部分，格式为bytes=x-y</p>
+<p>0-499表示从开始到第499个字节</p>
+<p>500-表示从第500字节到文件终点</p>
+<p>-100表示文件的最后一个100个字节</p>
+<p>服务器收到请求之后，首先验证范围是否合法，如果越界了那么返回416错误码，否则读取相应片段，返回206状态码</p>
+<h4 id="对于单段数据和多端数据，服务器的响应数据是不一样的"><a href="#对于单段数据和多端数据，服务器的响应数据是不一样的" class="headerlink" title="对于单段数据和多端数据，服务器的响应数据是不一样的"></a>对于单段数据和多端数据，服务器的响应数据是不一样的</h4><p>单段数据 Range：bytes=0-9</p>
+<p>多段数据 Range：bytes=0-9，30-39</p>
+<p><strong>单段数据</strong></p>
+<p>Content-Range字段，0-9表示请求的返回，100表示资源的总大小</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">HTTP</span>/<span class="number">1.1</span> <span class="number">206</span> <span class="title class_">Partial</span> <span class="title class_">Content</span></span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Length</span>: <span class="number">10</span></span><br><span class="line"><span class="title class_">Accept</span>-<span class="title class_">Ranges</span>: bytes</span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Range</span>: bytes <span class="number">0</span>-<span class="number">9</span>/<span class="number">10</span></span><br><span class="line">i am xxxxx</span><br></pre></td></tr></table></figure>
+
+<p><strong>多段数据</strong></p>
+<p>Content0Type：multiparty/byteranges；boundary=00000010101表示请求一定是多段数据请求，响应体中的分隔符是00000010101</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">HTTP</span>/<span class="number">1.1</span> <span class="number">206</span> <span class="title class_">Partial</span> <span class="title class_">Content</span></span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Type</span>: multipart/byteranges; boundary=<span class="number">00000010101</span></span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Length</span>: <span class="number">189</span></span><br><span class="line"><span class="title class_">Connection</span>: keep-alive</span><br><span class="line"><span class="title class_">Accept</span>-<span class="title class_">Ranges</span>: bytes</span><br><span class="line">--<span class="number">00000010101</span></span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Type</span>: text/plain</span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Range</span>: bytes <span class="number">0</span>-<span class="number">9</span>/<span class="number">96</span></span><br><span class="line">i am xxxxx</span><br><span class="line">--<span class="number">00000010101</span></span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Type</span>: text/plain</span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Range</span>: bytes <span class="number">20</span>-<span class="number">29</span>/<span class="number">96</span></span><br><span class="line">eex jspy </span><br><span class="line">e--<span class="number">00000010101</span>--</span><br></pre></td></tr></table></figure>
+
+<h3 id="HTTP处理表单数据"><a href="#HTTP处理表单数据" class="headerlink" title="HTTP处理表单数据"></a>HTTP处理表单数据</h3><p>在HTTP中，有两种主要的表单提交的方式，体现在两种不同的Content-Type取值，application/x-www-form-urlencoded和multiparty/form-data</p>
+<h4 id="application-x-www-form-urlencoded"><a href="#application-x-www-form-urlencoded" class="headerlink" title="application/x-www-form-urlencoded"></a>application/x-www-form-urlencoded</h4><p>对于application/x-www-form-urlencoded格式的表单内容，有以下特点：数据会被编码成以&amp;分隔的键值对，字符以URL编码方法编码</p>
+<h4 id="multipart-form-data"><a href="#multipart-form-data" class="headerlink" title="multipart/form-data"></a>multipart/form-data</h4><p>请求头中的Content-Type字段会包含boundary。且boundary的值有浏览器默认指定。例：Content-Type：multipart=- - - WebkitFormBoundaryRRJKeWfHPGrS4LKe</p>
+<p>数据会分为多个部分，每两个部分之间通过分隔符来分隔，每部分表示均有HTTP头部描述子包体</p>
+<h3 id="HTTP处理队头阻塞"><a href="#HTTP处理队头阻塞" class="headerlink" title="HTTP处理队头阻塞"></a>HTTP处理队头阻塞</h3><p>HTTP传输是基于请求-应答的模式进行的，报文必须是一发一收，但值得注意的是，里面的任务被放在一个任务队列中串行执行，一旦队首的请求处理太慢，就会阻塞后面请求的处理</p>
+<h4 id="并发连接"><a href="#并发连接" class="headerlink" title="并发连接"></a>并发连接</h4><p>对于一个域名允许分配多个长连接，那么相当于增加了任务队列，不至于一个队伍的任务阻塞其他所有任务。在RFC2616规定过客户端最多并发2个连接，不过事实上在现在的浏览器标准中，这个上限要多很多，Chrome是6个</p>
+<h4 id="域名分片"><a href="#域名分片" class="headerlink" title="域名分片"></a>域名分片</h4><p>一个域名表示可以并发6个长连接，那就多分一些二级域名，在一个baidu.com域名下可以分出很多二级域名，如content.baidu.com,text.baidu.com等二级域名。这样一台服务器能并发的连接数就更多了</p>
+<h3 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h3><h4 id="生存周期"><a href="#生存周期" class="headerlink" title="生存周期"></a>生存周期</h4><p>Cookie的有效期可以通过Expires和Max-Age两个属性，也就是HTTP的强缓存。Expires表示资源过期时间，Max-Age用的是一段时间间隔，单位是秒，从浏览器收到报文开始计算</p>
+<h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h4><p>关于作用域有两个属性Domain和path，给Cookie绑定了域名和路径，在发送请求之前，发现域名或则路径不匹配的话，就不会带上该Cookie。对于路径来说，/表示域名下的任何路径都允许使用Cookie</p>
+<h4 id="安全相关"><a href="#安全相关" class="headerlink" title="安全相关"></a>安全相关</h4><p>如果带上Secure，说明只能通过HTTPS传输cookie</p>
+<p>如果带上HttpOnly，那么说明只能通过HTTP协议传输，不能通过JS访问，这也是预防XSS攻击的重要的手段</p>
+<p>如果带上SameSite属性则可以预防CSRF攻击，SameSite有三个值可以选择：</p>
+<ul>
+<li>在Strict模式下，浏览器完全禁止第三方请求携带Cookie</li>
+<li>在Lax模式，只能在get方法提交表单或则a标签发送get请求的情况下可以携带Cookie</li>
+<li>在None模式下，也就是默认模式，请求都会自动带上Cookie</li>
+</ul>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><p>容量缺陷：Cookie的体积上限只有4KB。</p>
+<p>性能缺陷：Cookie紧跟域名，不管域名下面的某一个地址需不需要这个Cookie，请求都会带上完整的Cookie，这样随着请求数的增多，会造成巨大的性能浪费。但可以通过Domain和Path指定作用域来解决</p>
+<p>安全缺陷：由于Cookie以纯文本的形式在浏览器和服务端中传递，这样很容易被非法用户截获，然后进行一系列的篡改。重新发送给服务器。在Http为fasle的情况下，Cookie信息能直接通过JS脚本来读取</p>
+<h3 id="HTTP代理"><a href="#HTTP代理" class="headerlink" title="HTTP代理"></a>HTTP代理</h3><p>代理服务器是介于客户端和服务端的一个中间角色，对于客户端来说，表现为服务器进行响应，对于服务器来说，表现为客户端发起请求。具有双重身份</p>
+<h4 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h4><p>负载均衡：客户端发送的请求会先到达代理服务器，后面有多少源服务器，IP地址客户端都是不知道的</p>
+<p>保障安全：利用心跳机制监控后台的服务器，一旦发现故障机就将其踏出集群。并且对上下行的数据进行过滤，对非法IP限流</p>
+<p>缓存代理：将内容缓存到代理服务器，使得客户端可以直接从代理服务器获得缓存</p>
+<h4 id="相关头部字段"><a href="#相关头部字段" class="headerlink" title="相关头部字段"></a>相关头部字段</h4><p>Via，代理服务器需要表明自己的身份，可以通过Via字段来记录。Via中代理的顺序就是HTTP传输中报文传达的顺序</p>
+<p>X-Forwarded-For，记录请求方的IP地址</p>
+<p>X-Real-IP，获取真实用户的IP地址，X-Forwarded-Host记录客户端的域名，X-Forwarded-Proto记录客户端的协议名</p>
+<h3 id="HTTP缓存"><a href="#HTTP缓存" class="headerlink" title="HTTP缓存"></a>HTTP缓存</h3><h4 id="缓存的好处"><a href="#缓存的好处" class="headerlink" title="缓存的好处"></a>缓存的好处</h4><p>减少网络带宽的消耗，对网站运营者来说，可以减少网络流量，降低运营成本</p>
+<p>降低服务器压力，对于服务器来说，重复使用浏览器本地的缓存数据，可以减少对服务器的请求，降低对服务器的压力</p>
+<p>减少网络延迟，加快网络渲染，对客户端来说，使用浏览器本地的缓存比请求服务器的数据更快，提高页面的渲染效率</p>
+<h4 id="强缓存（不需要发送http请求。注意：当Expires和Cache-Control同时存在时，Cache-Control会被优先考虑）"><a href="#强缓存（不需要发送http请求。注意：当Expires和Cache-Control同时存在时，Cache-Control会被优先考虑）" class="headerlink" title="强缓存（不需要发送http请求。注意：当Expires和Cache-Control同时存在时，Cache-Control会被优先考虑）"></a>强缓存（不需要发送http请求。注意：当Expires和Cache-Control同时存在时，Cache-Control会被优先考虑）</h4><p><strong>HTTP/1.0版本中使用的Cache-Control</strong></p>
+<p>Expires代表缓存过期时间，存在于服务端返回的响应头中，用来告诉浏览器在这个时间之前都可以直接从缓存中获取数据。如 Expires: Wed, 22 Nov 2019 08:41:00 GMT</p>
+<p><strong>HTTP/1.1版本中使用的Cache-Contral</strong></p>
+<p>Cache-Control采用的是过期时长来控制缓存，对应的字段是max-age。如 Cache-Control：max-age=3600（代表该资源在3600秒内可以直接使用缓存）</p>
+<p>Cache-Control还有一些其他的属性，如下：</p>
+<p>Public：客户端和代理端都可以对数据进行缓存</p>
+<p>private：只能客户端缓存，中间的代理服务器不能缓存</p>
+<p>no-cache：不能进行任何形式的缓存</p>
+<p>s-naxage：代理服务器的缓存过期时间</p>
+<h4 id="协商缓存（强缓存失效后，浏览器在请求头上携带相应的缓存tag香服务器发送请求，由服务器根据tag决定是否使用缓存）"><a href="#协商缓存（强缓存失效后，浏览器在请求头上携带相应的缓存tag香服务器发送请求，由服务器根据tag决定是否使用缓存）" class="headerlink" title="协商缓存（强缓存失效后，浏览器在请求头上携带相应的缓存tag香服务器发送请求，由服务器根据tag决定是否使用缓存）"></a>协商缓存（强缓存失效后，浏览器在请求头上携带相应的缓存tag香服务器发送请求，由服务器根据tag决定是否使用缓存）</h4><p><strong>Last-Modified</strong></p>
+<p>Last-Modified表示最后修改时间。在浏览器第一次给服务器发送请求后，服务器会在响应头中加上这个字段，浏览器接收到后，再第二次请求中会携带If-Modified-Since字段，</p>
+<p>这个字段的值是服务器传来的最后修改时间。服务器拿到请求头中的If-Modified-Since字段后，会和服务器中该资源的最后时间修改时间对比，如果请求头中的值小于最后修改时间，</p>
+<p>返回新资源。反之则返回304，告诉浏览器直接用缓存</p>
+<p><strong>Etag</strong></p>
+<p>ETag是服务器根据当前文件的内容，给文件生成的唯一标识，只要内容有改动，这个值就会变化。服务器通过响应头把这个值给浏览器。浏览器收到这个值会在</p>
+<p>下次请求的时候把这个值作为If-None-Match这个字段的内容，放入请求头中给服务器，服务器收到后与Etag对比，不一致返回新资源，一致则返回403，告诉浏览器直接使用缓存</p>
+<p><strong>对比</strong></p>
+<p>在精度上，ETag由于Last-Modified</p>
+<p>在性能上，Last-Modified由于ETag，运维ETag在对每个文件生成唯一标识会损耗性能</p>
+<h4 id="缓存位置"><a href="#缓存位置" class="headerlink" title="缓存位置"></a>缓存位置</h4><p>浏览器其中的缓存位置按照优先级从高到低排列分别是：Service Worker；Memory Cache；Disk Cache；Push Cache。（比较大的文件会直接丢进磁盘中，反之进入内存 ，当内存使用率很高的时候，也会优先储存在磁盘中）</p>
+<p>Service Worker借鉴了Web Worker的思路，既让JS运行在主线程之外，由于它脱离了浏览器的窗体，因此无法访问DOM。它可以实现离线缓存，消息推送和网络代理等功能</p>
+<p>Memory Cache指的是内存缓存，从效率上讲它是最快的。但是存活时间也是最短的，当渲染进程结束后，内存缓存也就在不存在了</p>
+<p>Disk Cache是储存在磁盘中的缓存，存取效率比内存缓存低，但是存储容量和存储时长都很不错</p>
+<p>Push Cache是推送缓存，这是浏览器缓存的最后一道防线，是HTTP/2中的内容</p>
+<h4 id="刷新对于强缓存和协商缓存的影响"><a href="#刷新对于强缓存和协商缓存的影响" class="headerlink" title="刷新对于强缓存和协商缓存的影响"></a>刷新对于强缓存和协商缓存的影响</h4><p>当ctrl+f5强制刷新网页时，直接重服务器加载，跳过强缓存和协商缓存</p>
+<p>当f5刷新网页时，跳过强缓存，但是会检查协商缓存</p>
+<p>浏览器地址栏中写入URL，回车 浏览器先去找缓存</p>
+<h3 id="缓存代理"><a href="#缓存代理" class="headerlink" title="缓存代理"></a>缓存代理</h3><p>对于源服务器来说也是有缓存的，但是对于HTTP缓存来说，如果每次客户端缓存失效都要到源服务器获取，那样服务器的压力会也别大，所以让代理服务器接管一部分服务端的HTTP缓存，客户端缓存过期就去最近的代理服务器获取，代理服务端过期了的话就去最近原服务器获取</p>
+<h4 id="源服务器的缓存控制"><a href="#源服务器的缓存控制" class="headerlink" title="源服务器的缓存控制"></a>源服务器的缓存控制</h4><p>private和public，在源服务器的响应头中，会加上Cache-Control这个字段进行缓存控制字段，那么它的值当中可以加入private或则public表示是否允许代理服务器缓存</p>
+<p>proxy-revalidate，must-revalidate的意思s 客户端缓存过期就去源服务器获取，而proxy-revalidate则表示代理服务器的缓存过期后到源服务器获取</p>
+<p>s-maxage，s是share的意思，限定了缓存代理服务器中可以放多久，和限制客户端缓存时间max-age并不冲突</p>
+<h4 id="客户端的缓存控制"><a href="#客户端的缓存控制" class="headerlink" title="客户端的缓存控制"></a>客户端的缓存控制</h4><p>max-stale和min-fresh，在客户端的请求头上，可以加入这两个字段，对代理服务器上的缓存进行宽容和限制操作，max-stale：5表示过期时间在5秒之内可以从代理中获取，min-fresh：5表示等缓存时间过期之前5秒拿代理中的缓存</p>
+<p>only-if-cached，这个字段加上后表示客户端只会接受代理缓存，而不会接受源服务器的响应，如果代理缓存无效，则返回504</p>
+<h3 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h3><h4 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域"></a>什么是跨域</h4><p>浏览器遵循同源政策（协议、IP地址和端口都相同则为永源），非同源站点有以下限制：</p>
+<ul>
+<li><p>不能读取和修改对方的DOM</p>
+</li>
+<li><p>不读访问对方的Cookie、IndexDB和LocalStorage</p>
+</li>
+<li><p>限制XMLHttpRequest请求</p>
+</li>
+</ul>
+<p>当浏览器香目标URL发Ajax请求时，只要当前URL和目标URL不同源，则产生跨域，被称为跨域请求，跨域请求的响应一般会被浏览器拦截。在服务端处理完数据后，将响应返回，主进程检查到跨域，且没有cors响应头，将响应体全部丢掉，并不会发送给渲染进程</p>
+<h4 id="CORS"><a href="#CORS" class="headerlink" title="CORS"></a>CORS</h4><p>CORS是W3C的一个标准，全称是跨域资源共享。它需要浏览器和服务器的共同支持，具体来说，非IE和IE1.0以上支持CORS，服务器需要附加特定的响应头</p>
+<p>浏览器根据请求方法和请求头的特定字段，将请求做了一下分类，具体来说规则是这样，凡是满足下面条件的属于简单请求：</p>
+<ul>
+<li>请求方法为GET、POST或则HEAD</li>
+<li>请求去头的取值范围：Accept、Accept-Language、Content-Language、Content-Type（只限于三个值application/x-form-urlencoded、multipart/form-data、text/plain）</li>
+</ul>
+<p><strong>简单请求</strong></p>
+<p>请求发出去之前，浏览器会在请求头中添加一个Origin字段，用来说明请求来自哪个源。服务器拿到请求之后，在回应时添加Access-Content-Allow-Origin字段，如果Origin不在这个字段的范围中，那么浏览器就会将相应拦截，因此Access-Content-Allow-Origin字段是服务器用来决定浏览器是否拦截这个响应，是必须的一个字段</p>
+<p>Access-Control-Allow-Credentials字段是一个布尔值，表示允许发送Cookie，对于跨域请求，浏览器对这个字段默认值为false，而如果需要拿到浏览器的Cookie，需要添加这个响应头并设为true，并且在前端也需要设置withCredentials属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xhr.<span class="property">withCredentials</span> = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<p>Access-Control-Expose-Headers字段是给XMLHttpRequest对象赋能让它不仅可以拿到基本的6个响应头字段（Cache-Control、Content-Language、Content-Type、Expires、Last-Modified和Pragma）, 还能拿到这个字段声明的响应头字段</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Access</span>-<span class="title class_">Control</span>-<span class="title class_">Expose</span>-<span class="title class_">Headers</span>: aaa</span><br><span class="line"><span class="title class_">XMLHttpRequest</span>.<span class="title function_">getResponseHeader</span>(<span class="string">&#x27;aaa&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>非简单请求</strong></p>
+<p>非简单请求相对而言会有些不同，主要有以下两个方面：预检请求和响应字段</p>
+<p>以PUT方法为例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> url = <span class="string">&#x27;http://xxx.com&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span><br><span class="line">xhr.<span class="title function_">open</span>(<span class="string">&#x27;PUT&#x27;</span>, url, <span class="literal">true</span>);</span><br><span class="line">xhr.<span class="title function_">setRequestHeader</span>(<span class="string">&#x27;X-Custom-Header&#x27;</span>, <span class="string">&#x27;xxx&#x27;</span>);</span><br><span class="line">xhr.<span class="title function_">send</span>();</span><br></pre></td></tr></table></figure>
+
+<p>当这段代码执行后，会发送预检请求，预检请求的请求行和请求体是下面的格式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">OPTIONS</span> / <span class="variable constant_">HTTP</span>/<span class="number">1.1</span></span><br><span class="line"><span class="title class_">Origin</span>: 当前地址</span><br><span class="line"><span class="title class_">Host</span>: xxx.<span class="property">com</span></span><br><span class="line"><span class="title class_">Access</span>-<span class="title class_">Control</span>-<span class="title class_">Request</span>-<span class="title class_">Method</span>: <span class="variable constant_">PUT</span></span><br><span class="line"><span class="title class_">Access</span>-<span class="title class_">Control</span>-<span class="title class_">Request</span>-<span class="title class_">Headers</span>: X-<span class="title class_">Custom</span>-<span class="title class_">Header</span></span><br></pre></td></tr></table></figure>
+
+<p>预检请求的方法是OPTIONS，同时会加上Origin源地址和Host目标地址。同时加上以下两个字段</p>
+<p>Access-Control-Request-Method，列出CORS请求用到哪个HTTP方法</p>
+<p>Accesss-Control-Request-Headers,指定CORS请求将要加上什么请求头</p>
+<p>同时响应字段也会分为两部分，一部分是对于预检请求的响应，一部分是对于CORS请求的响应</p>
+<p>预检请求的响应</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable constant_">HTTP</span>/<span class="number">1.1</span> <span class="number">200</span> <span class="variable constant_">OK</span></span><br><span class="line"><span class="title class_">Access</span>-<span class="title class_">Control</span>-<span class="title class_">Allow</span>-<span class="title class_">Origin</span>: *</span><br><span class="line"><span class="title class_">Access</span>-<span class="title class_">Control</span>-<span class="title class_">Allow</span>-<span class="title class_">Methods</span>: <span class="variable constant_">GET</span>, <span class="variable constant_">POST</span>, <span class="variable constant_">PUT</span></span><br><span class="line"><span class="title class_">Access</span>-<span class="title class_">Control</span>-<span class="title class_">Allow</span>-<span class="title class_">Headers</span>: X-<span class="title class_">Custom</span>-<span class="title class_">Header</span></span><br><span class="line"><span class="title class_">Access</span>-<span class="title class_">Control</span>-<span class="title class_">Allow</span>-<span class="title class_">Credentials</span>: <span class="literal">true</span></span><br><span class="line"><span class="title class_">Access</span>-<span class="title class_">Control</span>-<span class="title class_">Max</span>-<span class="title class_">Age</span>: <span class="number">1728000</span></span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Type</span>: text/html; charset=utf-<span class="number">8</span></span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Encoding</span>: gzip</span><br><span class="line"><span class="title class_">Content</span>-<span class="title class_">Length</span>: <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+<p>在预检响应字段中有几个关键的字段</p>
+<p>Access-Control-Allow-Origin：表示跨域允许请求的源，可以填具体的源名，也可以填*表示任意源</p>
+<p>Access-Control-Allow-Methods：表示允许的请求方法列表</p>
+<p>Access-Control-Allow-Headers：简单请求中已经介绍</p>
+<p>Access-Control-Allow-Credentials：表示允许发送的请求字段</p>
+<p>Access-Control-Max-Age：表示预检请求的有效期，在此期间，不用发出另一条预检请求</p>
+<p>在预检请求的响应返回后，如果请求不满足响应头的条件，则触发XMLHttpRequest的onerror方法，当然后面真正的CORS请求也不会发出来了</p>
+<h4 id="JSONP"><a href="#JSONP" class="headerlink" title="JSONP"></a>JSONP</h4><p>虽然XMLHttpRequest对象遵循同源政策，但是script标签不一样，它可以通过src填上目标地址从而发出GET请求，实现跨域请求并拿到响应。</p>
+<p>和CORS相比，JSONP最大的优势在于兼容性好，IE低版本不能使用CORS但可以使用JSONP，缺点也很明显，请求方法单一，只支持GET请求。</p>
+<p>以下是封装的一个JSONP</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">jsonp</span> = (<span class="params">&#123; url, params, callbackName &#125;</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">generateURL</span> = (<span class="params"></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> dataStr = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"> <span class="keyword">for</span>(<span class="keyword">let</span> key <span class="keyword">in</span> params) &#123;</span><br><span class="line">      dataStr += <span class="string">`<span class="subst">$&#123;key&#125;</span>=<span class="subst">$&#123;params[key]&#125;</span>&amp;`</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> dataStr += <span class="string">`callback=<span class="subst">$&#123;callbackName&#125;</span>`</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;url&#125;</span>?<span class="subst">$&#123;dataStr&#125;</span>`</span>;</span><br><span class="line">  &#125;;</span><br><span class="line"> <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 初始化回调函数名称</span></span><br><span class="line">    callbackName = callbackName || <span class="title class_">Math</span>.<span class="title function_">random</span>().<span class="property">toString</span>.<span class="title function_">replace</span>(<span class="string">&#x27;,&#x27;</span>, <span class="string">&#x27;&#x27;</span>); </span><br><span class="line"><span class="comment">// 创建 script 元素并加入到当前文档中</span></span><br><span class="line">    <span class="keyword">let</span> scriptEle = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>);</span><br><span class="line">scriptEle.<span class="property">src</span> = <span class="title function_">generateURL</span>();</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(scriptEle);</span><br><span class="line">  <span class="comment">// 绑定到 window 上，为了后面调用</span></span><br><span class="line">    <span class="variable language_">window</span>[callbackName] = <span class="function">(<span class="params">data</span>) =&gt;</span> &#123;</span><br><span class="line"><span class="title function_">resolve</span>(data);</span><br><span class="line">      <span class="comment">// script 执行完了，成为无用元素，需要清除</span></span><br><span class="line">      <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">removeChild</span>(scriptEle);</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Nginx"><a href="#Nginx" class="headerlink" title="Nginx"></a>Nginx</h4><p>Nginx是一个高性能的反向代理服务器，可以用来轻松解决跨域问题</p>
+<p>正向代理帮助客户端访问客户端自己访问不到的服务器，然后将结果返回客户端</p>
+<p>反向代理拿到客户端的请求，将请求转发给其他的服务器，主要场景是维持服务器集群的负载均衡，换句话说，反向代理帮其他的服务器拿到请求，然后选择一个合适的服务器，将请求转交给它</p>
+<p>因此，正向代理服务器是帮客户端做事情，反向代理服务器是帮其他的服务器做事情</p>
+<p>Nginx相当于一个跳板机，这个跳板机的域名也是client.com，让客户端访问client.com/api，这当然没有跨域，然后Nginx服务器作为反向代理，将请求转发给server.com，当响应应返回时又将响应给到客户端</p>
+<h3 id="TLs1-2握手过程"><a href="#TLs1-2握手过程" class="headerlink" title="TLs1.2握手过程"></a>TLs1.2握手过程</h3><p>前面我们已经知道HTTPS = HTTP + SSL/TLS来保证数据的安全</p>
+<p>SSL是安全套接层，在OSI七层模型中处于会话层。之前SSL出过三个大版本，当它发展到第三个大版本的时候才被标准化，成为TLS（传输层安全），并被当做TLS1.0。也就是说TLS1.0 = SSL3.0</p>
+<p>现在主流的版本是TLS/1.2，之前的TLS1.0、TLS1.0和TLS1.1都被认为是不安全的，在不久的将来会被完全淘汰。因此我们接下来主要讨论的是TLS1.2，当然在2018年推出了更加优秀的TLS1.3，大大优化了TLS握手过程</p>
+<h4 id="TLs1-2握手过程-1"><a href="#TLs1-2握手过程-1" class="headerlink" title="TLs1.2握手过程"></a>TLs1.2握手过程</h4><p><strong>Client Hello</strong></p>
+<p>首先，浏览器发送client_random、TLS版本、加密套件列表</p>
+<p>client_random是用来最终确定secret的一个参数</p>
+<p>在TLS握手过程中，使用ECDHE算法生成pre_random,128位的AES算法进行对称加密，在对称加密的过程中使用主流的GCM分组模式，因为对称加密中很重要的一个问题就是如何分组。最后一个是哈希摘要算法，采用SHA256算法</p>
+<p>哈希摘要算法解释实例</p>
+<p>服务端给客户端发信息，客户端并不知道此时的信息是服务端发的还是中间伪造的信息，这个时候就要引入哈希摘要算法，将服务端的证书信息通过这个算法生成一个摘要，用来标识这个服务端的身份，用私钥加密后把加密后的标识和自己的公钥传给客户端。客户端拿到这个公钥来解密，生成零一分摘要。两个摘要进行对比，如果相同则能确认服务端的身份</p>
+<p><strong>Server Hello</strong></p>
+<p>服务器给客户端回复非常多的内容</p>
+<p>server_random也是最后生成secret的一个参数，同时确认TLS版本、需要使用的加密套件和自己的证书</p>
+<p><strong>Client验证证书，生成secret</strong></p>
+<p>客户端验证服务端传来的证书和签名是否通过，如果验证通过，则传递client_params这个参数给服务器</p>
+<p>客户端通过EECDHE算法计算出pre_random,其中传入两个参数：server_params和slient_params</p>
+<p>客户端现在拥有了client_random、server_random和pre_random，接下来这三个数通过一个伪随机数函数来计算最终的secret</p>
+<p><strong>Server生成secret</strong></p>
+<p>接收到客户端传的client_params，服务端使用ECDHE算法生成pre_random，接着用和客户端的伪随机数函数生成最后的secret</p>
+<h4 id="RAS和ECDHE握手过程的区别"><a href="#RAS和ECDHE握手过程的区别" class="headerlink" title="RAS和ECDHE握手过程的区别"></a>RAS和ECDHE握手过程的区别</h4><p>ECDHE握手，也就是主流的TLS1.2握手中，使用ECDHE实现pre_random的加密解密，没有用到RSA</p>
+<p>使用ECDHE还有一个特点，就是客户端发完首位信息后跨域提前抢跑，直接发送HTTP报文，节省了一个RTT，不必等到收尾信息到达服务器，然后等服务器返回收尾消息给自己，直接开始发请求</p>
+<h3 id="TLS1-3改进"><a href="#TLS1-3改进" class="headerlink" title="TLS1.3改进"></a>TLS1.3改进</h3><p>TLS1.3对TLS1.2做了一系列的改进，主要分为着几个部分：强化安全、提高性能</p>
+<h4 id="强化安全"><a href="#强化安全" class="headerlink" title="强化安全"></a>强化安全</h4><p>在TLS1.3中废除了非常多的加密算法，最后只保留五个加密套件。同时叶删除了非对称加密算法</p>
+<ul>
+<li>TLS_AES_128_GCM_SHA256</li>
+<li>TLS_AES_256_GCM_SHA384</li>
+<li>TLS_CHACHA20_POLY1305_SHA256</li>
+<li>TLS_AES_128_GCM_SHA256</li>
+<li>TLS_AES_128_GCM_8_SHA256</li>
+</ul>
+<h4 id="提高性能"><a href="#提高性能" class="headerlink" title="提高性能"></a>提高性能</h4><p><strong>握手改进</strong></p>
+<p>大体的方式和TLS1.2差不多，不过和TLS1.2相比少了一个RTT，服务器不必等待对方验证证书之后才拿到client_params，而是直接在第一次握手的时候就能够拿到，拿到之后立即计算secret，节省了之前不必要的等待时间。同时，这也以为这在第一次握手的时候客户端需要传送更多的信息，一口气传完</p>
+<p><strong>会话复用</strong></p>
+<p>会话复用有两种方式：Sessio ID和Session Ticket</p>
+<p>Session ID是在客户端和服务端首次连接后各自保存会话的ID，并存储会话密钥，当再次连接时，客户端发送ID过来，服务器查找这个ID是否存在，如果找到了就直接复用之前的会话状态，会话密钥不用重新生成，直接用来的那份。当客户端特别的多的时候，服务器的压力会特别大。</p>
+<p>Session Ticket 当服务端的压力大的时候，就把压力分摊给客户端。双方连接成功后，服务器加密会话信息，用Session Ticket消息发给客户端，让客户端保存下来。下次重连的时候，就把这个Ticket进行解密，验证没过期那就直接恢复之前的会话状态。这种方式减少了服务端的压力，但是带来了安全问题，即每次用一个固定的密钥来解密Ticket数据，一旦黑客拿到了这个密钥，之前的所有的历史记录也被破解了。因此密钥需要定期进行更换</p>
+<p><strong>PSK</strong></p>
+<p>前面说的都是1-RTT情况下的优化，PSK就是使用0-RTT在Session Ticket的同时带上应用数据，不用等到服务端确认。这样会方服务器被攻击的风险很大</p>
+<h3 id="HTTP-2改进"><a href="#HTTP-2改进" class="headerlink" title="HTTP/2改进"></a>HTTP/2改进</h3><p>由于HTTPS在安全方面已经做的非常好了，HTTP改进的关注点放在了性能方面。头部压缩和多路复用，还有颠覆性的功能实现设置请求优先级和服务器推送</p>
+<h4 id="头部压缩"><a href="#头部压缩" class="headerlink" title="头部压缩"></a>头部压缩</h4><p>HPACK算法是专门为HTTP/2服务的，它有以下两个优点：</p>
+<ul>
+<li>在服务器和客户端之间建立哈希表，将用到的字段存放在这张表中，那么在传输的时候对于之前出现过的值，只需要把索引传给对方即可，对方拿到索引查表就好了</li>
+<li>对于整数和字符串进行哈夫曼编码，哈夫曼编码的原理就是先将所有出现的字符建立一张索引表，然后让出现次数多的字符对应的索引尽可能短，传输的时候也是传输这样的索引序列，可以达到非常高的压缩率</li>
+</ul>
+<h4 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h4><p>TCP的对头阻塞是在数据包层面，单位是数据包，前一个报文密钥收到便不会将后面收到的报文上传给HTTP，而HTTP队头阻塞是在HTTP的队头阻塞在HTTP请求-响应层面，前一个请求密钥请求完，后面的请求就要阻塞住</p>
+<p>HTTP/2认为明文传给机器而言太麻烦了，不方便计算机的解析，因为对于文本而言会有多义性的字符，比如回车换行到底是内容还是分隔符，在内部需要用到状态机去识别。于是HTTP/2干脆把报文全部换成二进制格式，全部01传输，方便了机器的解析</p>
+<p>通信双方都可以给对方发送二进制帧，这种二进制帧的双向传输的序列也叫做流。HTTP/2用流来在一个TCP连接上进行多个数据帧的通信，这就是多路复用的概念</p>
+<h4 id="服务器推送"><a href="#服务器推送" class="headerlink" title="服务器推送"></a>服务器推送</h4><p>在HTTP/2中，服务器已经不再完全的被动的接受请求，响应请求，它也能新建stream来给客户端发送消息，当TCP连接建立之后，比如浏览器请求一个HTML文件，服务器就可以在返回HTML的基础上，将HTML中引用到的其他资源文件一起返回给客户端，减少客户端的等待</p>
+<h3 id="HTTP-2中的二进制"><a href="#HTTP-2中的二进制" class="headerlink" title="HTTP/2中的二进制"></a>HTTP/2中的二进制</h3><p>HTTP/2中传输的帧结构如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/rht-fsang/md-image/master/img/image-20221214143815969.png" alt="image-20221214143815969"></p>
+<p>每个帧分为帧头和帧体。先是三个字节的帧长度，这个长度表示的是帧体的长度然后是帧类型，大概可以分为数据帧和控制帧两种。数据帧用来存放HTTP报文，控制帧用来管理流的传输。</p>
+<p>接下来的一个字节是帧标志，黎曼一共8个标志位，常用的有END_HEADERS表示数据结束，END_STRAEAM表示单方向数据发送结束</p>
+<p>后四个字节是Stream ID，也就是流标识符，有了它接收方就能从乱序的二进制帧中选择出ID相同的帧，按顺序组装成请求/响应报文</p>
+<h4 id="流的状态变化"><a href="#流的状态变化" class="headerlink" title="流的状态变化"></a>流的状态变化</h4><p><img src="https://raw.githubusercontent.com/rht-fsang/md-image/master/img/image-20221214143852729.png" alt="image-20221214143852729"></p>
+<p>最开始两者都是空闲状态，当客户端发送Headers帧后，开始分配Stream ID，此时客户端的流打开，服务端接受之后服务端的流也打开，两端的流都打开之后，就可以互相传递数据帧和控制帧</p>
+<p>当客户端要关闭时，向服务端发送END_SITREAM帧，进入半关闭状态，不过此时服务端的情况是只能发送数据，而不能接受数据。随后服务端也想客户端发送END_STREAM帧，表示数据发送完毕，双方进入关闭状态</p>
+<p>如果下次需要开启新的流，流ID需要自增，直到上限为止，到达上限后开一个新的TCP连接重头开始计数。由于流ID字段长度为四个字节，最高位又被保留，因此范围是0~2的31次方，大约21亿个</p>
+<h4 id="流的特性"><a href="#流的特性" class="headerlink" title="流的特性"></a>流的特性</h4><ul>
+<li>并发性，一个HTTP/2连接上可以同时发多个帧，这一点和HTTP/1不同</li>
+<li>自增性，流ID是不可重用的，而是会按顺序递增，达到上限后又新开TCP连接从头开始</li>
+<li>双向性，客户端和服务端都可以创建流，互不干扰，双方都可以作为发送发或接收方</li>
+<li>可设置优先级，可以设置数据帧的优先级，让服务器优先处理重要资源，优化用户体验</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/fsang/tags/%E5%AD%A6%E4%B9%A0/" rel="tag"># 学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/fsang/2022/12/01/image/" rel="next" title="Typora+picGo+Github实现图片自动上云">
+                <i class="fa fa-chevron-left"></i> Typora+picGo+Github实现图片自动上云
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/fsang/2022/12/04/browser/" rel="prev" title="浏览器">
+                浏览器 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/fsang/uploads/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/fsang/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/fsang/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/fsang/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/rht-fsang" target="_blank" title="github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/hibiscus-rosa-sinensis/dashboard/projects" target="_blank" title="gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>gitee</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://mp.weixin.qq.com/s?__biz=Mzg5NjE1NTUyNQ==&mid=2247483700&idx=1&sn=0a1368f937b8277959e2584130500019&chksm=c0042bdef773a2c81ba04469d9fbc7840f2a44143e2057425436f647e6b60d432f2d6c9c07fe#rd" target="_blank" title="微信公众号">
+                      
+                        <i class="fa fa-fw fa-globe"></i>微信公众号</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.cn/user/264342510516382" target="_blank" title="掘金">
+                      
+                        <i class="fa fa-fw fa-globe"></i>掘金</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E6%8A%A5%E6%96%87%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">HTTP报文结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87"><span class="nav-number">1.1.</span> <span class="nav-text">请求报文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%BA%94%E6%8A%A5%E6%96%87"><span class="nav-number">1.2.</span> <span class="nav-text">相应报文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E7%9A%84%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">HTTP的请求方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL"><span class="nav-number">3.</span> <span class="nav-text">URL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#URL%E7%BB%93%E6%9E%84"><span class="nav-number">3.1.</span> <span class="nav-text">URL结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E7%8A%B6%E6%80%81%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">HTTP状态码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1XX"><span class="nav-number">4.1.</span> <span class="nav-text">1XX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2XX"><span class="nav-number">4.2.</span> <span class="nav-text">2XX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3XX"><span class="nav-number">4.3.</span> <span class="nav-text">3XX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4XX"><span class="nav-number">4.4.</span> <span class="nav-text">4XX</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5XX"><span class="nav-number">4.5.</span> <span class="nav-text">5XX</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E7%89%B9%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9"><span class="nav-number">5.</span> <span class="nav-text">HTTP特点和缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP%E7%89%B9%E7%82%B9"><span class="nav-number">5.1.</span> <span class="nav-text">HTTP特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP%E7%BC%BA%E7%82%B9"><span class="nav-number">5.2.</span> <span class="nav-text">HTTP缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Accept"><span class="nav-number">6.</span> <span class="nav-text">Accept</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F"><span class="nav-number">6.1.</span> <span class="nav-text">数据格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9%E6%96%B9%E5%BC%8F"><span class="nav-number">6.2.</span> <span class="nav-text">压缩方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%AF%E6%8C%81%E8%AF%AD%E8%A8%80"><span class="nav-number">6.3.</span> <span class="nav-text">支持语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86"><span class="nav-number">6.4.</span> <span class="nav-text">字符集</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E4%BC%A0%E8%BE%93%E5%AE%9A%E9%95%BF%E5%92%8C%E4%B8%8D%E5%AE%9A%E9%95%BF%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">7.</span> <span class="nav-text">HTTP传输定长和不定长的数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%9A%E9%95%BF%E5%8C%85%E4%BD%93"><span class="nav-number">7.1.</span> <span class="nav-text">定长包体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E5%AE%9A%E9%95%BF%E5%8C%85%E4%BD%93"><span class="nav-number">7.2.</span> <span class="nav-text">不定长包体</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E5%A4%84%E7%90%86%E5%A4%A7%E6%96%87%E4%BB%B6"><span class="nav-number">8.</span> <span class="nav-text">HTTP处理大文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%94%AF%E6%8C%81"><span class="nav-number">8.1.</span> <span class="nav-text">如何支持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Range%E5%AD%97%E6%AE%B5%E6%8B%86%E8%A7%A3"><span class="nav-number">8.2.</span> <span class="nav-text">Range字段拆解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E4%BA%8E%E5%8D%95%E6%AE%B5%E6%95%B0%E6%8D%AE%E5%92%8C%E5%A4%9A%E7%AB%AF%E6%95%B0%E6%8D%AE%EF%BC%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E6%98%AF%E4%B8%8D%E4%B8%80%E6%A0%B7%E7%9A%84"><span class="nav-number">8.3.</span> <span class="nav-text">对于单段数据和多端数据，服务器的响应数据是不一样的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E5%A4%84%E7%90%86%E8%A1%A8%E5%8D%95%E6%95%B0%E6%8D%AE"><span class="nav-number">9.</span> <span class="nav-text">HTTP处理表单数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#application-x-www-form-urlencoded"><span class="nav-number">9.1.</span> <span class="nav-text">application&#x2F;x-www-form-urlencoded</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#multipart-form-data"><span class="nav-number">9.2.</span> <span class="nav-text">multipart&#x2F;form-data</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E5%A4%84%E7%90%86%E9%98%9F%E5%A4%B4%E9%98%BB%E5%A1%9E"><span class="nav-number">10.</span> <span class="nav-text">HTTP处理队头阻塞</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E8%BF%9E%E6%8E%A5"><span class="nav-number">10.1.</span> <span class="nav-text">并发连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%9F%E5%90%8D%E5%88%86%E7%89%87"><span class="nav-number">10.2.</span> <span class="nav-text">域名分片</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie"><span class="nav-number">11.</span> <span class="nav-text">Cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E5%AD%98%E5%91%A8%E6%9C%9F"><span class="nav-number">11.1.</span> <span class="nav-text">生存周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8%E5%9F%9F"><span class="nav-number">11.2.</span> <span class="nav-text">作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E7%9B%B8%E5%85%B3"><span class="nav-number">11.3.</span> <span class="nav-text">安全相关</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">11.4.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E4%BB%A3%E7%90%86"><span class="nav-number">12.</span> <span class="nav-text">HTTP代理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD"><span class="nav-number">12.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%A4%B4%E9%83%A8%E5%AD%97%E6%AE%B5"><span class="nav-number">12.2.</span> <span class="nav-text">相关头部字段</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP%E7%BC%93%E5%AD%98"><span class="nav-number">13.</span> <span class="nav-text">HTTP缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E7%9A%84%E5%A5%BD%E5%A4%84"><span class="nav-number">13.1.</span> <span class="nav-text">缓存的好处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%BA%E7%BC%93%E5%AD%98%EF%BC%88%E4%B8%8D%E9%9C%80%E8%A6%81%E5%8F%91%E9%80%81http%E8%AF%B7%E6%B1%82%E3%80%82%E6%B3%A8%E6%84%8F%EF%BC%9A%E5%BD%93Expires%E5%92%8CCache-Control%E5%90%8C%E6%97%B6%E5%AD%98%E5%9C%A8%E6%97%B6%EF%BC%8CCache-Control%E4%BC%9A%E8%A2%AB%E4%BC%98%E5%85%88%E8%80%83%E8%99%91%EF%BC%89"><span class="nav-number">13.2.</span> <span class="nav-text">强缓存（不需要发送http请求。注意：当Expires和Cache-Control同时存在时，Cache-Control会被优先考虑）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%EF%BC%88%E5%BC%BA%E7%BC%93%E5%AD%98%E5%A4%B1%E6%95%88%E5%90%8E%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%A8%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%B8%8A%E6%90%BA%E5%B8%A6%E7%9B%B8%E5%BA%94%E7%9A%84%E7%BC%93%E5%AD%98tag%E9%A6%99%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82%EF%BC%8C%E7%94%B1%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%A0%B9%E6%8D%AEtag%E5%86%B3%E5%AE%9A%E6%98%AF%E5%90%A6%E4%BD%BF%E7%94%A8%E7%BC%93%E5%AD%98%EF%BC%89"><span class="nav-number">13.3.</span> <span class="nav-text">协商缓存（强缓存失效后，浏览器在请求头上携带相应的缓存tag香服务器发送请求，由服务器根据tag决定是否使用缓存）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E4%BD%8D%E7%BD%AE"><span class="nav-number">13.4.</span> <span class="nav-text">缓存位置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%B7%E6%96%B0%E5%AF%B9%E4%BA%8E%E5%BC%BA%E7%BC%93%E5%AD%98%E5%92%8C%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%E7%9A%84%E5%BD%B1%E5%93%8D"><span class="nav-number">13.5.</span> <span class="nav-text">刷新对于强缓存和协商缓存的影响</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E4%BB%A3%E7%90%86"><span class="nav-number">14.</span> <span class="nav-text">缓存代理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%BA%90%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E6%8E%A7%E5%88%B6"><span class="nav-number">14.1.</span> <span class="nav-text">源服务器的缓存控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E7%BC%93%E5%AD%98%E6%8E%A7%E5%88%B6"><span class="nav-number">14.2.</span> <span class="nav-text">客户端的缓存控制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%A8%E5%9F%9F"><span class="nav-number">15.</span> <span class="nav-text">跨域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%A8%E5%9F%9F"><span class="nav-number">15.1.</span> <span class="nav-text">什么是跨域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CORS"><span class="nav-number">15.2.</span> <span class="nav-text">CORS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JSONP"><span class="nav-number">15.3.</span> <span class="nav-text">JSONP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Nginx"><span class="nav-number">15.4.</span> <span class="nav-text">Nginx</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TLs1-2%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B"><span class="nav-number">16.</span> <span class="nav-text">TLs1.2握手过程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#TLs1-2%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B-1"><span class="nav-number">16.1.</span> <span class="nav-text">TLs1.2握手过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RAS%E5%92%8CECDHE%E6%8F%A1%E6%89%8B%E8%BF%87%E7%A8%8B%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">16.2.</span> <span class="nav-text">RAS和ECDHE握手过程的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TLS1-3%E6%94%B9%E8%BF%9B"><span class="nav-number">17.</span> <span class="nav-text">TLS1.3改进</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%BA%E5%8C%96%E5%AE%89%E5%85%A8"><span class="nav-number">17.1.</span> <span class="nav-text">强化安全</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD"><span class="nav-number">17.2.</span> <span class="nav-text">提高性能</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-2%E6%94%B9%E8%BF%9B"><span class="nav-number">18.</span> <span class="nav-text">HTTP&#x2F;2改进</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%B4%E9%83%A8%E5%8E%8B%E7%BC%A9"><span class="nav-number">18.1.</span> <span class="nav-text">头部压缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="nav-number">18.2.</span> <span class="nav-text">多路复用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%8E%A8%E9%80%81"><span class="nav-number">18.3.</span> <span class="nav-text">服务器推送</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-2%E4%B8%AD%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6"><span class="nav-number">19.</span> <span class="nav-text">HTTP&#x2F;2中的二进制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E7%9A%84%E7%8A%B6%E6%80%81%E5%8F%98%E5%8C%96"><span class="nav-number">19.1.</span> <span class="nav-text">流的状态变化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%81%E7%9A%84%E7%89%B9%E6%80%A7"><span class="nav-number">19.2.</span> <span class="nav-text">流的特性</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="powered-by">
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+<div></div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共<span class="post-count">36.5k</span>字</span>
+</div>
+<div class="copyright">&copy; 2022 &mdash; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">扶桑</span>
+
+  
+</div>
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+-->
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/fsang/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/fsang/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/fsang/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/fsang/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/fsang/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/fsang/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/fsang/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/fsang/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/fsang/live2dw/assets/live2d-widget-model-hijiki/assets/hijiki.model.json"},"log":false});</script></body>
+</html>

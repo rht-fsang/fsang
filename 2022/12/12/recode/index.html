@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+  
+  
+    
+    
+  <script src="/fsang/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/fsang/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/fsang/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/fsang/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/fsang/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/fsang/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/fsang/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/fsang/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/fsang/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="总结," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="计分小程序介绍：计分小程序是一个打牌计分神器，麻将扑克均适用，主要分为单人计分模式和多人计分模式技术栈：TS、微信小程序、Vant Wapp、websocket">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计分小程序介绍">
+<meta property="og:url" content="https://github.com/rht-fsang/fsang.git/2022/12/12/recode/index.html">
+<meta property="og:site_name" content="扶桑">
+<meta property="og:description" content="计分小程序介绍：计分小程序是一个打牌计分神器，麻将扑克均适用，主要分为单人计分模式和多人计分模式技术栈：TS、微信小程序、Vant Wapp、websocket">
+<meta property="og:locale">
+<meta property="og:image" content="https://raw.githubusercontent.com/rht-fsang/md-image/master/img/image-20221213110516315.png">
+<meta property="article:published_time" content="2022-12-12T02:36:15.000Z">
+<meta property="article:modified_time" content="2023-02-16T09:53:27.874Z">
+<meta property="article:author" content="扶桑">
+<meta property="article:tag" content="总结">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/rht-fsang/md-image/master/img/image-20221213110516315.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/rht-fsang/fsang.git/2022/12/12/recode/"/>
+
+
+
+
+
+  <title>计分小程序介绍 | 扶桑</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b0ff91134792300bee23d30b0476fd24";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband">
+    <a href="https://github.com/rht-fsang/fsang" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    </div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/fsang/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">扶桑</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">热爱学习，乐于记录</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/fsang/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/fsang/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/fsang/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/fsang/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/rht-fsang/fsang.git/fsang/2022/12/12/recode/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/fsang/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="扶桑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计分小程序介绍</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-12T10:36:15+08:00">
+                2022-12-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/fsang/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="计分小程序介绍：计分小程序是一个打牌计分神器，麻将扑克均适用，主要分为单人计分模式和多人计分模式"><a href="#计分小程序介绍：计分小程序是一个打牌计分神器，麻将扑克均适用，主要分为单人计分模式和多人计分模式" class="headerlink" title="计分小程序介绍：计分小程序是一个打牌计分神器，麻将扑克均适用，主要分为单人计分模式和多人计分模式"></a>计分小程序介绍：计分小程序是一个打牌计分神器，麻将扑克均适用，主要分为单人计分模式和多人计分模式</h3><h3 id="技术栈：TS、微信小程序、Vant-Wapp、websocket"><a href="#技术栈：TS、微信小程序、Vant-Wapp、websocket" class="headerlink" title="技术栈：TS、微信小程序、Vant Wapp、websocket"></a>技术栈：<a target="_blank" rel="noopener" href="https://www.tslang.cn/docs/handbook/basic-types.html">TS</a>、<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/">微信小程序</a>、<a target="_blank" rel="noopener" href="https://youzan.github.io/vant-weapp/#/goods-action">Vant Wapp</a>、<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket">websocket</a></h3><span id="more"></span>
+
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><hr>
+<p><strong>问题：房间计分情况实时更新到每一位成员</strong></p>
+<p>解决思路：选择长连接，长连接有websocket，Long Pulling， 轮询。鉴于计分操作比较频繁且需要后台主动发送信息，所以我使用的是websocket来实现长连接。小程序官方有封装好的websocket，</p>
+<p>使用websocket涉及到关闭重连和收到信息去做通知两种情况。为了更好的复用，我把websocket连接的方法initWebSocket挂在全局的app的实例上，当收到服务端发来的信息时，该实例方法会生成一个事件进行广播，我使用的是eventemitter2生成和监听事件。再全局我还写了一个实例listenEvent去监听事件，当监听到事件的时候会把传进来的方法执行一遍，传进来的方法就可以去拿数据。因为监听的事件在页面销毁后是需要同时去进行销毁的。但是在页面销毁的生命周期函数中获取不到最新的listener,所以我在使用listenEvent的时候也把当前的页面实例也传进来，然后在实例内部去改写页面的onUnload的页面生命周期函数，在页面销毁的同时去销毁当前监听的listener。执行完之后再还原页面的生命周期函数。这样就完成了监听和销毁的闭环。</p>
+<p>关于websocket断线重连，我在全局写了一个方法去争对主动关闭和被动关闭的情况分别进行处理，该方法会根据入参判断是否是主动关闭，被动关闭的话会先销毁上一个调用的定时器，然后再生成一个新的定时器去执行连接websocket的方法initWebSocket.如果是主动关闭的话就会只销毁而不再去生成定时器去连接websocket了。下面是具体的方法</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//连接websocket的方法，在页面加载之前执行这个方法连接websocket</span></span><br><span class="line"><span class="title function_">initWebSocket</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">wsDisabledReconnect</span> = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">ws</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">ws</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">ws</span> = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">reslove, reject</span>) =&gt;</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> ws = wx.<span class="title function_">connectSocket</span>(&#123;</span><br><span class="line">                <span class="attr">url</span>: <span class="string">&#x27;wss://scorex.dayangame.com:443/ws/?token=&#x27;</span> + <span class="variable language_">this</span>.<span class="property">appData</span>.<span class="property">token</span>,</span><br><span class="line">            &#125;);</span><br><span class="line">            ws.<span class="title function_">onOpen</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;websocket连接&#x27;</span>, res);</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">timeFdScoketPing</span> = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">                    ws?.<span class="title function_">send</span>(&#123; <span class="attr">data</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123; <span class="attr">event</span>: <span class="string">&#x27;ping&#x27;</span>, <span class="attr">data</span>: &#123;&#125; &#125;) &#125;);</span><br><span class="line">                &#125;, <span class="number">3000</span>);</span><br><span class="line">                <span class="title function_">reslove</span>(ws);</span><br><span class="line">                <span class="comment">//连接成功后刷新房间信息</span></span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">event</span>.<span class="title function_">emit</span>(<span class="string">&#x27;room.refresh&#x27;</span>, res);</span><br><span class="line">            &#125;);</span><br><span class="line">            ws.<span class="title function_">onError</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;未能正常连接&#x27;</span>, res);</span><br><span class="line">                <span class="variable language_">this</span>.<span class="title function_">onCleanSocket</span>(<span class="variable language_">this</span>.<span class="property">wsDisabledReconnect</span>);</span><br><span class="line">                <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;socket error&#x27;</span>));</span><br><span class="line">            &#125;);</span><br><span class="line">            ws.<span class="title function_">onMessage</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;收到服务器内容：&#x27;</span> + res.<span class="property">data</span>);</span><br><span class="line">                <span class="variable language_">this</span>.<span class="property">event</span>.<span class="title function_">emit</span>(<span class="string">&#x27;room.refresh&#x27;</span>, res);</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;emit room.refresh&#x27;</span>);</span><br><span class="line">            &#125;);</span><br><span class="line">            ws.<span class="title function_">onClose</span>(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;WebSocket 已关闭！&#x27;</span>, res);</span><br><span class="line">                <span class="variable language_">this</span>.<span class="title function_">onCleanSocket</span>(<span class="variable language_">this</span>.<span class="property">wsDisabledReconnect</span>);</span><br><span class="line">                <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;socket close&#x27;</span>));</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">ws</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 判断是主动关闭wbsocket连接还是被动，主动销毁定时器，被动销毁定时器后再生成一个定时器来实现被动关闭重连</span></span><br><span class="line">    <span class="title function_">onCleanSocket</span>(<span class="params">wsDisabledReconnect: <span class="built_in">boolean</span></span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">ws</span>) &#123;</span><br><span class="line">            <span class="keyword">const</span> ws = <span class="variable language_">this</span>.<span class="property">ws</span> <span class="keyword">as</span> <span class="title class_">Promise</span>&lt;<span class="title class_">WechatMiniprogram</span>.<span class="property">SocketTask</span>&gt;;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">ws</span> = <span class="literal">null</span>;</span><br><span class="line">            ws.<span class="title function_">then</span>(<span class="function"><span class="params">e</span> =&gt;</span> e.<span class="title function_">close</span>(&#123;&#125;));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">clearInterval</span>(<span class="variable language_">this</span>.<span class="property">timeFdScoketPing</span> <span class="keyword">as</span> <span class="built_in">number</span>);</span><br><span class="line">        <span class="built_in">clearTimeout</span>(<span class="variable language_">this</span>.<span class="property">timeFdSocketReconnect</span> <span class="keyword">as</span> <span class="built_in">number</span>);</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">wsDisabledReconnect</span> = wsDisabledReconnect;</span><br><span class="line">        <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">wsDisabledReconnect</span>) &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">timeFdSocketReconnect</span> = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> <span class="variable language_">this</span>.<span class="title function_">initWebSocket</span>(), <span class="number">1000</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//去监听一个事件并且在页面销毁的时候销毁监听的方法</span></span><br><span class="line">    <span class="title function_">listenEvent</span>(<span class="attr">event</span>: <span class="built_in">string</span>, <span class="attr">page</span>: <span class="title class_">WechatMiniprogram</span>.<span class="property">Page</span>.<span class="property">Instance</span>&lt;<span class="built_in">any</span>, <span class="built_in">any</span>&gt;, <span class="attr">callback</span>: <span class="title class_">ListenerFn</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> listener = <span class="variable language_">this</span>.<span class="property">event</span>.<span class="title function_">on</span>(event, callback, &#123; <span class="attr">objectify</span>: <span class="literal">true</span> &#125;) <span class="keyword">as</span> <span class="title class_">Listener</span>;</span><br><span class="line">        <span class="keyword">const</span> superOnUnload = page.<span class="property">onUnload</span> || <span class="keyword">function</span> (<span class="params"></span>) &#123;&#125;;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;add listener -&gt;&#x27;</span> + event);</span><br><span class="line">        page.<span class="property">onUnload</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">            listener.<span class="title function_">off</span>();</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;remove listener -&gt;&#x27;</span> + event);</span><br><span class="line">            superOnUnload.<span class="title function_">apply</span>(page);</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,    </span><br></pre></td></tr></table></figure>
+
+<h3 id="实现算法"><a href="#实现算法" class="headerlink" title="实现算法"></a>实现算法</h3><hr>
+<p>算法解决的问题：在计分小程序单人模式给分中最后以为玩家根据合分为零的规则自动填充好分数</p>
+<p><img src="https://raw.githubusercontent.com/rht-fsang/md-image/master/img/image-20221213110516315.png" alt="image-20221213110516315"></p>
+<p>如图1.1是记录玩家分数的数据结构，我通过遍历player数据去，通过判断score是否为空来记录目前有多少个玩家还没有填分数同时计算出来目前已填分数玩家的总分。然后在遍历结束后针对只有一个玩家未填分数进行处理，把已填玩家的总分的相反数给最后一位玩家。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">autofill</span>(<span class="params"></span>) &#123;</span><br><span class="line">       <span class="keyword">let</span> num = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">let</span> index = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">let</span> sum = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">const</span> copyUsers = <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">player</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; copyUsers.<span class="property">length</span>; i++) &#123;</span><br><span class="line">           <span class="keyword">if</span> (!copyUsers[i].<span class="property">score</span>) &#123;</span><br><span class="line">               num++;</span><br><span class="line">               index = i;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span> (copyUsers[i].<span class="property">win</span> === <span class="number">1</span>) &#123;</span><br><span class="line">               sum += <span class="title class_">Number</span>(copyUsers[i].<span class="property">score</span>);</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               sum -= <span class="title class_">Number</span>(copyUsers[i].<span class="property">score</span>);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (num === <span class="number">1</span>) &#123;</span><br><span class="line">           <span class="keyword">if</span> (sum &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">               copyUsers[index].<span class="property">win</span> = <span class="number">2</span>;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">               copyUsers[index].<span class="property">win</span> = <span class="number">1</span>;</span><br><span class="line">           &#125;</span><br><span class="line">           copyUsers[index].<span class="property">score</span> = <span class="title class_">Math</span>.<span class="title function_">abs</span>(sum).<span class="title function_">toString</span>();</span><br><span class="line">           <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">               <span class="attr">player</span>: copyUsers,</span><br><span class="line">           &#125;);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="接口封装"><a href="#接口封装" class="headerlink" title="接口封装"></a>接口封装</h3><hr>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用query-string三方包</span></span><br><span class="line">   <span class="keyword">import</span> &#123; stringifyUrl, <span class="title class_">StringifiableRecord</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;query-string&#x27;</span>;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">//配置三个开发环境对应的路由</span></span><br><span class="line">   <span class="keyword">const</span> <span class="attr">API_URLS</span>: &#123; [<span class="attr">index</span>: <span class="built_in">string</span>]: <span class="built_in">string</span> &#125; = &#123;</span><br><span class="line">       <span class="attr">develop</span>: <span class="string">&#x27;https://scorex.dayangame.com/api&#x27;</span>,</span><br><span class="line">       <span class="attr">trial</span>: <span class="string">&#x27;https://scorex.dayangame.com/api&#x27;</span>,</span><br><span class="line">       <span class="attr">release</span>: <span class="string">&#x27;https://scorex.dayangame.com/api&#x27;</span>,</span><br><span class="line">   &#125;;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">//在小程序加载完毕时获取下程序的配置</span></span><br><span class="line">  <span class="title function_">onLaunch</span>(<span class="params"></span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> accountInfo = wx.<span class="title function_">getAccountInfoSync</span>();</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">config</span>.<span class="property">appid</span> = accountInfo.<span class="property">miniProgram</span>.<span class="property">appId</span>;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">config</span>.<span class="property">env</span> = accountInfo.<span class="property">miniProgram</span>.<span class="property">envVersion</span>;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">config</span>.<span class="property">version</span> = accountInfo.<span class="property">miniProgram</span>.<span class="property">version</span> || <span class="string">&#x27;0.0.0&#x27;</span>;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">systemInfo</span> = wx.<span class="title function_">getSystemInfoSync</span>();</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">config</span>.<span class="property">url</span> = <span class="variable constant_">API_URLS</span>[<span class="variable language_">this</span>.<span class="property">config</span>.<span class="property">env</span>] || <span class="variable constant_">API_URLS</span>.<span class="property">develop</span>;</span><br><span class="line">      <span class="comment">//获取JWT</span></span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="variable language_">this</span>.<span class="property">appData</span>.<span class="property">token</span> = wx.<span class="title function_">getStorageSync</span>(<span class="string">&#x27;jwt&#x27;</span>) || <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">      &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">&#x27;getStorageSync[jwt] error&#x27;</span>, e);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//封装接口</span></span><br><span class="line">   doApiRequest&lt;O, T <span class="keyword">extends</span> <span class="title class_">WechatMiniprogram</span>.<span class="property">IAnyObject</span>&gt;(</span><br><span class="line">      <span class="attr">method</span>: <span class="title class_">WxRequestMethods</span>,</span><br><span class="line">      <span class="attr">path</span>: <span class="built_in">string</span>,</span><br><span class="line">      data?: T,</span><br><span class="line">      query?: <span class="title class_">StringifiableRecord</span>,</span><br><span class="line">  ): <span class="title class_">Promise</span>&lt;O&gt; &#123;</span><br><span class="line">      <span class="comment">//拼接好路由</span></span><br><span class="line">      <span class="keyword">const</span> baseUrl = <span class="string">`<span class="subst">$&#123;<span class="variable language_">this</span>.config.url&#125;</span><span class="subst">$&#123;path&#125;</span>`</span>;</span><br><span class="line">      <span class="comment">//利用stringifyUrl把路由上的参数拼接在后面</span></span><br><span class="line">      <span class="comment">//queryString.stringifyUrl(&#123;url: &#x27;https://foo.bar&#x27;, query: &#123;foo: &#x27;bar&#x27;&#125;&#125;);  </span></span><br><span class="line">      <span class="comment">//=&gt; &#x27;https://foo.bar?foo=bar&#x27;</span></span><br><span class="line">      <span class="keyword">const</span> url = <span class="title function_">stringifyUrl</span>(&#123; <span class="attr">url</span>: baseUrl, query &#125;, &#123; <span class="attr">arrayFormat</span>: <span class="string">&#x27;index&#x27;</span> &#125;);</span><br><span class="line">      <span class="keyword">const</span> <span class="attr">header</span>: <span class="title class_">WechatMiniprogram</span>.<span class="property">IAnyObject</span> = &#123;</span><br><span class="line">          <span class="string">&#x27;x-platform&#x27;</span>: [<span class="string">&#x27;wxmp&#x27;</span>, <span class="variable language_">this</span>.<span class="property">config</span>.<span class="property">appid</span>, <span class="variable language_">this</span>.<span class="property">config</span>.<span class="property">env</span>, <span class="variable language_">this</span>.<span class="property">config</span>.<span class="property">version</span>].<span class="title function_">join</span>(<span class="string">&#x27;/&#x27;</span>),</span><br><span class="line">          <span class="comment">// &#x27;x-debug-user&#x27;: &#x27;7b2ee6da-1de7-406c-bf64-5e4afbbc31f1&#x27;,</span></span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">appData</span>.<span class="property">token</span>) &#123;</span><br><span class="line">          <span class="comment">//在每次请求接口的时候都会带上token值，如果把token直接放在cookie里面会有跨域的问题，所以这里我把token放在http协议头上，避免跨域的问题</span></span><br><span class="line">          header.<span class="property">Authorization</span> = <span class="string">`Bearer <span class="subst">$&#123;<span class="variable language_">this</span>.appData.token&#125;</span>`</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">reslove, reject</span>) =&gt;</span> &#123;</span><br><span class="line">          wx.<span class="title function_">request</span>(&#123;</span><br><span class="line">              url,</span><br><span class="line">              header,</span><br><span class="line">              method,</span><br><span class="line">              data,</span><br><span class="line">              <span class="attr">dataType</span>: <span class="string">&#x27;json&#x27;</span>,</span><br><span class="line">              <span class="attr">success</span>: <span class="function"><span class="params">result</span> =&gt;</span> &#123;</span><br><span class="line">                  <span class="keyword">if</span> (result.<span class="property">statusCode</span> != <span class="number">200</span> &amp;&amp; result.<span class="property">statusCode</span> != <span class="number">201</span>) &#123;</span><br><span class="line">                      <span class="keyword">return</span> <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">`request err: <span class="subst">$&#123;result.statusCode&#125;</span>`</span>));</span><br><span class="line">                  &#125;</span><br><span class="line">                  <span class="keyword">const</span> <span class="attr">data</span>: &#123; <span class="attr">code</span>: <span class="built_in">number</span>; <span class="attr">message</span>: <span class="built_in">string</span>; <span class="attr">resource</span>: O &#125; = result.<span class="property">data</span> <span class="keyword">as</span> <span class="built_in">any</span>;</span><br><span class="line">                  <span class="keyword">if</span> (data.<span class="property">code</span>) &#123;</span><br><span class="line">                      <span class="keyword">return</span> <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(data.<span class="property">message</span>));</span><br><span class="line">                  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                      <span class="title function_">reslove</span>(data.<span class="property">resource</span>);</span><br><span class="line">                  &#125;</span><br><span class="line">              &#125;,</span><br><span class="line">              <span class="attr">fail</span>: <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">                  <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(e.<span class="property">errMsg</span>));</span><br><span class="line">              &#125;,</span><br><span class="line">          &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  doApiPostRequest&lt;O, T <span class="keyword">extends</span> <span class="title class_">WechatMiniprogram</span>.<span class="property">IAnyObject</span>&gt;(</span><br><span class="line">      <span class="attr">path</span>: <span class="built_in">string</span>,</span><br><span class="line">      data?: T,</span><br><span class="line">      query?: <span class="title class_">StringifiableRecord</span>,</span><br><span class="line">  ): <span class="title class_">Promise</span>&lt;O&gt; &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">doApiRequest</span>(<span class="string">&#x27;POST&#x27;</span>, path, data, query);</span><br><span class="line">  &#125;,</span><br><span class="line">  doApiPutRequest&lt;O, T <span class="keyword">extends</span> <span class="title class_">WechatMiniprogram</span>.<span class="property">IAnyObject</span>&gt;(</span><br><span class="line">      <span class="attr">path</span>: <span class="built_in">string</span>,</span><br><span class="line">      data?: T,</span><br><span class="line">      query?: <span class="title class_">StringifiableRecord</span>,</span><br><span class="line">  ): <span class="title class_">Promise</span>&lt;O&gt; &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">doApiRequest</span>(<span class="string">&#x27;PUT&#x27;</span>, path, data, query);</span><br><span class="line">  &#125;,</span><br><span class="line">  doApiDeleteRequest&lt;O, T <span class="keyword">extends</span> <span class="title class_">WechatMiniprogram</span>.<span class="property">IAnyObject</span>&gt;(</span><br><span class="line">      <span class="attr">path</span>: <span class="built_in">string</span>,</span><br><span class="line">      data?: T,</span><br><span class="line">      query?: <span class="title class_">StringifiableRecord</span>,</span><br><span class="line">  ): <span class="title class_">Promise</span>&lt;O&gt; &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">doApiRequest</span>(<span class="string">&#x27;DELETE&#x27;</span>, path, data, query);</span><br><span class="line">  &#125;,</span><br><span class="line">  doApiGetRequest&lt;O&gt;(<span class="attr">path</span>: <span class="built_in">string</span>, query?: <span class="title class_">StringifiableRecord</span>): <span class="title class_">Promise</span>&lt;O&gt; &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">doApiRequest</span>(<span class="string">&#x27;GET&#x27;</span>, path, <span class="literal">undefined</span>, query);</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h3><hr>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">const</span> b = &#123;<span class="attr">a</span>: <span class="number">1</span>,<span class="attr">b</span>: <span class="number">2</span>&#125;;</span><br><span class="line"><span class="comment">//forEach使用起来更加简洁</span></span><br><span class="line">a.<span class="title function_">forEach</span>(<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">//for in一般用来遍历对象</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> i <span class="keyword">in</span> b) &#123;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//for of可以遍历类数组结构</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> i <span class="keyword">of</span> a) &#123;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//map遍历数组,会返回一个新的数组</span></span><br><span class="line">a.<span class="title function_">map</span>(<span class="function"><span class="params">i</span> =&gt;</span> &#123;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(i);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="微信小程序登录流程"><a href="#微信小程序登录流程" class="headerlink" title="微信小程序登录流程"></a>微信小程序登录流程</h3><hr>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">doAuthJsCode</span>(<span class="params"></span>): <span class="title class_">Promise</span>&lt;<span class="title class_">IWechatLogin</span>&gt; &#123;</span><br><span class="line">     <span class="keyword">const</span> result = <span class="keyword">await</span> wx.<span class="title function_">login</span>();</span><br><span class="line">     <span class="keyword">return</span> app.<span class="title function_">doApiPostRequest</span>(<span class="string">&#x27;/wechat/auth/jscode&#x27;</span>, &#123; <span class="attr">code</span>: result.<span class="property">code</span> &#125;);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="comment">//先调用wx.login获取code，通过doAuthJsCode接口把code传给后端，后端通过code向微信客户端获取session_key和openid。然后加密返回给客户端，客户端保存在全局。</span></span><br><span class="line"> <span class="keyword">const</span> data = <span class="keyword">await</span> <span class="title function_">doAuthJsCode</span>();</span><br><span class="line"> <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">    <span class="attr">loginInfo</span>: data,</span><br><span class="line"> &#125;);</span><br><span class="line"> <span class="comment">//当用户点击微信授权的时候，调用getUserProfile方法，通过微信提供的getUserProfile方法拿到用户的信息，，注意这里的用户信息还是加密的，之后把加密的用户信息和登录的加密信息一起返回给后端，后端拿到信息后就会注册一个用户，并且为这个用户生成一个token值返回给客户端，客户端把token值放到http的请求头上，每次调用接口的时候都要带上这个token值。</span></span><br><span class="line"> <span class="title function_">getUserProfile</span>(<span class="params"></span>) &#123;</span><br><span class="line">     <span class="keyword">if</span> (!<span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">loginInfo</span>) &#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">     &#125;</span><br><span class="line">     wx.<span class="title function_">getUserProfile</span>(&#123;</span><br><span class="line">         <span class="attr">desc</span>: <span class="string">&#x27;展示用户信息&#x27;</span>,</span><br><span class="line">         <span class="attr">success</span>: <span class="keyword">async</span> res =&gt; &#123;</span><br><span class="line">             <span class="keyword">const</span> encryptedData = res.<span class="property">encryptedData</span> || <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">             <span class="keyword">const</span> iv = res.<span class="property">iv</span> || <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">             <span class="keyword">const</span> session = <span class="keyword">await</span> <span class="title function_">requestWechatMobileLogin</span>(&#123;</span><br><span class="line">                 encryptedData,</span><br><span class="line">                 iv,</span><br><span class="line">                 <span class="attr">loginEncryptedData</span>: <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">loginInfo</span>.<span class="property">encryptedData</span>,</span><br><span class="line">                 <span class="attr">loginIv</span>: <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">loginInfo</span>.<span class="property">iv</span>,</span><br><span class="line">             &#125;);</span><br><span class="line">             <span class="keyword">await</span> app.<span class="title function_">setJwt</span>(session.<span class="property">jwt</span>);</span><br><span class="line">             <span class="keyword">const</span> userInfo = <span class="keyword">await</span> app.<span class="property">doApiGetRequest</span>&lt;<span class="title class_">UserInfo</span>&gt;(<span class="string">&#x27;/user&#x27;</span>);</span><br><span class="line">             <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123; <span class="attr">hasToken</span>: app.<span class="title function_">hasToken</span>(), userInfo &#125;);</span><br><span class="line">             <span class="keyword">await</span> app.<span class="title function_">setUserInfo</span>(userInfo);</span><br><span class="line">             <span class="variable language_">this</span>.<span class="title function_">getAllRooms</span>();</span><br><span class="line">             <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">         &#125;,</span><br><span class="line">     &#125;);</span><br><span class="line"> &#125;,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="记录列表翻页"><a href="#记录列表翻页" class="headerlink" title="记录列表翻页"></a>记录列表翻页</h3><hr>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//先定义一个变量去记录当前页有多少条数据，每次滚轮触底的时候会触发小程序的生命周期函数onReachBottom，在里面给size加10，然后再去调用一次接口</span></span><br><span class="line"> <span class="title function_">onReachBottom</span>(<span class="params"></span>) &#123;</span><br><span class="line">     <span class="keyword">let</span> size = <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">size</span>;</span><br><span class="line">     size += <span class="number">10</span>;</span><br><span class="line">     <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">         size,</span><br><span class="line">     &#125;);</span><br><span class="line">     <span class="variable language_">this</span>.<span class="title function_">getAllRooms</span>();</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+
+<h3 id="js中的同步异步问题"><a href="#js中的同步异步问题" class="headerlink" title="js中的同步异步问题"></a>js中的同步异步问题</h3><hr>
+<p>js是一个单线程的语言，很多地方都需要去异步去操作。不然会产生堵塞，导致有些地方拿不到最新的信息。所以作为一个合格的js开发人员，一定要有一个很好的异步思维。我在项目中好几个应该使用异步的地方没有异步去执行。导致没有拿到最新的信息，产生了一些bug。比如我在结束房间的时候会去调用一个结算房间的接口，然后我会跳转到房间结算的页面，由于没有异步，导致我在结算页面查询房间信息的时候房间还是处于未结算的状态。具体的一些异步方法有<code>promise</code>,<code>async</code> <code>await</code>，<code>setTimeout</code>,<code>setInterval</code></p>
+<h3 id="时间格式转换"><a href="#时间格式转换" class="headerlink" title="时间格式转换"></a>时间格式转换</h3><hr>
+<p>由于微信小程序不支持moment去做时间格式的转换，不然的话的会在打包的时候报错，所以我手写了一个方法去实现时间格式化，具体是利用Date自带的一些api很容易去实现。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">formatServerTime</span> = (<span class="params">str: <span class="built_in">string</span></span>) =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> date = <span class="keyword">new</span> <span class="title class_">Date</span>(str);</span><br><span class="line">    <span class="keyword">const</span> year = date.<span class="title function_">getFullYear</span>();</span><br><span class="line">    <span class="keyword">const</span> month = date.<span class="title function_">getMonth</span>() + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> day = date.<span class="title function_">getDate</span>();</span><br><span class="line">    <span class="keyword">const</span> hour = date.<span class="title function_">getHours</span>();</span><br><span class="line">    <span class="keyword">const</span> minute = date.<span class="title function_">getMinutes</span>();</span><br><span class="line">    <span class="keyword">const</span> second = date.<span class="title function_">getSeconds</span>();</span><br><span class="line">    <span class="keyword">return</span> [year, month, day].<span class="title function_">map</span>(formatNumber).<span class="title function_">join</span>(<span class="string">&#x27;-&#x27;</span>) + <span class="string">&#x27; &#x27;</span> + [hour, minute, second].<span class="title function_">map</span>(formatNumber).<span class="title function_">join</span>(<span class="string">&#x27;:&#x27;</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/fsang/tags/%E6%80%BB%E7%BB%93/" rel="tag"># 总结</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/fsang/2022/12/12/sass/" rel="next" title="sass学习">
+                <i class="fa fa-chevron-left"></i> sass学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/fsang/2022/12/12/JavaScirpt/" rel="prev" title="JavaScript语言基础">
+                JavaScript语言基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/fsang/uploads/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/fsang/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/fsang/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/fsang/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/rht-fsang" target="_blank" title="github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/hibiscus-rosa-sinensis/dashboard/projects" target="_blank" title="gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>gitee</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://mp.weixin.qq.com/s?__biz=Mzg5NjE1NTUyNQ==&mid=2247483700&idx=1&sn=0a1368f937b8277959e2584130500019&chksm=c0042bdef773a2c81ba04469d9fbc7840f2a44143e2057425436f647e6b60d432f2d6c9c07fe#rd" target="_blank" title="微信公众号">
+                      
+                        <i class="fa fa-fw fa-globe"></i>微信公众号</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.cn/user/264342510516382" target="_blank" title="掘金">
+                      
+                        <i class="fa fa-fw fa-globe"></i>掘金</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%A1%E5%88%86%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BB%8B%E7%BB%8D%EF%BC%9A%E8%AE%A1%E5%88%86%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%98%AF%E4%B8%80%E4%B8%AA%E6%89%93%E7%89%8C%E8%AE%A1%E5%88%86%E7%A5%9E%E5%99%A8%EF%BC%8C%E9%BA%BB%E5%B0%86%E6%89%91%E5%85%8B%E5%9D%87%E9%80%82%E7%94%A8%EF%BC%8C%E4%B8%BB%E8%A6%81%E5%88%86%E4%B8%BA%E5%8D%95%E4%BA%BA%E8%AE%A1%E5%88%86%E6%A8%A1%E5%BC%8F%E5%92%8C%E5%A4%9A%E4%BA%BA%E8%AE%A1%E5%88%86%E6%A8%A1%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">计分小程序介绍：计分小程序是一个打牌计分神器，麻将扑克均适用，主要分为单人计分模式和多人计分模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF%E6%A0%88%EF%BC%9ATS%E3%80%81%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E3%80%81Vant-Wapp%E3%80%81websocket"><span class="nav-number">2.</span> <span class="nav-text">技术栈：TS、微信小程序、Vant Wapp、websocket</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">遇到的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E7%AE%97%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">实现算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E5%8F%A3%E5%B0%81%E8%A3%85"><span class="nav-number">5.</span> <span class="nav-text">接口封装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%80%83"><span class="nav-number">6.</span> <span class="nav-text">思考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%99%BB%E5%BD%95%E6%B5%81%E7%A8%8B"><span class="nav-number">7.</span> <span class="nav-text">微信小程序登录流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B0%E5%BD%95%E5%88%97%E8%A1%A8%E7%BF%BB%E9%A1%B5"><span class="nav-number">8.</span> <span class="nav-text">记录列表翻页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#js%E4%B8%AD%E7%9A%84%E5%90%8C%E6%AD%A5%E5%BC%82%E6%AD%A5%E9%97%AE%E9%A2%98"><span class="nav-number">9.</span> <span class="nav-text">js中的同步异步问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%B6%E9%97%B4%E6%A0%BC%E5%BC%8F%E8%BD%AC%E6%8D%A2"><span class="nav-number">10.</span> <span class="nav-text">时间格式转换</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="powered-by">
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+<div></div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共<span class="post-count">36.5k</span>字</span>
+</div>
+<div class="copyright">&copy; 2022 &mdash; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">扶桑</span>
+
+  
+</div>
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+-->
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/fsang/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/fsang/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/fsang/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/fsang/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/fsang/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/fsang/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/fsang/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/fsang/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/fsang/live2dw/assets/live2d-widget-model-hijiki/assets/hijiki.model.json"},"log":false});</script></body>
+</html>

@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+
+  
+  
+    
+    
+  <script src="/fsang/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/fsang/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/fsang/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/fsang/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/fsang/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/fsang/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/fsang/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/fsang/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/fsang/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="markdown," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="标题语法要创建标题，需要在单词或短语前面添加井号（#）。# 的数量代表了标题的级别。例如添加三个#表示创建一个三级标题（h3）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="markdown语法笔记">
+<meta property="og:url" content="https://github.com/rht-fsang/fsang.git/2022/09/01/markdown/index.html">
+<meta property="og:site_name" content="扶桑">
+<meta property="og:description" content="标题语法要创建标题，需要在单词或短语前面添加井号（#）。# 的数量代表了标题的级别。例如添加三个#表示创建一个三级标题（h3）">
+<meta property="og:locale">
+<meta property="og:image" content="https://github.com/assets/img/philly-magic-garden.jpg">
+<meta property="og:image" content="https://github.com/assets/img/shiprock">
+<meta property="article:published_time" content="2022-09-01T01:33:32.000Z">
+<meta property="article:modified_time" content="2023-02-16T09:53:27.874Z">
+<meta property="article:author" content="扶桑">
+<meta property="article:tag" content="markdown">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/assets/img/philly-magic-garden.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://github.com/rht-fsang/fsang.git/2022/09/01/markdown/"/>
+
+
+
+
+
+  <title>markdown语法笔记 | 扶桑</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?b0ff91134792300bee23d30b0476fd24";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+   <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+   <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+   <script type="text/javascript" src="/js/src/fireworks.js"></script>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband">
+    <a href="https://github.com/rht-fsang/fsang" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+    </div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/fsang/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">扶桑</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">热爱学习，乐于记录</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/fsang/" rel="section">
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/fsang/tags/" rel="section">
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/fsang/categories/" rel="section">
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/fsang/archives/" rel="section">
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/rht-fsang/fsang.git/fsang/2022/09/01/markdown/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/fsang/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="扶桑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">markdown语法笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-09-01T09:33:32+08:00">
+                2022-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/fsang/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="标题语法"><a href="#标题语法" class="headerlink" title="标题语法"></a>标题语法</h2><p>要创建标题，需要在单词或短语前面添加井号（#）。# 的数量代表了标题的级别。例如添加三个#表示创建一个三级标题（h3）</p>
+<span id="more"></span>
+<p>可选语法</p>
+<p>还可以在文本下方添加任意数量的===号来标识一级标题，或者–号来标识二级标题</p>
+<h2 id="段落语法"><a href="#段落语法" class="headerlink" title="段落语法"></a>段落语法</h2><p>要创建段落，请使用空白行将一行或多行文本进行分隔</p>
+<h2 id="换行语法"><a href="#换行语法" class="headerlink" title="换行语法"></a>换行语法</h2><p>在一行的末尾添加两个或多个空格，然后按回车健，即可创建一个换行（）</p>
+<h2 id="强调语法"><a href="#强调语法" class="headerlink" title="强调语法"></a>强调语法</h2><p>通过将文本设置为粗体或斜体来强调其重要性</p>
+<h3 id="粗体"><a href="#粗体" class="headerlink" title="粗体"></a>粗体</h3><p><strong>要加粗文本</strong>，请在单词短语的前后各添加两个星号或下划线</p>
+<h3 id="斜体"><a href="#斜体" class="headerlink" title="斜体"></a>斜体</h3><p><em>要用斜体显示文本，请在单词或短语前后添加一个星号或下划线。先斜体突出单词的中间部分，请在字母前后各添加一个星号，中间不要带空格。</em></p>
+<p><em><strong>要同时用粗体突出显示文本，请在单词或短语前后各添加三个星号或下划线。要加粗并用斜体显示单词或短语的中间部分，请在要突出显示的部分前后各加三个星号，中间不要带空格。</strong></em></p>
+<h2 id="引用语法"><a href="#引用语法" class="headerlink" title="引用语法"></a>引用语法</h2><blockquote>
+<p>要创建块引用，请在段落前添加一个&gt;符号<br>块引用可以包含多个段落<br>为段落之间的空白行添加一个&gt;符号</p>
+<blockquote>
+<p>块引用可以嵌套。在嵌套的段落前添加一个&gt;&gt;符号<br>#块引用可以包含其他Mackdown格式的元素。并非所有元素都可以使用，你需要进行实验以查看哪些元素有效<br>-块引用可以包含其他Mackdown格式的元素。并非所有元素都可以使用，你需要进行实验以查看哪些元素有效<br>-块引用可以包含其他Mackdown格式的元素。并非所有元素都可以使用，你需要进行实验以查看哪些元素有效<br>-<em><strong>块引用可以包含其他Mackdown格式的元素。并非所有元素都可以使用，你需要进行实验以查看哪些元素有效</strong></em></p>
+</blockquote>
+</blockquote>
+<h2 id="列表语法"><a href="#列表语法" class="headerlink" title="列表语法"></a>列表语法</h2><h3 id="有序列表"><a href="#有序列表" class="headerlink" title="有序列表"></a>有序列表</h3><ol>
+<li>要创建有序列表，请在每个列表项前添加数字并紧跟一个英文句点。数字不必按数学顺序排列，但是列表应当以数字 1 起始。</li>
+<li>要创建有序列表，请在每个列表项前添加数字并紧跟一个英文句点。数字不必按数学顺序排列，但是列表应当以数字 1 起始。<ol>
+<li>要创建有序列表，请在每个列表项前添加数字并紧跟一个英文句点。数字不必按数学顺序排列，但是列表应当以数字 1 起始。</li>
+<li>要创建有序列表，请在每个列表项前添加数字并紧跟一个英文句点。数字不必按数学顺序排列，但是列表应当以数字 1 起始。</li>
+</ol>
+</li>
+<li>要创建有序列表，请在每个列表项前添加数字并紧跟一个英文句点。数字不必按数学顺序排列，但是列表应当以数字 1 起始。</li>
+</ol>
+<h3 id="无序列表"><a href="#无序列表" class="headerlink" title="无序列表"></a>无序列表</h3><ul>
+<li><p>要创建无序列表，请在每个列表项前面添加破折号（-）、星号（*）、或加号（+）。缩进一个或多个列表项可创建嵌套列表</p>
+</li>
+<li><p>要创建无序列表，请在每个列表项前面添加破折号（-）、星号（*）、或加号（+）。缩进一个或多个列表项可创建嵌套列表</p>
+<ul>
+<li>要创建无序列表，请在每个列表项前面添加破折号（-）、星号（*）、或加号（+）。缩进一个或多个列表项可创建嵌套列表</li>
+</ul>
+</li>
+</ul>
+<h2 id="要在保留列表连续性的同时在列表中添加另一种元素，请将该元素缩进四个空格或一个制表符"><a href="#要在保留列表连续性的同时在列表中添加另一种元素，请将该元素缩进四个空格或一个制表符" class="headerlink" title="要在保留列表连续性的同时在列表中添加另一种元素，请将该元素缩进四个空格或一个制表符"></a>要在保留列表连续性的同时在列表中添加另一种元素，请将该元素缩进四个空格或一个制表符</h2><ul>
+<li><p>要创建无序列表，请在每个列表项前面添加破折号（-）、星号（*）、或加号（+）。缩进一个或多个列表项可创建嵌套列表</p>
+</li>
+<li><p>要创建无序列表，请在每个列表项前面添加破折号（-）、星号（*）、或加号（+）。缩进一个或多个列表项可创建嵌套列表</p>
+</li>
+<li><p>代码块通常采用四个空格或一个制表符缩进。当它们被放在列表中时，请将它们缩进八个空格或两个制表符\</p>
+<pre><code>  &lt;html&gt;
+      &lt;head&gt;
+  &lt;html/&gt;
+</code></pre>
+</li>
+<li><p>代码块通常采用四个空格或一个制表符缩进。当它们被放在列表中时，请将它们缩进八个空格或两个制表符</p>
+</li>
+</ul>
+<h2 id="代码语法"><a href="#代码语法" class="headerlink" title="代码语法"></a>代码语法</h2><p><code>要将单词或短语表示为代码，请将其包裹在反引号(`)中</code></p>
+<pre><code><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">&lt;<span class="built_in">head</span>&gt;</span><br><span class="line">    <span class="built_in">echo</span> helloword</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</code></pre>
+<hr>
+<h2 id="分割线语法"><a href="#分割线语法" class="headerlink" title="分割线语法"></a>分割线语法</h2><p>要创建分割下，请在单独一行使用三个或多个星号（***）、（—）、（___），并且不能包含其他内容</p>
+<h2 id="链接语法"><a href="#链接语法" class="headerlink" title="链接语法"></a>链接语法</h2><p>链接文本放在中括号内，链接地址放在后面的括号中，链接title可选<br>超链接Markdown语法代码：<a href="%E8%B6%85%E9%93%BE%E6%8E%A5%E5%9C%B0%E5%9D%80%22%E8%B6%85%E9%93%BE%E6%8E%A5title%22">超链接显示名</a></p>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">这是一个链接 [Markdown语法](https://markdown.com.cn)。</span><br></pre></td></tr></table></figure>
+</code></pre>
+<h3 id="渲染效果"><a href="#渲染效果" class="headerlink" title="渲染效果"></a>渲染效果</h3><p>这是一个链接<a target="_blank" rel="noopener" href="https://baidu.com/" title="demo">Markdown语法</a></p>
+<h3 id="给链接增加Title"><a href="#给链接增加Title" class="headerlink" title="给链接增加Title"></a>给链接增加Title</h3><p>链接title是当鼠标悬停在链接上时会出现的文字，这个title是可选的，它放在圆括号中链接地址后面，跟链接地址之间以空格分隔</p>
+<h3 id="网址和Email地址"><a href="#网址和Email地址" class="headerlink" title="网址和Email地址"></a>网址和Email地址</h3><p>使用尖括号可以很方便地把URL或者email地址变成可点击的链接</p>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;https://baidu.com&gt;</span><br><span class="line">&lt;1851353758@qq.com&gt;</span><br></pre></td></tr></table></figure>
+</code></pre>
+<p><a target="_blank" rel="noopener" href="https://baidu.com/">https://baidu.com</a><br><a href="mailto:&#x31;&#56;&#x35;&#x31;&#51;&#53;&#x33;&#x37;&#53;&#x38;&#64;&#x71;&#x71;&#x2e;&#99;&#x6f;&#109;">&#x31;&#56;&#x35;&#x31;&#51;&#53;&#x33;&#x37;&#53;&#x38;&#64;&#x71;&#x71;&#x2e;&#99;&#x6f;&#109;</a></p>
+<h3 id="带格式化的链接"><a href="#带格式化的链接" class="headerlink" title="带格式化的链接"></a>带格式化的链接</h3><p>强调链接，在链接语法前后增加星号。要将链接表示为代码，请在方括号中添加反引号</p>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">**[加粗链接](https://baidu.com)**</span><br><span class="line">*[斜体链接](https://baidu.com)*</span><br><span class="line">*[`代码链接`](https://baidu.com)*</span><br></pre></td></tr></table></figure>
+</code></pre>
+<p><strong><a target="_blank" rel="noopener" href="https://baidu.com/">加粗链接</a></strong><br><em><a target="_blank" rel="noopener" href="https://baidu.com/">斜体链接</a></em><br><em><a target="_blank" rel="noopener" href="https://baidu.com/"><code>代码链接</code></a></em></p>
+<h3 id="引用类型链接"><a href="#引用类型链接" class="headerlink" title="引用类型链接"></a>引用类型链接</h3><p>引用样式链接是一种特殊的链接，它使URL在Markdown中更易于显示和阅读。参考样式链接分为两部分：与文本保持内联的部分以及存储在文件中其他位置的部分，以使文本易于阅读</p>
+<h2 id="图片语法"><a href="#图片语法" class="headerlink" title="图片语法"></a>图片语法</h2><p>要添加图像，请使用感叹号（!）,然后再方括号增加替代文本，图片链接放在圆括号里，括号里的链接后可以增加一个可选的图片标题文本。<br>插入图片Markdown语法代码：<code>![图片alt](图片链接 &quot;图片title&quot;)</code></p>
+<pre><code>![这是图片](/assets/img/philly-magic-garden.jpg &quot;Magic Gardens&quot;)
+</code></pre>
+<p><img src="/assets/img/philly-magic-garden.jpg" alt="这是图片" title="Magic Gardens"></p>
+<h3 id="链接图片"><a href="#链接图片" class="headerlink" title="链接图片"></a>链接图片</h3><p>给图片增加链接，请将图像的Markdown括在方括号中，然后将链接添加在圆括号中。</p>
+<pre><code>[![沙漠中的岩石照片](/assets/img/shiprock &quot;shiprock&quot;)](https://baidu,com)
+</code></pre>
+<p> <a target="_blank" rel="noopener" href="https://baidu.com/"><img src="/assets/img/shiprock" alt="沙漠中的岩石照片" title="shiprock"></a></p>
+<h2 id="转译字符语法"><a href="#转译字符语法" class="headerlink" title="转译字符语法"></a>转译字符语法</h2><p> 要显示原本用于格式化Markdown文档的字符，请在字符前面添加反斜杠字符\</p>
+<pre><code>\*转义字符
+</code></pre>
+<p>*转义字符</p>
+<h3 id="特殊字符自动转义"><a href="#特殊字符自动转义" class="headerlink" title="特殊字符自动转义"></a>特殊字符自动转义</h3><p>在html文件中，有两个字符需要特殊处理：&lt;和&amp;。符号用于起始标签，&amp;符号则用于标记HTML实体，如果你只是想要使用这些符号，你必须要使用实体的形式，像是<code>&amp;lt;</code>和<code>&amp;amp;</code>。<br><code>&amp;</code>符号起始很容易让写作网页文件的人感到困扰，如果你要打[AT&amp;T],你必须要写成[AT&amp;T],还得转换网址内的<code>&amp;</code>符号，如果你要链接到：</p>
+<pre><code>http://images.google.com/images?num=30&amp;q=larry+bird
+</code></pre>
+<p>你必须要把网址转成：</p>
+<pre><code>http://images.google.com/images?num=30&amp;amp;q=larry+bird
+</code></pre>
+<p>才能放到链接标签的<code>href</code>属性里。不用说也知道这很容易忘记，这也可能是HTML标准检查所检查到的错误中，数量最多的。</p>
+<p>Markdown允许你直接使用这些符号，它帮你自动转义字符。如果你使用<code>&amp;</code>符号的作为HTML实体的一部分，那么它不会被转换，而在其他情况下，它则会被转换成<code>&amp;amp;</code>。所以你如果要在文件插入一个著作权的符号，你可以这样写：</p>
+<pre><code>&amp;Copy
+</code></pre>
+<p>Markdown将不会对这段文字坐修改，但是如果你这样写</p>
+<pre><code>AT&amp;T
+</code></pre>
+<p>Markdown就会将它转为</p>
+<pre><code>AT&amp;amp;T
+</code></pre>
+<p>类似的状况也会发生在&lt;符号上，因为Markdown支持行内HTML，如果你使用&lt;符号作为HTML标签的分隔符，那Markdown也不会对它做任何转换，但是如果你是写：</p>
+<pre><code>4&lt;5
+</code></pre>
+<p>Markdown将会把它转换为：</p>
+<pre><code>4&amp;lt;5
+</code></pre>
+<p>需要特别注意的是，再Markdown的块级元素和内联元素，<code>&lt;</code>和<code>&amp;</code>两个符号都会被自动转换成HTML实体，这项特性让你可以很容易地用Markdown写HTML。（再HTML语法中，你要手动把所有的<code>&lt;</code>和<code>&amp;</code>都转换为HTML实体。）</p>
+<h2 id="内嵌HTML标签"><a href="#内嵌HTML标签" class="headerlink" title="内嵌HTML标签"></a>内嵌HTML标签</h2><p>对于MARkdown涵盖范围之外的标签，都可以直接在文件里面用HTML本身。如需使用HTML，不需要额外标注这是HTML或者Markdown，只需HTML标签添加到Markdown文本中即可。</p>
+<h3 id="行级内联标签"><a href="#行级内联标签" class="headerlink" title="行级内联标签"></a>行级内联标签</h3><p>HTML的行级内联标签如<code>&lt;span&gt;</code>、<code>&lt;cite&gt;</code>、<code>&lt;del&gt;</code>不受限制，可以在Markdown的段落、列表或是标题里任意使用。依照个人习惯，甚至可以不用Markdown格式，而采用HTML标签来格式化。例如：如果比较喜欢HTML的<code>&lt;a&gt;</code>或<code>&lt;img&gt;</code>标签，可以直接使用这些标签，而不用Markdown提供的链接或是图片语法。当你需要更改元素的属性时（例如为文本指定颜色或更改图像的宽度）、使用HTML标签更方便些。<br>HTML行级内联标签和区块标签不同，在内联标签的范围内，Markdown的语法是可以解析的。</p>
+<pre><code>this **word** is bold &lt;em&gt;word&lt;/em&gt; is italic
+</code></pre>
+<p>this <strong>word</strong> is bold <code>&lt;em&gt;</code>word<code>&lt;/em&gt;</code> is italic</p>
+<h3 id="区块标签"><a href="#区块标签" class="headerlink" title="区块标签"></a>区块标签</h3><p>区块元素比如<code>&lt;div&gt;</code>、<code>&lt;table&gt;</code>、<code>&lt;pre&gt;</code>、<code>&lt;p&gt;</code>等标签，必须在前后加上空行，以便于内容区分。而且这些元素的开始与结尾标签，不可以用tab或是空白来缩进。Markdown会自动识别这区块元素，避免在区块标签前后加上没有必要的<code>&lt;p&gt;</code>标签<br>例如，在Markdown文件加上一段HTML表格：</p>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">This is a regular paragraph.</span><br><span class="line"></span><br><span class="line">&lt;table&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">        &lt;td&gt;Foo&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">&lt;/table&gt;</span><br><span class="line"></span><br><span class="line">This is another regular paragraph.</span><br></pre></td></tr></table></figure>
+</code></pre>
+<p>This is a regular paragraph.</p>
+<pre><code>&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Foo&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+<p>This is another regular paragraph.<br>请注意，Markdown语法在HTML区块标签中将不会被进行处理。例如，你无法在HTML区块内使用Markdown形式<code>*强调*</code>。</p>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>要添加表格，请使用三个或多个连字符（—）创建每列的标题，并使用管道（|）分隔每列</p>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">|标题1|标题2|</span><br><span class="line">|----|------|</span><br><span class="line">|header|大大撒旦|</span><br><span class="line">|dsadsa|dsdsa|</span><br></pre></td></tr></table></figure>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th align="left">标题1</th>
+<th align="right">标题2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">header</td>
+<td align="right">大大撒旦</td>
+</tr>
+<tr>
+<td align="left">aa</td>
+<td align="right">dsa</td>
+</tr>
+</tbody></table>
+<h2 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h2><p>脚注使您可以添加注释和参考，而不会使文档正文混乱。当您创建脚注时，带有脚注的上标数字会出现在您添加脚注参考的位置。读者可以单击链接以跳出页面底部的脚注内容。</p>
+<p>要创建脚注参考，请在方括号（[^1]）内添加插入符号和标识符。标识符可以是数字或单词，但不能包含空格或制表符。标识符仅将脚注参考与脚注本身相关联-在输出中，脚注俺顺序编号。</p>
+<p>在括号内使用另一个插入符号和数字添加脚注，并用冒号和文本（[^1]：My footnote）.您不必在文档末尾添加脚注。您可以将他们放在除列表，块引号和表之类的其他元素之外的任何位置。</p>
+<pre><code><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Here&#x27;s a simple footnote,[^1] and here&#x27;s a longer one.[^bignote]</span><br><span class="line"></span><br><span class="line">[^1]: This is the first footnote.</span><br><span class="line"></span><br><span class="line">[^bignote]: Here&#x27;s one with multiple paragraphs and code.</span><br><span class="line"></span><br><span class="line">    Indent paragraphs to include them in the footnote.</span><br><span class="line"></span><br><span class="line">    `&#123; my code &#125;`</span><br><span class="line"></span><br><span class="line">    Add as many paragraphs as you like.</span><br></pre></td></tr></table></figure>
+</code></pre>
+<p>Here’s a simple footnote,[^1] and here’s a longer one.[^bignote]</p>
+<p>[^1]: This is the first footnote.</p>
+<p>[^bignote]: Here’s one with multiple paragraphs and code.</p>
+<pre><code>Indent paragraphs to include them in the footnote.
+
+`&#123; my code &#125;`
+
+Add as many paragraphs as you like.
+</code></pre>
+<h2 id="标题编号"><a href="#标题编号" class="headerlink" title="标题编号"></a>标题编号</h2><p>许多Markdown处理器支持标题的自定义ID，一些Markdown处理器会自动添加他们。添加自定义ID允许您直接链接到标题并使用css对其进行修改。要添加自定义标题ID，请在标题相同的行上用大括号括起该自定义ID。</p>
+<h3 id="标题一-first"><a href="#标题一-first" class="headerlink" title="标题一 { #first }"></a>标题一 { #first }</h3><h3 id="链接到标题ID（-headId）"><a href="#链接到标题ID（-headId）" class="headerlink" title="链接到标题ID（#headId）"></a>链接到标题ID（#headId）</h3><p>通过创建带有数字符号（#）和自定义标题ID的<code>[标准链接](#headId)</code></p>
+<h2 id="定义列表"><a href="#定义列表" class="headerlink" title="定义列表"></a>定义列表</h2><p>一些Markdown处理器允许您创建术语及其对应定义的定义列表。要创建定义列表。要在第一行键入术语。在下一行，键入一个冒号，后面跟一个空格和定义。</p>
+<pre><code>First Term
+: This is the definition of the first term.
+
+Second Term
+: This is one definition of the second term.
+: This is another definition of the second term.
+</code></pre>
+<p> First Term<br>    : This is the definition of the first term.</p>
+<pre><code>Second Term
+: This is one definition of the second term.
+: This is another definition of the second term.
+</code></pre>
+<h2 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h2><pre><code>~~通过在单词中心放置一条水平线来删除单词。结果看起来像这样。若要删除单词，请在单词前后时候使用前后使用两个~~
+</code></pre>
+<p>  <del>通过在单词中心放置一条水平线来删除单词。结果看起来像这样。若要删除单词，请在单词前后时候使用前后使用两个</del></p>
+<h2 id="任务列表语法"><a href="#任务列表语法" class="headerlink" title="任务列表语法"></a>任务列表语法</h2><p> 任务列表使您可以创建带有复选框的项目列表。在支持列表的MArkdown应用程序中，复选程序中，复选框将显示在内容旁边。要创建任务列表，请在任务列表项之前添加破折号<code>-</code>和方括号<code>[]</code>，并在<code>[]</code>前面加上空格。要选择一个复选框，请在方括号<code>[x]</code>之间添加X。</p>
+<pre><code>- [x] 选项一
+- [ ] 选项二
+- [ ] 选项三
+</code></pre>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 选项一</li>
+<li><input disabled="" type="checkbox"> 选项二</li>
+<li><input disabled="" type="checkbox"> 选项三</li>
+</ul>
+<h2 id="使用Emoji表情"><a href="#使用Emoji表情" class="headerlink" title="使用Emoji表情"></a>使用Emoji表情</h2><p>有两种方法可以将表情符号添加到Markdown文件中：将标签符号复制并黏贴到Markdown格式的文本中，或者键入emoji shortcodes</p>
+<h3 id="复制和黏贴标签符号"><a href="#复制和黏贴标签符号" class="headerlink" title="复制和黏贴标签符号"></a>复制和黏贴标签符号</h3><p>在大多数情况下，可以简单地从Emojipendia等来源复制表情符号。从Markdown应用程序到处的HTML和PDF文件应显示表情符号。<br>Tip：如果使用静态网站生成器，请确保将HTML页面编码插入表情符号。这些以冒号开头和结尾，并包含表情符号的名称。</p>
+<h3 id="使用表情符号简码"><a href="#使用表情符号简码" class="headerlink" title="使用表情符号简码"></a>使用表情符号简码</h3><p>一些Markdown应用程序允许通过键入表情符号代码来插入表情符号。这些以冒号开头和结尾，并包含表情符号的名称</p>
+<pre><code>去露营了！ :tent: 很快回来。
+
+真好笑！ :joy:
+</code></pre>
+<p>去露营了！⛺很快回来。</p>
+<p>真好笑！😂</p>
+<h2 id="自动网址链接"><a href="#自动网址链接" class="headerlink" title="自动网址链接"></a>自动网址链接</h2><p>许多Markdown处理器会自动将URL转换为链接。这意味这输入<a target="_blank" rel="noopener" href="https://www.baidu.com/,%E5%8D%B3%E4%BD%BF%E6%B2%A1%E6%9C%89%E4%BD%BF%E7%94%A8%E6%96%B9%E6%8B%AC%E5%8F%B7%EF%BC%8CMarkdown">https://www.baidu.com/,即使没有使用方括号，Markdown</a>处理器也会自动将其转换为链接<br><a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com/</a></p>
+<h3 id="禁用自动URL链接"><a href="#禁用自动URL链接" class="headerlink" title="禁用自动URL链接"></a>禁用自动URL链接</h3><p><code>http://www.example.com</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/fsang/tags/markdown/" rel="tag"># markdown</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/fsang/2022/12/01/image/" rel="prev" title="Typora+picGo+Github实现图片自动上云">
+                Typora+picGo+Github实现图片自动上云 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/fsang/uploads/avatar.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/fsang/archives/">
+              
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/fsang/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/fsang/tags/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/rht-fsang" target="_blank" title="github">
+                      
+                        <i class="fa fa-fw fa-globe"></i>github</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/hibiscus-rosa-sinensis/dashboard/projects" target="_blank" title="gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>gitee</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://mp.weixin.qq.com/s?__biz=Mzg5NjE1NTUyNQ==&mid=2247483700&idx=1&sn=0a1368f937b8277959e2584130500019&chksm=c0042bdef773a2c81ba04469d9fbc7840f2a44143e2057425436f647e6b60d432f2d6c9c07fe#rd" target="_blank" title="微信公众号">
+                      
+                        <i class="fa fa-fw fa-globe"></i>微信公众号</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://juejin.cn/user/264342510516382" target="_blank" title="掘金">
+                      
+                        <i class="fa fa-fw fa-globe"></i>掘金</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E9%A2%98%E8%AF%AD%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">标题语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AE%B5%E8%90%BD%E8%AF%AD%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">段落语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8D%A2%E8%A1%8C%E8%AF%AD%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">换行语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%BA%E8%B0%83%E8%AF%AD%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">强调语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B2%97%E4%BD%93"><span class="nav-number">4.1.</span> <span class="nav-text">粗体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%9C%E4%BD%93"><span class="nav-number">4.2.</span> <span class="nav-text">斜体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E8%AF%AD%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">引用语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E8%A1%A8%E8%AF%AD%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">列表语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="nav-number">6.1.</span> <span class="nav-text">有序列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E5%BA%8F%E5%88%97%E8%A1%A8"><span class="nav-number">6.2.</span> <span class="nav-text">无序列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A6%81%E5%9C%A8%E4%BF%9D%E7%95%99%E5%88%97%E8%A1%A8%E8%BF%9E%E7%BB%AD%E6%80%A7%E7%9A%84%E5%90%8C%E6%97%B6%E5%9C%A8%E5%88%97%E8%A1%A8%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%85%83%E7%B4%A0%EF%BC%8C%E8%AF%B7%E5%B0%86%E8%AF%A5%E5%85%83%E7%B4%A0%E7%BC%A9%E8%BF%9B%E5%9B%9B%E4%B8%AA%E7%A9%BA%E6%A0%BC%E6%88%96%E4%B8%80%E4%B8%AA%E5%88%B6%E8%A1%A8%E7%AC%A6"><span class="nav-number">7.</span> <span class="nav-text">要在保留列表连续性的同时在列表中添加另一种元素，请将该元素缩进四个空格或一个制表符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%AF%AD%E6%B3%95"><span class="nav-number">8.</span> <span class="nav-text">代码语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%89%B2%E7%BA%BF%E8%AF%AD%E6%B3%95"><span class="nav-number">9.</span> <span class="nav-text">分割线语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E8%AF%AD%E6%B3%95"><span class="nav-number">10.</span> <span class="nav-text">链接语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E6%95%88%E6%9E%9C"><span class="nav-number">10.1.</span> <span class="nav-text">渲染效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%99%E9%93%BE%E6%8E%A5%E5%A2%9E%E5%8A%A0Title"><span class="nav-number">10.2.</span> <span class="nav-text">给链接增加Title</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BD%91%E5%9D%80%E5%92%8CEmail%E5%9C%B0%E5%9D%80"><span class="nav-number">10.3.</span> <span class="nav-text">网址和Email地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%A6%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%9A%84%E9%93%BE%E6%8E%A5"><span class="nav-number">10.4.</span> <span class="nav-text">带格式化的链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E9%93%BE%E6%8E%A5"><span class="nav-number">10.5.</span> <span class="nav-text">引用类型链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E8%AF%AD%E6%B3%95"><span class="nav-number">11.</span> <span class="nav-text">图片语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E5%9B%BE%E7%89%87"><span class="nav-number">11.1.</span> <span class="nav-text">链接图片</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AC%E8%AF%91%E5%AD%97%E7%AC%A6%E8%AF%AD%E6%B3%95"><span class="nav-number">12.</span> <span class="nav-text">转译字符语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E5%AD%97%E7%AC%A6%E8%87%AA%E5%8A%A8%E8%BD%AC%E4%B9%89"><span class="nav-number">12.1.</span> <span class="nav-text">特殊字符自动转义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%B5%8CHTML%E6%A0%87%E7%AD%BE"><span class="nav-number">13.</span> <span class="nav-text">内嵌HTML标签</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%8C%E7%BA%A7%E5%86%85%E8%81%94%E6%A0%87%E7%AD%BE"><span class="nav-number">13.1.</span> <span class="nav-text">行级内联标签</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%BA%E5%9D%97%E6%A0%87%E7%AD%BE"><span class="nav-number">13.2.</span> <span class="nav-text">区块标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A8%E6%A0%BC"><span class="nav-number">14.</span> <span class="nav-text">表格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%84%9A%E6%B3%A8"><span class="nav-number">15.</span> <span class="nav-text">脚注</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E9%A2%98%E7%BC%96%E5%8F%B7"><span class="nav-number">16.</span> <span class="nav-text">标题编号</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E9%A2%98%E4%B8%80-first"><span class="nav-number">16.1.</span> <span class="nav-text">标题一 { #first }</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E5%88%B0%E6%A0%87%E9%A2%98ID%EF%BC%88-headId%EF%BC%89"><span class="nav-number">16.2.</span> <span class="nav-text">链接到标题ID（#headId）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E5%88%97%E8%A1%A8"><span class="nav-number">17.</span> <span class="nav-text">定义列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E7%BA%BF"><span class="nav-number">18.</span> <span class="nav-text">删除线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BB%E5%8A%A1%E5%88%97%E8%A1%A8%E8%AF%AD%E6%B3%95"><span class="nav-number">19.</span> <span class="nav-text">任务列表语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Emoji%E8%A1%A8%E6%83%85"><span class="nav-number">20.</span> <span class="nav-text">使用Emoji表情</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6%E5%92%8C%E9%BB%8F%E8%B4%B4%E6%A0%87%E7%AD%BE%E7%AC%A6%E5%8F%B7"><span class="nav-number">20.1.</span> <span class="nav-text">复制和黏贴标签符号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%A1%A8%E6%83%85%E7%AC%A6%E5%8F%B7%E7%AE%80%E7%A0%81"><span class="nav-number">20.2.</span> <span class="nav-text">使用表情符号简码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E7%BD%91%E5%9D%80%E9%93%BE%E6%8E%A5"><span class="nav-number">21.</span> <span class="nav-text">自动网址链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A6%81%E7%94%A8%E8%87%AA%E5%8A%A8URL%E9%93%BE%E6%8E%A5"><span class="nav-number">21.1.</span> <span class="nav-text">禁用自动URL链接</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="powered-by">
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+</div>
+<div></div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共<span class="post-count">36.5k</span>字</span>
+</div>
+<div class="copyright">&copy; 2022 &mdash; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">扶桑</span>
+
+  
+</div>
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+-->
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/fsang/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/fsang/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/fsang/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/fsang/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/fsang/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/fsang/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/fsang/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/fsang/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/fsang/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/fsang/live2dw/assets/live2d-widget-model-hijiki/assets/hijiki.model.json"},"log":false});</script></body>
+</html>
