@@ -1,4 +1,11 @@
-# 状态管理-redux
+---
+title: 状态管理-redux
+tags: 学习
+categories: 前端
+typora-copy-images-to: upload
+top: 111
+
+---
 
 ## Redux
 
@@ -8,16 +15,17 @@ Redux提供的模式和工具使你更容易理解应用程序中的状态合适
 
 适用场景
 
--   在应用的大量地方，都存在大量的状态
--   应用状态会随着时间的推移而频繁更新
--   更新该状态的逻辑可能很复杂
--   中型和大型代码量的应用，很多人协同开发
+- 在应用的大量地方，都存在大量的状态
+- 应用状态会随着时间的推移而频繁更新
+- 更新该状态的逻辑可能很复杂
+- 中型和大型代码量的应用，很多人协同开发
 
+<!--more-->
 #### 核心概念
 
--   单一数据源
--   State是只读的
--   使用Reducer纯函数进行更改
+- 单一数据源
+- State是只读的
+- 使用Reducer纯函数进行更改
 
 #### Redux Toolkit
 
@@ -33,10 +41,10 @@ Redux DevTools 拓展可以显示Redux存储中状态随时间变化的历史记
 
 store是一个JavaScript对象，但是对于一般的对象它具有一些特殊的功能和能力：
 
--   不要直接修改或更改保存在Redux存储中的状态
--   更新状态的唯一方法是创建一个描述“应用程序中发生的某些事情”的普通action对象，然后将该action    dispatch到store以告诉它发生了什么
--   当一个action被dispatch后，store会调用reducer方法，让其根剧action和旧state计算出新state
--   store会通知订阅者状态已更新，以便可以使用新数据更新UI界面
+- 不要直接修改或更改保存在Redux存储中的状态
+- 更新状态的唯一方法是创建一个描述“应用程序中发生的某些事情”的普通action对象，然后将该action    dispatch到store以告诉它发生了什么
+- 当一个action被dispatch后，store会调用reducer方法，让其根剧action和旧state计算出新state
+- store会通知订阅者状态已更新，以便可以使用新数据更新UI界面
 
 #### Actions
 
@@ -55,9 +63,9 @@ reducer是一个函数，接收当前的`state`和一个`action`对象，必要�
 
 Reducer必须符合一下规则：
 
--   仅使用`state`和`action`参数计算新 的状态值
--   禁止直接修改`state`。必须通过复制现有的`state`并对复制的值进行更改的方式来做 不可变更新
--   禁止任何异步逻辑、依赖随机值或者“副作用”的代码
+- 仅使用`state`和`action`参数计算新 的状态值
+- 禁止直接修改`state`。必须通过复制现有的`state`并对复制的值进行更改的方式来做 不可变更新
+- 禁止任何异步逻辑、依赖随机值或者“副作用”的代码
 
 Reducer函数内部的逻辑通常包括一下步骤：
 
