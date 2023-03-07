@@ -14,8 +14,8 @@
 <meta name="theme-color" content="#222">
 <script>
     (function(){
-        if('123456'){
-            if (prompt('请输入文章密码') !== '123456'){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
                 alert('密码错误！');
                 history.back();
             }
@@ -85,7 +85,7 @@
 
 
 
-  <meta name="keywords" content="总结," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -96,17 +96,16 @@
 
 
 
-<meta name="description" content="先来说说我做完这个小程序的一些收获吧 在设计稿出来之前先不要写样式，按照产品搞写一下大概的dom和交互逻辑就好了 做一个项目之前一定要先把这个项目的思路理清然后再开始搭建项目，返工效率真的很低效还很难受 换个角度去思考问题很重要，很多时候你觉得这两个冲突了，做不了。但是你换个角度去解决这个冲突，这个问题可能就很容易解决了 去网上找一个现成的组件往往能节省很多的时间和精力，但是也不要低估了自己的实现">
+<meta name="description" content="状态管理-reduxReduxRedux是一个使用叫作”actions”的事件去管理和更新应用状态的模式和工具库。它以集中式Store的方式对整个应用中使用的状态进行集中管理，其规则确保状态只能以可预测的方式更新。 Redux提供的模式和工具使你更容易理解应用程序中的状态合适、何地、为什么以及如何更新，以及当这些更改发生时你的应用程序逻辑将如何表现。Redux知道你编写可预测和可测试的代码，这有助">
 <meta property="og:type" content="article">
-<meta property="og:title" content="寺庙点灯小程序">
-<meta property="og:url" content="https://github.com/rht-fsang/fsang.git/2022/12/13/heartLight/index.html">
+<meta property="og:title" content="扶桑">
+<meta property="og:url" content="https://github.com/rht-fsang/fsang.git/2023/03/07/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86-redux/index.html">
 <meta property="og:site_name" content="扶桑">
-<meta property="og:description" content="先来说说我做完这个小程序的一些收获吧 在设计稿出来之前先不要写样式，按照产品搞写一下大概的dom和交互逻辑就好了 做一个项目之前一定要先把这个项目的思路理清然后再开始搭建项目，返工效率真的很低效还很难受 换个角度去思考问题很重要，很多时候你觉得这两个冲突了，做不了。但是你换个角度去解决这个冲突，这个问题可能就很容易解决了 去网上找一个现成的组件往往能节省很多的时间和精力，但是也不要低估了自己的实现">
+<meta property="og:description" content="状态管理-reduxReduxRedux是一个使用叫作”actions”的事件去管理和更新应用状态的模式和工具库。它以集中式Store的方式对整个应用中使用的状态进行集中管理，其规则确保状态只能以可预测的方式更新。 Redux提供的模式和工具使你更容易理解应用程序中的状态合适、何地、为什么以及如何更新，以及当这些更改发生时你的应用程序逻辑将如何表现。Redux知道你编写可预测和可测试的代码，这有助">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-12-13T01:33:32.000Z">
-<meta property="article:modified_time" content="2022-12-30T03:14:06.275Z">
+<meta property="article:published_time" content="2023-03-07T03:29:11.926Z">
+<meta property="article:modified_time" content="2023-03-07T03:29:11.927Z">
 <meta property="article:author" content="扶桑">
-<meta property="article:tag" content="总结">
 <meta name="twitter:card" content="summary">
 
 
@@ -137,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/rht-fsang/fsang.git/2022/12/13/heartLight/"/>
+  <link rel="canonical" href="https://github.com/rht-fsang/fsang.git/2023/03/07/状态管理-redux/"/>
 
 
 
 
 
-  <title>寺庙点灯小程序 | 扶桑</title>
+  <title> | 扶桑</title>
   
 
 
@@ -278,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/rht-fsang/fsang.git/fsang/2022/12/13/heartLight/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/rht-fsang/fsang.git/fsang/2023/03/07/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86-redux/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -295,7 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">寺庙点灯小程序</h1>
+          <h1 class="post-title" itemprop="name headline"></h1>
         
 
         <div class="post-meta">
@@ -307,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-13T09:33:32+08:00">
-                2022-12-13
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-07T11:29:11+08:00">
+                2023-03-07
               </time>
             
 
@@ -317,28 +316,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/fsang/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -361,7 +338,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.1k
+                  1.2k
                 </span>
               
 
@@ -377,7 +354,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  4
                 </span>
               
             </div>
@@ -398,27 +375,52 @@
       
 
       
-        <h4 id="先来说说我做完这个小程序的一些收获吧"><a href="#先来说说我做完这个小程序的一些收获吧" class="headerlink" title="先来说说我做完这个小程序的一些收获吧"></a>先来说说我做完这个小程序的一些收获吧</h4><ul>
-<li>在设计稿出来之前先不要写样式，按照产品搞写一下大概的dom和交互逻辑就好了</li>
-<li>做一个项目之前一定要先把这个项目的思路理清然后再开始搭建项目，返工效率真的很低效还很难受</li>
-<li>换个角度去思考问题很重要，很多时候你觉得这两个冲突了，做不了。但是你换个角度去解决这个冲突，这个问题可能就很容易解决了</li>
-<li>去网上找一个现成的组件往往能节省很多的时间和精力，但是也不要低估了自己的实现能力</li>
-<li>接口的数据结构没出来之前，搭建页面的时候先不用写数据接口</li>
-<li>接口出来之后可以先把接口全部写进api.ts里面，然后接口接收和返回的数据类型就放在server-dto文件里面</li>
-<li>个人认为小程序好像真的不需要写组件，因为如果项目中如果有相同的组件需要实现的花，只需要把样式写在全局样式就好<span id="more"></span>
-<h4 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h4></li>
-</ul>
-<p>小程序的难点是选择位置，类似电影院的选座，但是寺庙点灯的场景会更复杂一些。会出现一个位置占了好几个位置，数据范围也很大，1至400个位置的情况都要覆盖到.还需要放大缩小。</p>
-<p>一开始我的实现思路比较简单，放大缩小使用的微信小程序的api，movable-area和movable-view实现选择位置区域放大缩小的功能。然后利用flex布局，遍历数组依次渲染，超过父容器后自动换行。空位利用css渲染成透明颜色。这样实现的效果有一些的问题，比如无法控制每一个列的数量。</p>
-<p>改进方法，使用了vant的Grid组件，通过传一个参数去动态的控制每一列的数量。提前计算有多少个位置，然后根据位置的多少分成四种情况，对应四种位置尺寸，让页面看起来更加美观。</p>
-<p>思考，怎么去表示一个位置很大，可能会是其他的位置的好几倍。不考虑代码实现的理想方案应该是一个很大特殊位置区域，然后中间有一个可点击的位置。但是代码实现起来有点复杂，并且不能达预期效果，每个位置之间的间隔会有空白。于是我换了一种实现方式，当有特殊位置出现的时候，我会现在当前位置，其他位置都说空白，但是我会在选中的座位表上注明它们占了几排几列。</p>
-<h4 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h4><ul>
-<li>van时间选择器安卓bug</li>
-</ul>
-<p>在使用vant的时间选择器组件的时候，发现了一个兼容性bug，在ios手机和模拟器上正常，但是在安卓手机上选择时间的会有不规则的动画，并且选择的时候还会有1-2s的延迟。发现在两年前就已经有人github上提出了issue，然后一直都没有人解决。下面有一位网友给出方案是不要bind-input，换成bind-change。但是这样的话还是会有延迟的问题。在选中的时候立即点确定保存的值可能还是上一个的值。最后我决定使用微信小程序官方提供的时间选择器。在默认赋值的时候也出现了问题，因为js的单线程机制，在赋值的时候因为后面的数据都没有渲染出来，到处无法设置默认值。后面我在onload方法上赋值的时候使用了异步解决的这个问题。</p>
+        <h1 id="状态管理-redux"><a href="#状态管理-redux" class="headerlink" title="状态管理-redux"></a>状态管理-redux</h1><h2 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h2><p>Redux是一个使用叫作”actions”的事件去管理和更新应用状态的模式和工具库。它以集中式Store的方式对整个应用中使用的状态进行集中管理，其规则确保状态只能以可预测的方式更新。</p>
+<p>Redux提供的模式和工具使你更容易理解应用程序中的状态合适、何地、为什么以及如何更新，以及当这些更改发生时你的应用程序逻辑将如何表现。Redux知道你编写可预测和可测试的代码，这有助于让你确信你的应用程序将按预期工作</p>
+<p>适用场景</p>
 <ul>
-<li>ios部分机型上按钮边框会消失。这个是因为border设置1rpx的宽度，渲染到具体的手机上可能宽度达不到1px，出现小数位的狂赌。安卓会统一向上取整，而ios机型则会向下取整。导致边框消失。最后是通过伪类写200%长和宽，然后再缩小一半。</li>
+<li>  在应用的大量地方，都存在大量的状态</li>
+<li>  应用状态会随着时间的推移而频繁更新</li>
+<li>  更新该状态的逻辑可能很复杂</li>
+<li>  中型和大型代码量的应用，很多人协同开发</li>
 </ul>
+<h4 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h4><ul>
+<li>  单一数据源</li>
+<li>  State是只读的</li>
+<li>  使用Reducer纯函数进行更改</li>
+</ul>
+<h4 id="Redux-Toolkit"><a href="#Redux-Toolkit" class="headerlink" title="Redux Toolkit"></a>Redux Toolkit</h4><p>Redux Toolkit是我们推荐的编写Redux逻辑的方法。它包含我们认为对于构建Redux应用程序必不可少的包和函数。Redux Toolkit构建在我们建议的最佳实践中，简化了大多数Redux任务，防止了常见错误，并使编写Redux应用程序变得更加容易</p>
+<h4 id="Redux-DevTools-拓展"><a href="#Redux-DevTools-拓展" class="headerlink" title="Redux DevTools 拓展"></a>Redux DevTools 拓展</h4><p>Redux DevTools 拓展可以显示Redux存储中状态随时间变化的历史记录。这允许你有效的调试应用程序，包括使用强大的技术，如“事件旅行调试”</p>
+<h4 id="Redux-Store"><a href="#Redux-Store" class="headerlink" title="Redux Store"></a>Redux Store</h4><p>所有Redux应用的中心都是store。”store”是保存应用程序的全局state的容器。</p>
+<p>store是一个JavaScript对象，但是对于一般的对象它具有一些特殊的功能和能力：</p>
+<ul>
+<li>  不要直接修改或更改保存在Redux存储中的状态</li>
+<li>  更新状态的唯一方法是创建一个描述“应用程序中发生的某些事情”的普通action对象，然后将该action    dispatch到store以告诉它发生了什么</li>
+<li>  当一个action被dispatch后，store会调用reducer方法，让其根剧action和旧state计算出新state</li>
+<li>  store会通知订阅者状态已更新，以便可以使用新数据更新UI界面</li>
+</ul>
+<h4 id="Actions"><a href="#Actions" class="headerlink" title="Actions"></a>Actions</h4><p>action是一个具有<code>type</code>字段的普通JavaScript对象。你可以将action看作应用程序中发生了什么的事情<code>type</code>字段是一个字符串，给这个action一个描述性的名字，比如<code>&#39;&#39;todos/todoAdded&#39;&#39;</code>。我们通常把那个类型的字符串写成“域/事件名称”，其中第一部分是这个action所属的特征或类别，第二部分是发生的具体事情。action对象可以有其他字段，其中包含有关发生的事情的附加信息。按照惯例，我们将该信息放在名为<code>payload</code>的字段中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> addTodoAction = &#123;</span><br><span class="line">    <span class="attr">type</span>:<span class="string">&#x27;todos/todoAdded&#x27;</span>,</span><br><span class="line">    <span class="attr">payload</span>:<span class="string">&#x27;Buy milk&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Reducers"><a href="#Reducers" class="headerlink" title="Reducers"></a>Reducers</h4><p>reducer是一个函数，接收当前的<code>state</code>和一个<code>action</code>对象，必要时决定如何更新状态，并返回新状态。函数签名是：<code>(state,action) ⇒ newState</code>。你可以将reducer视为一个时间监听器，他根剧接收到的action类型处理事件。</p>
+<p>Reducer必须符合一下规则：</p>
+<ul>
+<li>  仅使用<code>state</code>和<code>action</code>参数计算新 的状态值</li>
+<li>  禁止直接修改<code>state</code>。必须通过复制现有的<code>state</code>并对复制的值进行更改的方式来做 不可变更新</li>
+<li>  禁止任何异步逻辑、依赖随机值或者“副作用”的代码</li>
+</ul>
+<p>Reducer函数内部的逻辑通常包括一下步骤：</p>
+<p>检查Reducer是否关心这个action，是的话就复制state，使用新值更新state副本，然后返回新state，不是的返回原来的state不变</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> initialState = &#123; <span class="attr">value</span>: <span class="number">0</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">counterReducer</span>(<span class="params">state = initialState, action</span>) &#123;</span><br><span class="line">  <span class="comment">// 检查 reducer 是否关心这个 action</span></span><br><span class="line">  <span class="keyword">if</span> (action.<span class="property">type</span> === <span class="string">&#x27;counter/increment&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment">// 如果是，复制 `state`</span></span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      ...state,</span><br><span class="line">      <span class="comment">// 使用新值更新 state 副本</span></span><br><span class="line">      <span class="attr">value</span>: state.<span class="property">value</span> + <span class="number">1</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 返回原来的 state 不变</span></span><br><span class="line">  <span class="keyword">return</span> state</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Store"><a href="#Store" class="headerlink" title="Store"></a>Store</h4><p>当前Redux应用的状态存在于一个名为store的对象中。Store是通过传入一个reducer来创建的，并且有一个名为<code>getState</code>的方法，它返回当前状态值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; configureStore &#125; <span class="keyword">from</span> <span class="string">&#x27;@reduxjs/toolkit&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="title function_">configureStore</span>(&#123; <span class="attr">reducer</span>: counterReducer &#125;)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(store.<span class="title function_">getState</span>())</span><br><span class="line"><span class="comment">// &#123;value: 0&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Dispatch"><a href="#Dispatch" class="headerlink" title="Dispatch"></a>Dispatch</h4><p>Redux store有一种方法叫<code>dispatch</code>。更新state的唯一方法是调用<code>store.dispatch</code>并传入一个action对象。store将执行所有reducer函数并计算更新后的state，调用<code>getState()</code>可以获取新state</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">store.<span class="title function_">dispatch</span>(&#123; <span class="attr">type</span>: <span class="string">&#x27;counter/incremented&#x27;</span> &#125;)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(store.<span class="title function_">getState</span>())</span><br><span class="line"><span class="comment">// &#123;value: 1&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Selectors"><a href="#Selectors" class="headerlink" title="Selectors"></a>Selectors</h4><p>Selector函数可以从store状态书中提取指定的片段。随着应用变得越来越大，会遇到应用程序的不同部分需要读取相同的数据，selector可以避免重复这样的读取逻辑</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">selectCounterValue</span> = state =&gt; state.<span class="property">value</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> currentValue = <span class="title function_">selectCounterValue</span>(store.<span class="title function_">getState</span>())</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(currentValue)</span><br><span class="line"><span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -434,12 +436,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/fsang/tags/%E6%80%BB%E7%BB%93/" rel="tag"># 总结</a>
-          
-        </div>
-      
 
       
       
@@ -449,8 +445,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/fsang/2022/12/12/JavaScirpt/" rel="next" title="JavaScript语言基础">
-                <i class="fa fa-chevron-left"></i> JavaScript语言基础
+              <a href="/fsang/2022/12/30/2022%E6%80%BB%E7%BB%93/" rel="next" title="毕业后的第一年-2022总结">
+                <i class="fa fa-chevron-left"></i> 毕业后的第一年-2022总结
               </a>
             
           </div>
@@ -458,10 +454,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/fsang/2022/12/30/2022%E6%80%BB%E7%BB%93/" rel="prev" title="毕业后的第一年-2022总结">
-                毕业后的第一年-2022总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -625,7 +617,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%88%E6%9D%A5%E8%AF%B4%E8%AF%B4%E6%88%91%E5%81%9A%E5%AE%8C%E8%BF%99%E4%B8%AA%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%9A%84%E4%B8%80%E4%BA%9B%E6%94%B6%E8%8E%B7%E5%90%A7"><span class="nav-number">1.</span> <span class="nav-text">先来说说我做完这个小程序的一些收获吧</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%BE%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">难点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9D%91"><span class="nav-number">3.</span> <span class="nav-text">坑</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86-redux"><span class="nav-number">1.</span> <span class="nav-text">状态管理-redux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redux"><span class="nav-number">1.1.</span> <span class="nav-text">Redux</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">核心概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redux-Toolkit"><span class="nav-number">1.1.0.2.</span> <span class="nav-text">Redux Toolkit</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redux-DevTools-%E6%8B%93%E5%B1%95"><span class="nav-number">1.1.0.3.</span> <span class="nav-text">Redux DevTools 拓展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redux-Store"><span class="nav-number">1.1.0.4.</span> <span class="nav-text">Redux Store</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Actions"><span class="nav-number">1.1.0.5.</span> <span class="nav-text">Actions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reducers"><span class="nav-number">1.1.0.6.</span> <span class="nav-text">Reducers</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Store"><span class="nav-number">1.1.0.7.</span> <span class="nav-text">Store</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dispatch"><span class="nav-number">1.1.0.8.</span> <span class="nav-text">Dispatch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Selectors"><span class="nav-number">1.1.0.9.</span> <span class="nav-text">Selectors</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
