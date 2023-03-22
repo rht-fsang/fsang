@@ -14,7 +14,7 @@ top: 20
 
 ```javascript
 scp 本地文件路径 root@196.0.0.1:服务器路径
-//scp guess root@47.97.16.67:local  把本地的guess文件上传到服务器的local目录里
+//scp guess root@196.0.0.1:local  把本地的guess文件上传到服务器的local目录里
 
 ```
 
