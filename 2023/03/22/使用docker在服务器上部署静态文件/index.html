@@ -14,8 +14,8 @@
 <meta name="theme-color" content="#222">
 <script>
     (function(){
-        if('0208'){
-            if (prompt('请输入文章密码') !== '0208'){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
                 alert('密码错误！');
                 history.back();
             }
@@ -85,7 +85,7 @@
 
 
 
-  <meta name="keywords" content="总结," />
+  <meta name="keywords" content="docker," />
 
 
 
@@ -96,18 +96,20 @@
 
 
 
-<meta name="description" content="踩着2022的尾巴，总结一下2022的我，给2023的我一些期盼">
+<meta name="description" content="如果你目前已经拥有镜像，那么就可以直接跳到最后一步启动镜像 如果你目前有一个写好了nginx配置文件和Dockerfile的项目，那你可以直接跳到倒数第二歩，构建镜像然后启动镜像。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="毕业后的第一年-2022总结">
-<meta property="og:url" content="https://github.com/rht-fsang/fsang.git/2022/12/30/2022%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="使用docker在服务器上部署静态文件">
+<meta property="og:url" content="https://github.com/rht-fsang/fsang.git/2023/03/22/%E4%BD%BF%E7%94%A8docker%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6/index.html">
 <meta property="og:site_name" content="扶桑">
-<meta property="og:description" content="踩着2022的尾巴，总结一下2022的我，给2023的我一些期盼">
+<meta property="og:description" content="如果你目前已经拥有镜像，那么就可以直接跳到最后一步启动镜像 如果你目前有一个写好了nginx配置文件和Dockerfile的项目，那你可以直接跳到倒数第二歩，构建镜像然后启动镜像。">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-12-30T02:36:15.000Z">
-<meta property="article:modified_time" content="2023-02-16T10:00:54.490Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/rht-fsang/md-image/master/img/Snipaste_2023-03-22_17-48-25.png">
+<meta property="article:published_time" content="2023-03-22T10:04:26.236Z">
+<meta property="article:modified_time" content="2023-03-22T10:05:33.021Z">
 <meta property="article:author" content="扶桑">
-<meta property="article:tag" content="总结">
+<meta property="article:tag" content="docker">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/rht-fsang/md-image/master/img/Snipaste_2023-03-22_17-48-25.png">
 
 
 
@@ -137,13 +139,13 @@
 
 
 
-  <link rel="canonical" href="https://github.com/rht-fsang/fsang.git/2022/12/30/2022总结/"/>
+  <link rel="canonical" href="https://github.com/rht-fsang/fsang.git/2023/03/22/使用docker在服务器上部署静态文件/"/>
 
 
 
 
 
-  <title>毕业后的第一年-2022总结 | 扶桑</title>
+  <title>使用docker在服务器上部署静态文件 | 扶桑</title>
   
 
 
@@ -278,7 +280,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/rht-fsang/fsang.git/fsang/2022/12/30/2022%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="https://github.com/rht-fsang/fsang.git/fsang/2023/03/22/%E4%BD%BF%E7%94%A8docker%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -295,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">毕业后的第一年-2022总结</h1>
+          <h1 class="post-title" itemprop="name headline">使用docker在服务器上部署静态文件</h1>
         
 
         <div class="post-meta">
@@ -307,8 +309,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-30T10:36:15+08:00">
-                2022-12-30
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-03-22T18:04:26+08:00">
+                2023-03-22
               </time>
             
 
@@ -330,8 +332,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/fsang/categories/%E7%94%9F%E6%B4%BB/" itemprop="url" rel="index">
-                    <span itemprop="name">生活</span>
+                  <a href="/fsang/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
                   </a>
                 </span>
 
@@ -361,7 +363,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2.1k
+                  506
                 </span>
               
 
@@ -377,7 +379,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  2
                 </span>
               
             </div>
@@ -398,24 +400,52 @@
       
 
       
-        <hr>
-<!-- ![image-20221230094407153](https://raw.githubusercontent.com/rht-fsang/md-image/master/img/image-20221230094407153.png) -->
-
-<p>踩着2022的尾巴，总结一下2022的我，给2023的我一些期盼</p>
+        <p>如果你目前已经拥有镜像，那么就可以直接跳到最后一步启动镜像</p>
+<p>如果你目前有一个写好了nginx配置文件和Dockerfile的项目，那你可以直接跳到倒数第二歩，构建镜像然后启动镜像。</p>
 <span id="more"></span>
+<ol>
+<li> 上传静态资源文件到服务器上</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scp 本地文件路径 root@<span class="number">196.0</span><span class="number">.0</span><span class="number">.1</span>:服务器路径</span><br><span class="line"><span class="comment">//scp guess root@47.97.16.67:local  把本地的guess文件上传到服务器的local目录里</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h3 id="2022"><a href="#2022" class="headerlink" title="2022"></a>2022</h3><h4 id="同盾实习"><a href="#同盾实习" class="headerlink" title="同盾实习"></a>同盾实习</h4><p>去年的这个时候，我已经在同盾实习了四个月。因为一个前辈的建议，我打算一直留在同盾，争取可以在顺利转正。当时和我一起来的还有另一个实习生，我们一起负责同盾大数据平台的，当时是有一个大佬带着我们两个一块开发的，后来在11月份的时候大佬跳槽了。我和另一个实习生开发大数据平台，有过加班，但是好在没有经历过当时上一届的毕业生的同事说的通宵加班。当时我们的产品功能还有所欠缺，突然售前说找到一个客户，需要赶紧增加一些产品的功能，然后我们就开始连续的不断开发中，最后快结束的时候还持续加班一个礼拜，每天都是11点多回家。因为售前的提的功能过多，项目负责人也一直和售前人员有过争吵。最后好在产品成功卖出去了，不过好像和我没有什么关系，甚至我知道产品卖出去了也都是听后端和我聊天的时候说的。后来听说项目要交给别的部门去开发了，把产品和开发都调过去，但是我们两个实习生并没有调过去，我大概就知道了我的命运。另一个是实习生是在4月份走了，说回学校准备毕业设计。我继续留了下来，保持着最后的幻想。2022年的金三银四也是一片寒气，我也偶尔去投一些简历，但是都没有什么消息。终于主管找我谈话了，让我去投一些简历，公司没有hc了。下定决心之后我开始积极的投简历和面试，那个时候我还没有背八股文的想法，也没有总结的习惯，面试的时候全凭头铁，因此也错过了一些好公司。不知道是因为紧张还是什么，我拿到两份offer后就在思考去哪个了，两个薪资差不多，但是一个是初创公司，工作很饱和，前景很不错。另一个是一个平稳的小公司，工作不忙，面试官也说会给我一个月的时间去学习一下基础。于是我就来到了现在的这个公司，尽管我当时没有一个好的学习习惯，但是我知道自己还很菜，需要更多的时间去学习。（ps:从同盾离职之后我发现我之前的大数据项目是因为不赚钱，后来不打算继续开发，留着公司内部自己用。项目的负责人和产品等人也都离职了）</p>
-<p>在同盾我从一个只会用vue搭建一个简单系统的大学生成为了可以用react+antd搭建简单中后台项目的打工人，遗憾的是我并没有找到属于自己的学习方式。</p>
-<h4 id="冰魄网络"><a href="#冰魄网络" class="headerlink" title="冰魄网络"></a>冰魄网络</h4><p>我从同盾离职到冰魄入职是无缝衔接的，我也不知道为什么我不给自己留一点时间休息，可能我有打工人的潜力吧。在冰魄的的第一个月，主管给了我一份前端知识脑图，还有一些链接让我去把基础巩固一遍。我之前学习都是看视频教程，还没有这样一直看各种官网学习的经历，刚开始的几天效率还是不错的，后面看着特别容易犯困，效率不高，后面我就试着去做笔记，不那么容易犯困。经过一个月对基础的巩固，我总算也是学到了一些东西，更重要的是我学会如何去学习一些新东西。在开始做项目之前，我先去把typescript和微信小程序和vant的官网去看了一遍，因为接下来的项目的技术栈是原生微信小程序+vant+ts。在做项目的时候，主管一直强调思想先行，不然很容易反工。做之前先想好，想清楚之后到了真正做的时候就会很快。之前苦练基础也很好的提供了我操作数据的能力。做完小程序的项目后，我被安排了一个改造公司官网的任务。公司官网项目的技术栈是next搭建的ssr。这对我来说又是一个新的技术，这个时候，通过自己去看官网已经能大概的掌握一门新技术，我觉得这种能力很重要。在冰魄其实真的没有什么工作，更多的时间是自己用来学习，如果没有目标学习起来是比较迷茫，而一旦想清楚了自己的学习方向就会事半功倍。我从基础开始，跟着自己的兴趣学习了很多东西。</p>
-<h4 id="毕业答辩"><a href="#毕业答辩" class="headerlink" title="毕业答辩"></a>毕业答辩</h4><p>我的毕业设计是家庭族谱官网系统，大部分时间我是在思考，我应该怎么去做这个系统，需要把这个系统做到什么程度，应该使用哪些技术栈。最后我把我的系统分成了四个模块，签名墙，族谱，照片墙，数据管理。答辩的时候我请了两周的假回学校，虽然还是有点赶。两周的时间里我很充实，故友相逢，总是有说不完的话。这也是我大学最后的两周。在大学做什么事情的成本都很低，在社会上做什么都得考虑一下代价。 毕业答辩顺利过去，我的大学生活也结束了。好好做一个打工人，为了生活为了钱。</p>
-<h4 id="我的博客"><a href="#我的博客" class="headerlink" title="我的博客"></a><a target="_blank" rel="noopener" href="https://rht-fsang.github.io/fsang/">我的博客</a></h4><p>在大学的时候，我的老师曾经要求我们每个人给自己写一个博客作为课程设计。那个时候的我因为博客就一定需要前端页面和后端接口才能实现，最后我只是做好了前端页面，后端接口对我来说有点难就放弃了。其实一个博客还是很重要的，可以作为一个向别人展示自己的平台。在学习next的时候，我发现这个很适合搭建博客，后来因为不方便部署就战时搁置了，通过搜索我了解到hexo这个博客框架，最重要的是他支持一键部署GitHub。于是就着手搭建起了我第一个博客。我把我之前的笔记全部都搬到了博客上。不久前我刚刚在阿里云上买了一个服务器，后面有时间我还是会用next框架重构一下我的博客，然后放到我的服务器上去。</p>
-<h3 id="2023"><a href="#2023" class="headerlink" title="2023"></a>2023</h3><p>不知不觉我已经从一个学生变成一个打工人。虽然现在还是会想念在学校的快乐生活，但是我知道我只能向前看。新的一年里，我希望有以下改变。</p>
-<h4 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h4><p>周末多出去走走，找到新到的娱乐方式。早日买一辆电车，这样方便短期假期回家看看，和外出旅游。</p>
-<h4 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h4><p>年底入手mac pro，预先善其事，必先利其器。第一台电脑是大学的时候买的，现在已经不能完成基本的开发了。所以我一直在筹划着买一台mac pro，方便以后能够更好的开发。</p>
-<p>进一步学习nest框架，拥有开发一个简单的后台项目的能力。我觉得有后端能力是必须的，也许不需要更精通，但是必须会一点，这样在前后端交互的时候也能更加的流畅。有时候开发一些项目后端的能力也是必不可少的。</p>
-<p>进一步掌握ts开发</p>
-<p>进一步学习next，熟练的开发各类官网</p>
-<p>继续学习算法</p>
+<p>2.在服务器下载docker</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yun install docker</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>3.在服务器中下载nginx</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull <span class="attr">nginx</span>:<span class="number">1.14</span></span><br></pre></td></tr></table></figure>
+
+<p>4.查看docker已经安装的镜像</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<p>5.在服务器中进入local目录</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd local</span><br></pre></td></tr></table></figure>
+
+<p>6.生成nginx配置文件 <code>nginx.conf</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch nginx.<span class="property">conf</span></span><br></pre></td></tr></table></figure>
+
+<p>7.编辑<code>nginx.conf</code>文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim nginx.<span class="property">conf</span></span><br></pre></td></tr></table></figure>
+
+<p>7.在文件中写入以下配置</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">user</span>  nginx;</span><br><span class="line"><span class="attribute">worker_processes</span>  <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">error_log</span>  /var/log/nginx/<span class="literal">error</span>.log <span class="literal">warn</span>;</span><br><span class="line"><span class="attribute">pid</span>        /var/run/nginx.pid;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">events</span> &#123;</span><br><span class="line">    <span class="attribute">worker_connections</span>  <span class="number">1024</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">include</span>       /etc/nginx/mime.types;</span><br><span class="line">    <span class="attribute">default_type</span>  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">log_format</span>  main  <span class="string">&#x27;<span class="variable">$remote_addr</span> - <span class="variable">$remote_user</span> [<span class="variable">$time_local</span>] &quot;<span class="variable">$request</span>&quot; &#x27;</span></span><br><span class="line">                      <span class="string">&#x27;<span class="variable">$status</span> <span class="variable">$body_bytes_sent</span> &quot;<span class="variable">$http_referer</span>&quot; &#x27;</span></span><br><span class="line">                      <span class="string">&#x27;&quot;<span class="variable">$http_user_agent</span>&quot; &quot;<span class="variable">$http_x_forwarded_for</span>&quot;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">access_log</span>  /var/log/nginx/access.log  main;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">sendfile</span>        <span class="literal">on</span>;</span><br><span class="line">    <span class="comment">#tcp_nopush     on;</span></span><br><span class="line"></span><br><span class="line">    <span class="attribute">keepalive_timeout</span>  <span class="number">65</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">#gzip  on;</span></span><br><span class="line"></span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">listen</span> <span class="number">80</span> default_server;</span><br><span class="line">        <span class="attribute">server_name</span> _;</span><br><span class="line"></span><br><span class="line">        <span class="section">location</span>  / &#123;</span><br><span class="line">        <span class="attribute">root</span> /usr/share/nginx/html;</span><br><span class="line">        <span class="attribute">index</span>  index.html ;</span><br><span class="line">        <span class="attribute">try_files</span> <span class="variable">$uri</span> <span class="variable">$uri</span>/ /index.html;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>8.回到local目录下创建<code>Dockerfile</code>文件</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">touch</span> Dockerfile</span><br></pre></td></tr></table></figure>
+
+<p>9.编辑Dockerfile文件</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">vim</span> Dockerfile</span><br></pre></td></tr></table></figure>
+
+<p>10.在Dockerfile文件写入以下配置</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">FROM</span> nginx:<span class="number">1</span>.<span class="number">14</span></span><br><span class="line">ADD ./guess-number/ /usr/share/nginx/html</span><br><span class="line">ADD nginx.conf /etc/nginx/</span><br><span class="line">EXPOSE <span class="number">8080</span></span><br></pre></td></tr></table></figure>
+
+<p>11.构建镜像</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t demo . <span class="comment">//demo是镜像名字</span></span><br></pre></td></tr></table></figure>
+
+<p>12.启动镜像</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p <span class="number">3002</span>:<span class="number">80</span> demo </span><br><span class="line"></span><br><span class="line"><span class="comment">//-d: 后台运行容器，并返回容器ID</span></span><br><span class="line"><span class="comment">//-p: 指定端口映射，格式为：主机(宿主)端口:容器端口</span></span><br></pre></td></tr></table></figure>
+
+<p>13.访问部署的静态地址<code>服务器id：3002</code>，注意服务器要确认防火墙是否放开<code>3002</code>端口，使用<code>telnet 服务器id 端口号</code>来确认服务器是否对外开放该端口，图中3002端口为已开放，8080为开放，可以去服务器管理网页找到防火墙增加端口</p>
+<p><img src="https://raw.githubusercontent.com/rht-fsang/md-image/master/img/Snipaste_2023-03-22_17-48-25.png"></p>
 
       
     </div>
@@ -433,7 +463,7 @@
       
         <div class="post-tags">
           
-            <a href="/fsang/tags/%E6%80%BB%E7%BB%93/" rel="tag"># 总结</a>
+            <a href="/fsang/tags/docker/" rel="tag"># docker</a>
           
         </div>
       
@@ -446,8 +476,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/fsang/2022/12/13/heartLight/" rel="next" title="寺庙点灯小程序">
-                <i class="fa fa-chevron-left"></i> 寺庙点灯小程序
+              <a href="/fsang/2023/03/21/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/" rel="next" title="新服务器部署express服务端和前端项目">
+                <i class="fa fa-chevron-left"></i> 新服务器部署express服务端和前端项目
               </a>
             
           </div>
@@ -455,10 +485,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/fsang/2023/03/07/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86-redux/" rel="prev" title="状态管理-redux">
-                状态管理-redux <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -510,17 +536,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -612,22 +629,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#2022"><span class="nav-number">1.</span> <span class="nav-text">2022</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8C%E7%9B%BE%E5%AE%9E%E4%B9%A0"><span class="nav-number">1.1.</span> <span class="nav-text">同盾实习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%B0%E9%AD%84%E7%BD%91%E7%BB%9C"><span class="nav-number">1.2.</span> <span class="nav-text">冰魄网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AF%95%E4%B8%9A%E7%AD%94%E8%BE%A9"><span class="nav-number">1.3.</span> <span class="nav-text">毕业答辩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2"><span class="nav-number">1.4.</span> <span class="nav-text">我的博客</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2023"><span class="nav-number">2.</span> <span class="nav-text">2023</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%B4%BB"><span class="nav-number">2.1.</span> <span class="nav-text">生活</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%80%E6%9C%AF"><span class="nav-number">2.2.</span> <span class="nav-text">技术</span></a></li></ol></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
