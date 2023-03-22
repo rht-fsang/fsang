@@ -1,5 +1,5 @@
 ---
-title: 使用docker在服务器上部署
+title: 使用docker在服务器上部署静态文件
 tags: docker
 categories: 前端
 typora-copy-images-to: upload
