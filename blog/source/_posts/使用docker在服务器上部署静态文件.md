@@ -1,5 +1,5 @@
 ---
-title: 使用docker在服务器上部署静态文件
+title: 使用docker在服务器上部署
 tags: docker
 categories: 前端
 typora-copy-images-to: upload
@@ -18,14 +18,14 @@ scp 本地文件路径 root@196.0.0.1:服务器路径
 
 ```
 
-2.在服务器下载docker
+2.在服务器中下载docker
 
 ```javascript
 yun install docker
 
 ```
 
-3.在服务器中下载nginx
+3.在docker中下载nginx
 
 ```javascript
 docker pull nginx:1.14
