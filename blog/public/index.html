@@ -274,6 +274,206 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://github.com/rht-fsang/fsang.git/fsang/2023/06/12/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86-dva/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/fsang/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="扶桑">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/fsang/2023/06/12/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86-dva/" itemprop="url">状态管理-dva</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2023-06-12T17:04:33+08:00">
+                2023-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/fsang/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  869
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="数据流向"><a href="#数据流向" class="headerlink" title="数据流向"></a>数据流向</h4><p>数据的改变发生通常是通过用户交互行为或者浏览器行为触发的，当此类行为会改变数据的时候可以通过<code>dispatch</code>发起一个action，如果是同步行为会直接通过<code>Reducers</code>改变<code>State</code>，如果是异步行为会先触发<code>Effects</code>然后流向<code>Reducers</code>最终改变<code>State</code>，所以在dva中，数据流向非常清晰简明。</p>
+<p><img src="https://raw.githubusercontent.com/rht-fsang/md-image/master/img/dva.png"></p>
+<h3 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h3><ul>
+<li>State：一个对象，保存整个应用状态</li>
+<li>View：React组件构成的视图层</li>
+<li>Action：一个对象，描述事件</li>
+<li>connect方法：一个函数，绑定State到View</li>
+<li>dispatch方法：一个函数，发送Action到State</li>
+</ul>
+<h4 id="State"><a href="#State" class="headerlink" title="State"></a>State</h4><p>State表示Model的状态数据，通常表现为一个JavaScript对象，也可以是任何值。操作的时候都要当成不可变数据来对待，保证每次都是全新对象，没有引用关系，以保证State的独立性，便于测试和追踪变化</p>
+<h4 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h4><p>Action是一个普通JavaScript对象，它是改变State的唯一途径。action必须带有<code>type</code>属性指明具体的行为，其他字段可以自定义，如果要发起一个action需要使用<code>dispatch</code>函数；需要注意的是<code>dispatch</code>是在组件connect Models后，通过props传入的。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">dispatch</span>(&#123;</span><br><span class="line">  <span class="attr">type</span>:<span class="string">&#x27;add&#x27;</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="dispatch函数"><a href="#dispatch函数" class="headerlink" title="dispatch函数"></a>dispatch函数</h4><p>dispatching function是一个用于触发action的函数，action是改变State的唯一途径，但是它只描述了一个行为，而dispatch可以看作是触发这个行为的方式，而Reducer则是描述如何改变数据的。</p>
+<p>在dva中，connect Model的组件通过props可以访问到dispatch，可以调用Model中的Reducer或者Effects。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">dispatch</span>(&#123;</span><br><span class="line">  <span class="attr">type</span>:<span class="string">&#x27;user/add&#x27;</span>,<span class="comment">//如果在model外调用，需要添加namespace</span></span><br><span class="line">  <span class="attr">payload</span>:&#123;&#125;,<span class="comment">//需要传递的信息</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Reducer"><a href="#Reducer" class="headerlink" title="Reducer"></a>Reducer</h4><p>Reducer函数接收两个参数：之前已经累积运算的结果和当前要被累积的值，返回的是一个新的累积结果。该函数把一个集合归并成一个单位。</p>
+<p>Reducer的概念来自于函数式编程，很多语言中都有reduce API。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[&#123;<span class="attr">x</span>:<span class="number">1</span>&#125;,&#123;<span class="attr">y</span>:<span class="number">2</span>&#125;,&#123;<span class="attr">z</span>:<span class="number">3</span>&#125;].<span class="title function_">reduce</span>(<span class="keyword">function</span>(<span class="params">prev, next</span>)&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Object</span>.<span class="title function_">assign</span>(prev, next);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//return &#123;x:1, y:2, z:3&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>在dva中，reducers聚合累积的结果是当前model的state对象。通过actions中传入的值，与当前reducers中的值进行运算获得新的值。需要注意的是Reducer必须是纯函数，所以以同样的输入必然得到相同的输出。以便使用热重载和时间旅行等功能。</p>
+<h4 id="Effect"><a href="#Effect" class="headerlink" title="Effect"></a>Effect</h4><p>Effect被称为副作用，在我们的应用中，最常见的就是异步操作。之所以叫副作用是因为它使得我们的函数变得不纯，同样的输入不一定获得同样的输出。</p>
+<p>dva为了控制副作用的操作，底层引入了<code>redux-sagas</code>做异步流程控制，由于采用了<code>generator</code>的相关概念，所以将异步转成同步写法，从而将effects转为纯函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> *<span class="title function_">addAfter1Second</span>(<span class="params">action, &#123; put, call &#125;</span>) &#123;</span><br><span class="line">  <span class="keyword">yield</span> <span class="title function_">call</span>(delay, <span class="number">1000</span>);</span><br><span class="line">  <span class="keyword">yield</span> <span class="title function_">put</span>(&#123; <span class="attr">type</span>: <span class="string">&#x27;add&#x27;</span> &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="connect方法"><a href="#connect方法" class="headerlink" title="connect方法"></a>connect方法</h4><p>connect方法返回的也是一个React组件，通常称为容器组件，因为它是原生UI组件的容器，，即在外面包了一层State。connect方法传入的第一个参数是mapStateToProps函数，mapStateToProps函数会返回一个对象，用于建立State到Props的映射关系</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; connect &#125; <span class="keyword">from</span> <span class="string">&#x27;dva&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">mapStateToProps</span>(<span class="params">state</span>) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> &#123; <span class="attr">todos</span>: state.<span class="property">todos</span> &#125;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">connect</span>(mapStateToProps)(<span class="title class_">App</span>);</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://github.com/rht-fsang/fsang.git/fsang/2023/03/22/%E4%BD%BF%E7%94%A8docker%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%83%A8%E7%BD%B2%E9%9D%99%E6%80%81%E6%96%87%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1876,190 +2076,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://github.com/rht-fsang/fsang.git/fsang/2022/12/12/sass/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/fsang/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="扶桑">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/fsang/2022/12/12/sass/" itemprop="url">sass学习</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2022-12-12T10:36:15+08:00">
-                2022-12-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/fsang/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3.3k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  13
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="特色功能"><a href="#特色功能" class="headerlink" title="特色功能"></a>特色功能</h3><hr>
-<ul>
-<li>完全兼容css3</li>
-<li>在css基础上增加变量、嵌套、混合等功能</li>
-<li>通过函数进行颜色值与属性值的运算</li>
-<li>提供控制指令等高级功能</li>
-<li>自定义输出格式</li>
-</ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/fsang/2022/12/12/sass/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2114,7 +2130,7 @@
               
                 <a href="/fsang/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2210,7 +2226,7 @@
 <div></div>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共<span class="post-count">39.3k</span>字</span>
+  <span class="post-count">博客全站共<span class="post-count">40.1k</span>字</span>
 </div>
 <div class="copyright">&copy; 2022 &mdash; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
