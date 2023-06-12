@@ -293,7 +293,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/fsang/2023/06/12/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86-zustand/" itemprop="url">未命名</a></h1>
+                <a class="post-title-link" href="/fsang/2023/06/12/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86-zustand/" itemprop="url">状态管理-zustand</a></h1>
         
 
         <div class="post-meta">
@@ -316,6 +316,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/fsang/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -337,7 +359,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  93
+                  89
                 </span>
               
 
@@ -375,14 +397,15 @@
 
       
         
-          
-            <h1 id="状态管理-zustand"><a href="#状态管理-zustand" class="headerlink" title="状态管理-zustand"></a>状态管理-zustand</h1><p>创建一个store</p>
+          <p>创建一个store</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; create &#125; <span class="keyword">from</span> <span class="string">&#x27;zustand&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> useBearStore = <span class="title function_">create</span>(<span class="function">(<span class="params">set</span>) =&gt;</span> (&#123;</span><br><span class="line">  <span class="attr">bears</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">increasePopulation</span>: <span class="function">() =&gt;</span> <span class="title function_">set</span>(<span class="function">(<span class="params">state</span>) =&gt;</span> (&#123; <span class="attr">bears</span>: state.<span class="property">bears</span> + <span class="number">1</span> &#125;)),</span><br><span class="line">  <span class="attr">removeAllBears</span>: <span class="function">() =&gt;</span> <span class="title function_">set</span>(&#123; <span class="attr">bears</span>: <span class="number">0</span> &#125;),</span><br><span class="line">&#125;))</span><br></pre></td></tr></table></figure>
-
-<p>使用</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">BearCounter</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> bears = <span class="title function_">useBearStore</span>(<span class="function">(<span class="params">state</span>) =&gt;</span> state.<span class="property">bears</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;bears&#125; around here ...<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">Controls</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> increasePopulation = <span class="title function_">useBearStore</span>(<span class="function">(<span class="params">state</span>) =&gt;</span> state.<span class="property">increasePopulation</span>)</span><br><span class="line">  <span class="keyword">return</span> <span class="language-xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;increasePopulation&#125;</span>&gt;</span>one up<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/fsang/2023/06/12/%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86-zustand/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
