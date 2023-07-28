@@ -104,7 +104,7 @@
 <meta property="og:description" content="JavaScript是一个单线程语言，这样很容易造成代码阻塞。为了解决这一问题，引出了同步异步的概念  同步：函数返回的时候就能直接获取值   异步：函数返回不能获得值，需要通过异步执行来获取">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-07-27T10:03:23.628Z">
-<meta property="article:modified_time" content="2023-07-27T10:05:23.628Z">
+<meta property="article:modified_time" content="2023-07-28T02:42:55.898Z">
 <meta property="article:author" content="扶桑">
 <meta property="article:tag" content="学习">
 <meta name="twitter:card" content="summary">
@@ -443,9 +443,8 @@
 <li> 执行完微任务队列中的任务，那去执行宏任务队列中的任务，打印出“setTimeout”</li>
 </ol>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><ul>
-<li>  微任务和宏任务时绑定的，每个宏任务在执行时，会创建自己的微任务队列</li>
+<li>  在浏览器端，每次执行完宏任务都会去执行微任务里面的队列直到微任务队列为空</li>
 <li>  微任务的执行时长会影响宏任务的时长</li>
-<li>  在一个宏任务中，分别创建一个用于回调的宏任务和微任务，无论什么情况下，微任务都早于宏任务执行</li>
 </ul>
 <h4 id="宏任务和微任务的区别"><a href="#宏任务和微任务的区别" class="headerlink" title="宏任务和微任务的区别"></a>宏任务和微任务的区别</h4><p>js在遇到异步任务时，会将任务交给其他线程来执行，主线程会继续执行后面的同步任务。如setTimeout是宏任务，会交给定时器触发线程去执行，待计时结束，就会将定时器回调任务放入任务队列等待主线程来取出执行</p>
 <p>对于微任务，浏览器引擎不需要将异步任务交给其他线程去执行，而是将任务回调存在一个队列中，当执行栈中的人物执行完之后，就去执行微任务队列中的任务，如promise.then</p>
